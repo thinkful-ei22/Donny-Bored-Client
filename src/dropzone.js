@@ -30,20 +30,30 @@ export default class Basic extends React.Component {
     //DROPZONE handler
     onDrop(files) {
       console.log(files);
-    // Push all the axios request promise into a single array
         const uploaders = files.map(file => {
           // Initial FormData
+          //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
           const formData = new FormData();
           formData.append('file', file);
           formData.append('moodboard_id',1)
           
           // Make an AJAX upload request using Axios 
-          return axios.post("http://localhost:9090/api/cloudinary", formData, {
+          // return axios.post("http://localhost:9090/api/cloudinary", formData, {
+          //   headers: { "X-Requested-With": "XMLHttpRequest" },
+          // }).then(response => {  
+          //   console.log(response);
+          // })
+
+          //using fetch insead of Axios library
+         return fetch("http://localhost:9090/api/cloudinary",{
+            method:'POST',
             headers: { "X-Requested-With": "XMLHttpRequest" },
-          }).then(response => {  
-            console.log(response);
-          })
+            body:formData
+          }).then(response => console.log(response) );
         });
+
+     
+
 
         // Once all the files are uploaded 
         axios
