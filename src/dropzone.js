@@ -22,6 +22,11 @@ export default class Basic extends React.Component {
           .then(([data]) => this.setState({ moodboardImages :data.images}));
     } 
     
+    saveImages(){
+     
+
+
+    }
 
     //LIFE CYCLE
     componentDidMount() {
@@ -50,7 +55,8 @@ export default class Basic extends React.Component {
             method:'POST',
             headers: { "X-Requested-With": "XMLHttpRequest" },
             body:formData
-          }).then(response => console.log(response) );
+          })
+          .then(response => console.log(response) );
         });
 
         // Once all the files are uploaded 
@@ -71,6 +77,7 @@ export default class Basic extends React.Component {
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
+          <div><button onClick={()=> console.log(this.state.moodboardImages)}>GET IMAGES</button></div>
           <aside>
             <h2>Dropped files</h2>
             <ul>

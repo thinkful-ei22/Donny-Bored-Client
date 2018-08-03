@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
-import ResizableRect from 'react-resizable-rotatable-draggable'
+import ResizableRect from './components/moodboard/ResizableRect'
 //import { url } from 'inspector';
 
 export default class DragTest extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       width: 100,
       height: 100,
       top: 100,
       left: 100,
       rotateAngle: 0
+    
     }
   }
 
@@ -47,6 +48,7 @@ export default class DragTest extends Component {
 
   render() {
     const {width, top, left, height, rotateAngle} = this.state
+    console.log('PROPS',this.props);
     return (
       <div className="App" >
       
@@ -70,6 +72,7 @@ export default class DragTest extends Component {
           // onDragStart={this.handleDragStart}
           onDrag={this.handleDrag}
           // onDragEnd={this.handleDragEnd}
+          image={this.props.image}
         >
         </ResizableRect>
       </div>
