@@ -52,11 +52,8 @@ export default class Basic extends React.Component {
           }).then(response => console.log(response) );
         });
 
-     
-
-
         // Once all the files are uploaded 
-        axios
+        Promise
           .all(uploaders)
           .then(() => {
             this.getImages();
@@ -78,8 +75,7 @@ export default class Basic extends React.Component {
             <ul>
               {
                this.state.moodboardImages.map(image =>{
-                
-              return  <li key={image.id}><img src={image.imageurl} /></li>
+                  return  <li key={image.id}><img src={image.imageurl} /></li>
                })
               } 
               
