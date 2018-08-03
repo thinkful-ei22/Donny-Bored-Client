@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Basic from './dropzone';
+import Dragtest from './dragtest';
 import './App.css';
 
 class App extends Component {
@@ -8,10 +9,10 @@ class App extends Component {
     return (
       <div className="App">
        
-       <Basic />
+      <Basic />
+      
       </div>
     );
   }
 }
-
 export default App;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import Dragtest from './dragtest';
 
 export default class Basic extends React.Component {
     constructor() {
@@ -75,7 +76,8 @@ export default class Basic extends React.Component {
             <ul>
               {
                this.state.moodboardImages.map(image =>{
-                  return  <li key={image.id}><img src={image.imageurl} /></li>
+                 //<li key={image.id}><img src={image.imageurl} /></li>
+                  return  <Dragtest image={image}></Dragtest>
                })
               } 
               
