@@ -6,8 +6,8 @@ export default class DragTest extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      width: 100,
-      height: 100,
+      width: this.props.image.dimensions[0],
+      height: this.props.image.dimensions[1],
       top: 100,
       left: 100,
       rotateAngle: 0
@@ -48,7 +48,7 @@ export default class DragTest extends Component {
 
   render() {
     const {width, top, left, height, rotateAngle} = this.state
-    console.log('PROPS',this.props);
+   // console.log('statelog',this.state);
     return (
       <div className="App" >
       

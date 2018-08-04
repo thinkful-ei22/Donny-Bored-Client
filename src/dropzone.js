@@ -16,7 +16,7 @@ export default class Basic extends React.Component {
     getImages(){
           fetch('http://localhost:9090/api/moodboards/1')
           .then(response =>{
-          // console.log(response.json());
+           //console.log('RESPONSE JSON',response.json());
             return response.json();
           })
           .then(([data]) => this.setState({ moodboardImages :data.images}));
@@ -64,7 +64,7 @@ export default class Basic extends React.Component {
           .all(uploaders)
           .then(() => {
             this.getImages();
-            console.log('MOODBORED IMAGES' + this.state.moodboardImages);
+            //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
         });
     }
 
@@ -83,7 +83,7 @@ export default class Basic extends React.Component {
             <ul>
               {
                this.state.moodboardImages.map(image =>{
-                 //<li key={image.id}><img src={image.imageurl} /></li>
+                // return <li key={image.id}><img src={image.imageurl} /></li>
                   return  <Dragtest image={image}></Dragtest>
                })
               } 
