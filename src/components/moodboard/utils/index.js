@@ -1,3 +1,5 @@
+/*Maths*/
+
 export const getLength = (x, y) => Math.sqrt(x * x + y * y)
 
 export const getAngle = ({ x: x1, y: y1 }, { x: x2, y: y2 }) => {

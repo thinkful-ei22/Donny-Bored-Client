@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import {connect} from 'react-redux'
 import Basic from './dropzone';
 import Dragtest from './dragtest';
 import './App.css';

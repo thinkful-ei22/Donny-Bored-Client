@@ -1,11 +1,13 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
+import {connect} from 'react-redux'
 import axios from 'axios';
 import Dragtest from './dragtest';
+import {fetchImages} from './actions/images';
 
-export default class Basic extends React.Component {
-    constructor() {
-      super()
+export class Basic extends React.Component {
+    constructor(props) {
+      super(props)
       this.state = { 
         files: [] ,
         moodboardImages : []
@@ -19,18 +21,20 @@ export default class Basic extends React.Component {
            //console.log('RESPONSE JSON',response.json());
             return response.json();
           })
-          .then(([data]) => this.setState({ moodboardImages :data.images}));
+          .then(console.log('MY STATE PROPS', this.props, this.props.state));
     } 
     
     saveImages(){
-     
+       //const update = moodboardImages
 
 
     }
 
     //LIFE CYCLE
     componentDidMount() {
-     this.getImages();
+     this.props.dispatch(fetchImages())
+     //.then(console.log('MY STATE PROPS',this.props));  
+     // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
         
     //DROPZONE handler
@@ -73,7 +77,7 @@ export default class Basic extends React.Component {
       return (
         <section>
           <div className="dropzone">
-            <Dropzone onDrop={this.onDrop.bind(this)}>
+            <Dropzone disableClick={false} disablePreview={true} onDrop={this.onDrop.bind(this)}>
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
@@ -82,9 +86,10 @@ export default class Basic extends React.Component {
             <h2>Dropped files</h2>
             <ul>
               {
-               this.state.moodboardImages.map(image =>{
+               this.props.moodboardImages.map(image =>{
+                  const index =  this.props.moodboardImages.indexOf(image);
                 // return <li key={image.id}><img src={image.imageurl} /></li>
-                  return  <Dragtest image={image}></Dragtest>
+                  return  <Dragtest image={image} key={index}></Dragtest>
                })
               } 
               
@@ -94,3 +99,8 @@ export default class Basic extends React.Component {
       );
     }
   }
+  const mapStateToProps = state => ({
+    moodboardImages: state.images.moodboardImages
+});
+
+  export default connect(mapStateToProps)(Basic);
