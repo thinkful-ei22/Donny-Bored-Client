@@ -93,8 +93,10 @@ export class Moodboard extends React.Component {
       return match;
     }
 
-      updateImage(){
-        this.props.dispatch(updateImage());
+      updateImage(imageId,xpos,ypos,width,height){
+       // this.props.dispatch(updateImage());
+       this.props.dispatch(updateImage(imageId,xpos,ypos,width,height));
+      // console.log('going ot dispatch');
 
       }
 
@@ -114,7 +116,7 @@ export class Moodboard extends React.Component {
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
-          <div><button onClick={()=> updateImage()}>Save IMAGES</button></div>
+          <div><button onClick={()=> this.props.dispatch(updateImage(622))}>Save IMAGES</button></div>
           <aside>
             <h2>Dropped files</h2>
             <ul>
@@ -123,7 +125,7 @@ export class Moodboard extends React.Component {
               this.props.allImages.imageIds.map(imageId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
                // return <li key={image.id}><img src={image.imageurl} /></li>
-                 return  <Dragtest imageId={imageId} key={imageId} image={images[imageId]}></Dragtest>
+                 return  <Dragtest imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></Dragtest>
                })
               } 
               
@@ -134,10 +136,8 @@ export class Moodboard extends React.Component {
     }
   }
   const mapStateToProps = state => ({
-    moodboardImages: state.images.moodboardImages,
-    allImages: state.images.allImages,
+    allImages: state.images.allImages
 
- 
 });
 
 

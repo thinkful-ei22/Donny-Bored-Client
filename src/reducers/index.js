@@ -114,9 +114,11 @@ export const imagesReducer = (state=initialState, action) => {
     case(types.UPDATE_IMAGE):
     //const newState = { ...state };
      //return console.log('THE STATE', newState.moodboardImages);
-         let id = 621;
-         let newPos=[640,480];
-         let newSize=[640,480];
+
+     console.log('ACTION',action);
+         let id = action.imageId;
+         let newPos=[action.xPos,action.yPos];
+         let newSize=[action.width,action.height];
             const updateObj = {
               ...state, 
                 allImages: { 
@@ -132,7 +134,7 @@ export const imagesReducer = (state=initialState, action) => {
           console.log('UPDATING STATE',updateObj);
           return Object.assign({}, state, {
 
-            allImages: updateObj.state.allImages
+            allImages: updateObj.allImages
 
           });
 
