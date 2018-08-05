@@ -2,21 +2,11 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import {connect} from 'react-redux'
 import axios from 'axios';
-import Dragtest from './dragtest';
-import {fetchImages, updateImage} from './actions/images';
+import DragRect from './DragRect';
+import {fetchImages, updateImage} from '../../actions/images';
 
-export class Moodboard extends React.Component {
-    // constructor(props) {
-    //   super(props)
-    //   this.state = { 
-    //     files: [] ,
-    //     moodboardImages : [],
-    //     allImages:{},
-    //     imageIds:[]
-        
-    //   };
-    // }
-
+export class Board extends React.Component {
+  
     //gets list of images as json object array from our server, add it to our state
     getImages(){
           fetch('http://localhost:9090/api/moodboards/1')
@@ -174,7 +164,7 @@ export class Moodboard extends React.Component {
               this.props.imageIds.map(imageId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
                // return <li key={image.id}><img src={image.imageurl} /></li>
-                 return  <Dragtest imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></Dragtest>
+                 return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
                })
               } 
               
@@ -192,4 +182,4 @@ export class Moodboard extends React.Component {
 
 
 
-  export default connect(mapStateToProps)(Moodboard);
+  export default connect(mapStateToProps)(Board);

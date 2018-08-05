@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ResizableRect from './components/moodboard/ResizableRect'
+import ResizableRect from './ResizableRect'
 //import { url } from 'inspector';
 
-export default class DragTest extends Component {
+export default class DragRect extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -11,7 +11,6 @@ export default class DragTest extends Component {
       top: this.props.image.position[1],
       left: this.props.image.position[0],
       rotateAngle: 0
-    
     }
   }
 
@@ -31,6 +30,14 @@ export default class DragTest extends Component {
     })
   }
 
+  handleResizeEnd =()=>{
+
+    const {width, top, left, height, rotateAngle} = this.state
+    this.props.dispatcher(left,top,width,height);
+    console.log('RESIZE END',width,top,left,height);
+
+  }
+
   handleRotate = (rotateAngle) => {
     this.setState({
       rotateAngle
@@ -47,10 +54,10 @@ export default class DragTest extends Component {
   }
 
 
-  handleDragEnd =(dispatcher) =>{
+  handleDragEnd =() =>{
     const {width, top, left, height, rotateAngle} = this.state
-this.props.dispatcher(left,top,width,height);
-console.log('DRAG END',width,top,left,height);
+      this.props.dispatcher(left,top,width,height);
+      console.log('DRAG END',width,top,left,height);
 
   }
 
@@ -77,6 +84,7 @@ console.log('DRAG END',width,top,left,height);
           // onRotateEnd={this.handleRotateEnd}
           // onResizeStart={this.handleResizeStart}
           onResize={this.handleResize}
+          onResizeEnd={this.handleResizeEnd}
           // onResizeEnd={this.handleUp}
           // onDragStart={this.handleDragStart}
           onDrag={this.handleDrag}

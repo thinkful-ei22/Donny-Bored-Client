@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { getLength, getAngle, getCursor } from './utils';
-import BaseImage from './BaseImage';
 import {connect} from 'react-redux';
+import './css/image.css';
+import styled from 'styled-components';
 
 const zoomableMap = {
   'n': 't',
@@ -15,7 +16,7 @@ const zoomableMap = {
   'sw': 'bl'
 }
 
-class Rect extends PureComponent {
+export default class Rect extends PureComponent {
   static propTypes = {
     styles: PropTypes.object,
     zoomable: PropTypes.string,
@@ -141,8 +142,8 @@ class Rect extends PureComponent {
     //console.log('image id test', this.props.imageId);
 
     return (
-      <BaseImage
-        innerRef={this.setElementRef}
+      <div
+        ref={this.setElementRef}
         onMouseDown={this.startDrag}
         className="rect single-resizer"
         style={style}
@@ -159,18 +160,18 @@ class Rect extends PureComponent {
             <div key={d} className={`${zoomableMap[d]} square`} />
           )
         })}
-      </BaseImage>
+      </div>
     )
   }
 }
 
 
 
-const mapStateToProps = state => ({
-  //moodboardImages: state.images.moodboardImages,
-  allImages: state.images.allImages,
+// const mapStateToProps = state => ({
+//   //moodboardImages: state.images.moodboardImages,
+//   allImages: state.images.allImages,
  
   
-});
+// });
 
-export default connect(mapStateToProps)(Rect)
+// export default connect(mapStateToProps)(Rect)
