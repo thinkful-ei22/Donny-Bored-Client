@@ -46,3 +46,13 @@ export const fetchImages = () => (dispatch, getState)=> {
 }
 
 
+
+export const UPDATE_IMAGE = 'UPDATE_IMAGE';
+export const updateImage =(updateObj) =>({
+    type:UPDATE_IMAGE,
+    updateObj
+});
+
+
+
+

@@ -6,8 +6,8 @@ export default class DragTest extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      width: this.props.image.dimensions[0],
-      height: this.props.image.dimensions[1],
+      width: 100,
+      height: 100,
       top: 100,
       left: 100,
       rotateAngle: 0
@@ -72,6 +72,7 @@ export default class DragTest extends Component {
           // onDragStart={this.handleDragStart}
           onDrag={this.handleDrag}
           // onDragEnd={this.handleDragEnd}
+          imageId={this.props.imageId}
           image={this.props.image}
         >
         </ResizableRect>

@@ -112,6 +112,7 @@ class ResizableRect extends Component {
         onDragStart={this.props.onDragStart}
         onDrag={this.handleDrag}
         onDragEnd={this.props.onDragEnd}
+        imageId={this.props.imageId}
         image={this.props.image}
       />
     )

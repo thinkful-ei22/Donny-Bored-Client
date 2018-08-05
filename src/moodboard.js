@@ -3,16 +3,19 @@ import Dropzone from 'react-dropzone';
 import {connect} from 'react-redux'
 import axios from 'axios';
 import Dragtest from './dragtest';
-import {fetchImages} from './actions/images';
+import {fetchImages, updateImage} from './actions/images';
 
-export class Basic extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = { 
-        files: [] ,
-        moodboardImages : []
-      };
-    }
+export class Moodboard extends React.Component {
+    // constructor(props) {
+    //   super(props)
+    //   this.state = { 
+    //     files: [] ,
+    //     moodboardImages : [],
+    //     allImages:{},
+    //     imageIds:[]
+        
+    //   };
+    // }
 
     //gets list of images as json object array from our server, add it to our state
     getImages(){
@@ -24,16 +27,28 @@ export class Basic extends React.Component {
           .then(console.log('MY STATE PROPS', this.props, this.props.state));
     } 
     
-    saveImages(){
+    saveImage(){
+      console.log('test Save');
+      const updateObject={
+        id:621,
+        position: [
+          100,
+          100
+        ],
+        dimensions: [
+          259,
+          194
+        ]
+      };
        //const update = moodboardImages
-
+      this.props.dispatch(updateImage(updateObject));
 
     }
 
     //LIFE CYCLE
     componentDidMount() {
-     this.props.dispatch(fetchImages())
-     //.then(console.log('MY STATE PROPS',this.props));  
+     this.props.dispatch(fetchImages());
+     //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
         
@@ -67,29 +82,48 @@ export class Basic extends React.Component {
         Promise
           .all(uploaders)
           .then(() => {
-            this.getImages();
+            this.props.dispatch(fetchImages());
             //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
         });
     }
 
-    render() {
 
+    getImage(imageId){
+      const match = this.props.allImages[imageId];
+      return match;
+    }
+
+      updateImage(){
+        this.props.dispatch(updateImage());
+
+      }
+
+    render() {
+      const imagesIds = this.props.allImages.imageIds;
+      const images =  this.props.allImages;
+
+      if(!this.props || imagesIds == undefined){
+        return null; //You can change here to put a customized loading spinner 
+      }
+  
       return (
+    
         <section>
           <div className="dropzone">
             <Dropzone disableClick={false} disablePreview={true} onDrop={this.onDrop.bind(this)}>
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
-          <div><button onClick={()=> console.log(this.state.moodboardImages)}>GET IMAGES</button></div>
+          <div><button onClick={()=> updateImage()}>Save IMAGES</button></div>
           <aside>
             <h2>Dropped files</h2>
             <ul>
-              {
-               this.props.moodboardImages.map(image =>{
-                  const index =  this.props.moodboardImages.indexOf(image);
-                // return <li key={image.id}><img src={image.imageurl} /></li>
-                  return  <Dragtest image={image} key={index}></Dragtest>
+        
+             {
+              this.props.allImages.imageIds.map(imageId =>{
+                // const index =  this.props.moodboardImages.indexOf(image);
+               // return <li key={image.id}><img src={image.imageurl} /></li>
+                 return  <Dragtest imageId={imageId} key={imageId} image={images[imageId]}></Dragtest>
                })
               } 
               
@@ -100,7 +134,12 @@ export class Basic extends React.Component {
     }
   }
   const mapStateToProps = state => ({
-    moodboardImages: state.images.moodboardImages
+    moodboardImages: state.images.moodboardImages,
+    allImages: state.images.allImages,
+
+ 
 });
 
-  export default connect(mapStateToProps)(Basic);
+
+
+  export default connect(mapStateToProps)(Moodboard);
