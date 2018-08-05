@@ -8,8 +8,8 @@ export default class DragTest extends Component {
     this.state = {
       width: this.props.image.dimensions[0],
       height: this.props.image.dimensions[1],
-      top: 100,
-      left: 100,
+      top: this.props.image.position[1],
+      left: this.props.image.position[0],
       rotateAngle: 0
     
     }

@@ -92,11 +92,30 @@ function newFunction(imageId){
              }
          }    
      }
-     console.log(newObj === testStore );
-     console.log(newObj, testStore);
+     //console.log(newObj === testStore );
+     //console.log(newObj, testStore);
  }
  
+
+
+// newFunction();
+
+var obj = testStore.allImages;
+delete obj['imageIds'];
+// var obj = {"1":5,"2":7,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0};
+// var res = Object.entries(obj).map(
+  
+//   value=>console.log(value)
+
+
+
+
+// );
+// console.log(res);
+
    
-
-
-newFunction();
+for (var key in testStore.allImages) {
+  if (testStore.allImages.hasOwnProperty(key)) {
+      console.log(testStore.allImages[key]);
+  }
+}

@@ -96,7 +96,7 @@ export const imagesReducer = (state=initialState, action) => {
       //return an array of the keys
      const keyArray = Object.keys(normalizedImages);
      //add the key array to the object
-     normalizedImages.imageIds = keyArray;
+     //normalizedImages.imageIds = keyArray;
 
 
      console.log('keys', keyArray);
@@ -104,6 +104,7 @@ export const imagesReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         moodboardImages : action.moodboardImages[0].images,
         allImages : normalizedImages,
+        imageIds: keyArray,
         loading: false
       });
 
@@ -128,7 +129,7 @@ export const imagesReducer = (state=initialState, action) => {
 
      console.log('ACTION',action);
          let id = action.imageId;
-         let newPos=[action.xPos,action.yPos];
+         let newPos=[action.xpos,action.ypos];
          let newSize=[action.width,action.height];
             const updateObj = {
               ...state, 

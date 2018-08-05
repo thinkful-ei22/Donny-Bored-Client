@@ -100,13 +100,57 @@ export class Moodboard extends React.Component {
 
       }
 
-    saveUploadImages(){
-
+    saveUploadImages(imageId=631,xpos,ypos,width,height){
+       
       console.log('Saving Images...');
+      const updateImages = this.props.allImages;
+      
+      const updateImage = this.props.allImages[imageId];
+      const updateObjectArray=[];
+
+
+      for (let key in updateImages) {
+        if (updateImages.hasOwnProperty(key)) {
+           updateObjectArray.push(updateImages[key]);
+        }
+      }
+
+      const updaters= updateObjectArray.map(data => {
+        //using fetch insead of Axios library
+       return fetch(`http://localhost:9090/api/images/${data.id}`,{
+          method:'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+           body: JSON.stringify(data)
+        })
+        .then(response => console.log(response) );
+      
+      
+      });
+
+        
+
+
+   
+           
+            
+     console.log('ToBeUpdated',updateObjectArray);
+   
+      
+
+      // // Once all the files are uploaded 
+      // Promise
+      //   .all(updaters)
+      //   .then(() => {
+      //     //this.props.dispatch(fetchImages());
+      //     console.log('UPATED MOODBOARD' + this.props.allImages);
+      // });
     }
 
     render() {
-      const imagesIds = this.props.allImages.imageIds;
+      const imagesIds = this.props.imageIds;
       const images =  this.props.allImages;
 
       if(!this.props || imagesIds == undefined){
@@ -121,13 +165,13 @@ export class Moodboard extends React.Component {
               <p>Try dropping some files here, or click to select files to upload.</p>
             </Dropzone>
           </div>
-          <div><button onClick={()=> this.props.dispatch(updateImage(622))}>Save IMAGES</button></div>
+          <div><button onClick={()=> this.saveUploadImages()}>Save IMAGES</button></div>
           <aside>
             <h2>Dropped files</h2>
             <ul>
         
              {
-              this.props.allImages.imageIds.map(imageId =>{
+              this.props.imageIds.map(imageId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
                // return <li key={image.id}><img src={image.imageurl} /></li>
                  return  <Dragtest imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></Dragtest>
@@ -141,7 +185,8 @@ export class Moodboard extends React.Component {
     }
   }
   const mapStateToProps = state => ({
-    allImages: state.images.allImages
+    allImages: state.images.allImages,
+    imageIds: state.images.imageIds
 
 });
 
