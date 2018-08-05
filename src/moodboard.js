@@ -93,12 +93,17 @@ export class Moodboard extends React.Component {
       return match;
     }
 
-      updateImage(imageId,xpos,ypos,width,height){
+    updateImage(imageId,xpos,ypos,width,height){
        // this.props.dispatch(updateImage());
        this.props.dispatch(updateImage(imageId,xpos,ypos,width,height));
       // console.log('going ot dispatch');
 
       }
+
+    saveUploadImages(){
+
+      console.log('Saving Images...');
+    }
 
     render() {
       const imagesIds = this.props.allImages.imageIds;

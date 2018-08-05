@@ -58,5 +58,16 @@ export const updateImage =(imageId,xpos,ypos,width,height) =>({
 });
 
 
+export const SAVE_IMAGES_REQUEST = 'SAVE_IMAGES_REQUEST';
+export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
+    type:SAVE_IMAGES_REQUEST,
+    imageId,
+    xpos,
+    ypos,
+    width,
+    height
+});
+
+
 
 

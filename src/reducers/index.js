@@ -78,11 +78,13 @@ function imageUpdateReducer(imageId){
 
 export const imagesReducer = (state=initialState, action) => {
     switch (action.type) {
-    case(types.FETCH_IMAGES_REQUEST):
+    
+      case(types.FETCH_IMAGES_REQUEST):
       return Object.assign({}, state, {
         loading: true
       });
-    case(types.FETCH_IMAGES_SUCCESS):
+    
+      case(types.FETCH_IMAGES_SUCCESS):
    
     //get array of objects - use reduce to noramlize data and return an object with the key being the id and then the object as a property
     const normalizedImages = 
@@ -101,7 +103,8 @@ export const imagesReducer = (state=initialState, action) => {
     console.log('NORMALIZED', normalizedImages);
       return Object.assign({}, state, {
         moodboardImages : action.moodboardImages[0].images,
-        allImages : normalizedImages
+        allImages : normalizedImages,
+        loading: false
       });
 
     case(types.FETCH_IMAGES_ERROR):
@@ -109,6 +112,14 @@ export const imagesReducer = (state=initialState, action) => {
         loading: false,
         error: action.error
       });
+
+      //saves images/image positions to server side
+      case(types.SAVE_IMAGES_REQUEST):
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.error
+      });
+
 
 
     case(types.UPDATE_IMAGE):
