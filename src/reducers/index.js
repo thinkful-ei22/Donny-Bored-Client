@@ -5,11 +5,11 @@ import * as types from '../actions/images';
 const initialState = {
   files: [] ,
   moodboard:null,
-  moodboardImages : [],
   loading: false,
   error:null,
   allImages:{},
-  imageIds:[]
+  imageIds:[],
+  
 };
   
 
@@ -102,7 +102,7 @@ export const imagesReducer = (state=initialState, action) => {
      console.log('keys', keyArray);
     console.log('NORMALIZED', normalizedImages);
       return Object.assign({}, state, {
-        moodboardImages : action.moodboardImages[0].images,
+      //  moodboardImages : action.moodboardImages[0].images,
         allImages : normalizedImages,
         imageIds: keyArray,
         loading: false

@@ -24,10 +24,10 @@ export const fetchImagesError = error => ({
 
 
 export const FETCH_IMAGES = 'FETCH_IMAGES';
-export const fetchImages = () => (dispatch, getState)=> {
+export const fetchImages = (boardId) => (dispatch, getState)=> {
     console.log('FETCHING...');
     dispatch(fetchImagesRequest());
-    return fetch(`${API_BASE_URL}/api/moodboards/1`, {
+    return fetch(`${API_BASE_URL}/api/moodboards/${boardId}`, {
 		method: 'GET'
 	}).then(res => {
         if (!res.ok) {

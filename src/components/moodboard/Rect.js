@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { getLength, getAngle, getCursor } from './utils';
-import BaseImage from './BaseImage';
 import {connect} from 'react-redux';
+import './css/image.css';
+
 
 const zoomableMap = {
   'n': 't',
@@ -14,7 +15,6 @@ const zoomableMap = {
   'se': 'br',
   'sw': 'bl'
 }
-
 class Rect extends PureComponent {
   static propTypes = {
     styles: PropTypes.object,
@@ -133,16 +133,19 @@ class Rect extends PureComponent {
   }
 
   render () {
+    const images=this.props.allImages;
+    const imageId = this.props.imageId;
     const { styles: { position: { centerX, centerY }, size: { width, height }, transform: { rotateAngle } }, zoomable, rotatable, parentRotateAngle } = this.props
-    const style = { background:`url(${this.props.image.imageurl}) no-repeat 0px 0px/100% 100%`, width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
+    const style = { background:`url(${images[imageId].imageurl}) no-repeat 0px 0px/100% 100%`, width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
      //const style = {  width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d)
    // console.log('RECT CHILD SEE IF I CAN GET STORE',this.props.allImages);
     //console.log('image id test', this.props.imageId);
+  
 
     return (
-      <BaseImage
-        innerRef={this.setElementRef}
+      <div
+        ref={this.setElementRef}
         onMouseDown={this.startDrag}
         className="rect single-resizer"
         style={style}
@@ -159,7 +162,7 @@ class Rect extends PureComponent {
             <div key={d} className={`${zoomableMap[d]} square`} />
           )
         })}
-      </BaseImage>
+      </div>
     )
   }
 }

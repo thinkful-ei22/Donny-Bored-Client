@@ -1,5 +1,6 @@
 import { API_BASE_URL } from '../config';
-
+import {normalizeResponseErrors} from './utils';
+import {SubmissionError} from 'redux-form';
 
 export const SET_USER = 'SET_USER';
 export const setUser = user => ({
@@ -9,7 +10,8 @@ export const setUser = user => ({
 
 
 export const registerUser = user => dispatch => {
-  return fetch(`${API_BASE_URL}/signup`, {
+  console.log('REGISTer uSER',user);
+  return fetch(`${API_BASE_URL}/api/users`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json'
@@ -17,7 +19,18 @@ export const registerUser = user => dispatch => {
     body: JSON.stringify(user)
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res => res.json());
+    .then(res => res.json())
+    .catch(err => {
+      const {reason, message, location} = err;
+      if (reason === 'ValidationError') {
+          // Convert ValidationErrors into SubmissionErrors for Redux Form
+          return Promise.reject(
+              new SubmissionError({
+                  [location]: message
+              })
+          );
+      }
+  });
 };
 
 export const changeUserName = (id, username) => (dispatch, getState) => {

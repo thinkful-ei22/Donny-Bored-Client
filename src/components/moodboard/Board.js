@@ -2,24 +2,18 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import {connect} from 'react-redux'
 import axios from 'axios';
-import Dragtest from './dragtest';
-import {fetchImages, updateImage} from './actions/images';
+import DragRect from './DragRect';
+import {fetchImages, updateImage} from '../../actions/images';
 
-export class Moodboard extends React.Component {
-    // constructor(props) {
-    //   super(props)
-    //   this.state = { 
-    //     files: [] ,
-    //     moodboardImages : [],
-    //     allImages:{},
-    //     imageIds:[]
-        
-    //   };
-    // }
+export class Board extends React.Component {
 
+  // constructor(props) {
+  //   super(props)
+  // }
+  
     //gets list of images as json object array from our server, add it to our state
     getImages(){
-          fetch('http://localhost:9090/api/moodboards/1')
+          fetch(`http://localhost:9090/api/moodboards/${this.props.moodboard}`)
           .then(response =>{
            //console.log('RESPONSE JSON',response.json());
             return response.json();
@@ -47,9 +41,16 @@ export class Moodboard extends React.Component {
 
     //LIFE CYCLE
     componentDidMount() {
-     this.props.dispatch(fetchImages());
+     this.props.dispatch(fetchImages(this.props.match.params.boardId));
+     console.log('PROPS MATCH PARMAS',this.props.match.params.boardId);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
+    }
+
+    componentWillUnmount(){
+      //clear images from state
+
+
     }
         
     //DROPZONE handler
@@ -60,7 +61,7 @@ export class Moodboard extends React.Component {
           //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
           const formData = new FormData();
           formData.append('file', file);
-          formData.append('moodboard_id',1)
+          formData.append('moodboard_id',this.props.match.params.boardId)
           
           // Make an AJAX upload request using Axios 
           // return axios.post("http://localhost:9090/api/cloudinary", formData, {
@@ -82,7 +83,7 @@ export class Moodboard extends React.Component {
         Promise
           .all(uploaders)
           .then(() => {
-            this.props.dispatch(fetchImages());
+            this.props.dispatch(fetchImages(this.props.match.params.boardId));
             //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
         });
     }
@@ -174,7 +175,7 @@ export class Moodboard extends React.Component {
               this.props.imageIds.map(imageId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
                // return <li key={image.id}><img src={image.imageurl} /></li>
-                 return  <Dragtest imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></Dragtest>
+                 return  <DragRect imageId={imageId} key={imageId} image={this.props.allImages[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
                })
               } 
               
@@ -186,10 +187,12 @@ export class Moodboard extends React.Component {
   }
   const mapStateToProps = state => ({
     allImages: state.images.allImages,
-    imageIds: state.images.imageIds
+    imageIds: state.images.imageIds,
+
+    
 
 });
 
 
 
-  export default connect(mapStateToProps)(Moodboard);
+  export default connect(mapStateToProps)(Board);
