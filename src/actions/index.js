@@ -18,12 +18,18 @@ export const fetchMoodboardsError = (error) => ({
 });
 
 export const FETCH_MOODBOARDS = 'FETCH_MOODBOARDS';
-export const fetchMoodboards = (user_id) => dispatch => {
+export const fetchMoodboards = (user_id) => (dispatch,getState) => {
   console.log('fetching...',user_id);
- 
-
+  const authToken = getState().auth.authToken;
   dispatch(fetchMoodboardsRequest(user_id));
-  return fetch(`${API_BASE_URL}/api/moodboards/?user_id=${user_id}`)
+
+  return fetch(`${API_BASE_URL}/api/moodboards/?user_id=${user_id}`, {
+    method: 'GET',
+    headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${authToken}`
+    }
+  })
     .then(res => {
       if (!res.ok) {
         throw new Error(res.statusText);

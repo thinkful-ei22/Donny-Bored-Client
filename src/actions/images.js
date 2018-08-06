@@ -23,12 +23,18 @@ export const fetchImagesError = error => ({
 });
 
 
+
 export const FETCH_IMAGES = 'FETCH_IMAGES';
 export const fetchImages = (boardId) => (dispatch, getState)=> {
     console.log('FETCHING...');
+    const authToken = getState().auth.authToken;
     dispatch(fetchImagesRequest());
     return fetch(`${API_BASE_URL}/api/moodboards/${boardId}`, {
-		method: 'GET'
+    method: 'GET',
+    headers: {
+      // Provide our auth token as credentials
+      Authorization: `Bearer ${authToken}`
+  }
 	}).then(res => {
         if (!res.ok) {
           throw new Error(res.statusText);
