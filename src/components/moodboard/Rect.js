@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { getLength, getAngle, getCursor } from './utils';
 import {connect} from 'react-redux';
 import './css/image.css';
-import styled from 'styled-components';
+
 
 const zoomableMap = {
   'n': 't',

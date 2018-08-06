@@ -6,10 +6,14 @@ import DragRect from './DragRect';
 import {fetchImages, updateImage} from '../../actions/images';
 
 export class Board extends React.Component {
+
+  // constructor(props) {
+  //   super(props)
+  // }
   
     //gets list of images as json object array from our server, add it to our state
     getImages(){
-          fetch('http://localhost:9090/api/moodboards/1')
+          fetch(`http://localhost:9090/api/moodboards/${this.props.moodboard}`)
           .then(response =>{
            //console.log('RESPONSE JSON',response.json());
             return response.json();
@@ -37,9 +41,16 @@ export class Board extends React.Component {
 
     //LIFE CYCLE
     componentDidMount() {
-     this.props.dispatch(fetchImages());
+     this.props.dispatch(fetchImages(this.props.match.params.boardId));
+     console.log('PROPS MATCH PARMAS',this.props.match.params.boardId);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
+    }
+
+    componentWillUnmount(){
+      //clear images from state
+
+
     }
         
     //DROPZONE handler
@@ -50,7 +61,7 @@ export class Board extends React.Component {
           //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
           const formData = new FormData();
           formData.append('file', file);
-          formData.append('moodboard_id',1)
+          formData.append('moodboard_id',this.props.match.params.boardId)
           
           // Make an AJAX upload request using Axios 
           // return axios.post("http://localhost:9090/api/cloudinary", formData, {
@@ -72,7 +83,7 @@ export class Board extends React.Component {
         Promise
           .all(uploaders)
           .then(() => {
-            this.props.dispatch(fetchImages());
+            this.props.dispatch(fetchImages(this.props.match.params.boardId));
             //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
         });
     }
@@ -176,7 +187,9 @@ export class Board extends React.Component {
   }
   const mapStateToProps = state => ({
     allImages: state.images.allImages,
-    imageIds: state.images.imageIds
+    imageIds: state.images.imageIds,
+
+    
 
 });
 

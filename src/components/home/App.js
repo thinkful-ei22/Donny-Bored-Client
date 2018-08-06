@@ -5,6 +5,7 @@ import {Route, withRouter} from 'react-router-dom';
 import HeaderBar from './Header-bar';
 import LandingPage from './Landing-page';
 import Dashboard from './Dashboard-page';
+import Board from '../moodboard/Board';
 import RegistrationPage from './Registration-page';
 import {refreshAuthToken} from '../../actions/auth';
 import IdleTimer from 'react-idle-timer';
@@ -74,6 +75,7 @@ export class App extends React.Component {
                 <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/moodboards/:boardId" component={Board} />
                 <Route exact path="/register" component={RegistrationPage} />
                 </IdleTimer>
             </div>
