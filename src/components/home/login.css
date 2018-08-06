@@ -1,0 +1,46 @@
+fieldset{
+    margin:0px;
+    padding:0px;
+    border:0px;
+  }
+  
+  legend{
+    display:none;
+  }
+  
+  a, a:hover, a:visited, a:active{
+  
+  }
+  
+.title{
+    margin:auto;
+    text-align:center;
+}
+
+  .mainTitle{
+      font-size:150px;
+      font-family:'Times New Roman','Times',serif;
+  }
+  button, input[type="text"] {
+    padding: 5px;
+    background-color:transparent;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+  
+  input[type=text],input[type=url], input[type=password],select, textarea {
+    width: 80%;
+    padding: 12px;
+    border: 2px solid #666;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+
+  .home{
+
+    max-width:300px;
+    margin:auto;
+  }

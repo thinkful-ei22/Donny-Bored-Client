@@ -2,6 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import {connect} from 'react-redux'
 import axios from 'axios';
+import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
 import {fetchImages, updateImage} from '../../actions/images';
 
@@ -195,4 +196,4 @@ export class Board extends React.Component {
 
 
 
-  export default connect(mapStateToProps)(Board);
+  export default requiresLogin()(connect(mapStateToProps)(Board));
