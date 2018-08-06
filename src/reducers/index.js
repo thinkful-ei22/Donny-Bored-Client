@@ -64,8 +64,6 @@ function normalize(data) {
   
   
 
-  
-
 //Action for getting an image from the Redux Store
 function imageUpdateReducer(imageId){
     const match = initialState.allImages[imageId];

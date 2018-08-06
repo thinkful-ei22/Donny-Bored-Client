@@ -51,8 +51,6 @@ export const fetchImages = (boardId) => (dispatch, getState)=> {
       });
 }
 
-
-
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
 export const updateImage =(imageId,xpos,ypos,width,height) =>({
     type:UPDATE_IMAGE,
@@ -74,6 +72,6 @@ export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
     height
 });
 
-
+//more to come
 
 
