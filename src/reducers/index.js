@@ -5,11 +5,11 @@ import * as types from '../actions/images';
 const initialState = {
   files: [] ,
   moodboard:null,
- // moodboardImages : [],
   loading: false,
   error:null,
   allImages:{},
-  imageIds:[]
+  imageIds:[],
+  
 };
   
 
