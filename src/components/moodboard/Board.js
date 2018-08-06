@@ -164,7 +164,7 @@ export class Board extends React.Component {
               this.props.imageIds.map(imageId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
                // return <li key={image.id}><img src={image.imageurl} /></li>
-                 return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
+                 return  <DragRect imageId={imageId} key={imageId} image={this.props.allImages[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
                })
               } 
               

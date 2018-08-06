@@ -15,8 +15,7 @@ const zoomableMap = {
   'se': 'br',
   'sw': 'bl'
 }
-
-export default class Rect extends PureComponent {
+class Rect extends PureComponent {
   static propTypes = {
     styles: PropTypes.object,
     zoomable: PropTypes.string,
@@ -134,12 +133,15 @@ export default class Rect extends PureComponent {
   }
 
   render () {
+    const images=this.props.allImages;
+    const imageId = this.props.imageId;
     const { styles: { position: { centerX, centerY }, size: { width, height }, transform: { rotateAngle } }, zoomable, rotatable, parentRotateAngle } = this.props
-    const style = { background:`url(${this.props.image.imageurl}) no-repeat 0px 0px/100% 100%`, width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
+    const style = { background:`url(${images[imageId].imageurl}) no-repeat 0px 0px/100% 100%`, width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
      //const style = {  width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d)
    // console.log('RECT CHILD SEE IF I CAN GET STORE',this.props.allImages);
     //console.log('image id test', this.props.imageId);
+  
 
     return (
       <div
@@ -167,11 +169,11 @@ export default class Rect extends PureComponent {
 
 
 
-// const mapStateToProps = state => ({
-//   //moodboardImages: state.images.moodboardImages,
-//   allImages: state.images.allImages,
+const mapStateToProps = state => ({
+  //moodboardImages: state.images.moodboardImages,
+  allImages: state.images.allImages,
  
   
-// });
+});
 
-// export default connect(mapStateToProps)(Rect)
+export default connect(mapStateToProps)(Rect)

@@ -90,7 +90,7 @@ export default class DragRect extends Component {
           onDrag={this.handleDrag}
           onDragEnd={this.handleDragEnd}
           imageId={this.props.imageId}
-          image={this.props.image}
+          //image={this.props.image}
         >
         </ResizableRect>
       </div>
