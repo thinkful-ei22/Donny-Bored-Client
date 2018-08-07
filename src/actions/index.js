@@ -60,11 +60,30 @@ export const createMoodboardRequest = (data) => ({
 
 export const CREATE_MOODBOARD_SUCCESS = 'CREATE_MOODBOARD_SUCCESS';
 export const createMoodboardSuccess = () =>({
-  tyype:CREATE_MOODBOARD_SUCCESS
+  type:CREATE_MOODBOARD_SUCCESS
 });
 
 export const CREATE_MOODBOARD_ERROR = 'CREATE_MOODBOARD_ERROR';
 export const createMoodboardError = (error) =>({
   type:CREATE_MOODBOARD_ERROR,
+  error
+});
+
+
+//DELETE MOODBOARD RELATED ACTIONS
+export const DELETE_MOODBOARD_REQUEST = 'DELETE_MOODBOARDS_REQUEST';
+export const deleteMoodboardRequest = (data) => ({
+  type: DELETE_MOODBOARD_REQUEST,
+  data
+});
+
+export const DELETE_MOODBOARD_SUCCESS = 'DELETE_MOODBOARD_SUCCESS';
+export const deleteMoodboardSuccess = () =>({
+  type:DELETE_MOODBOARD_SUCCESS
+});
+
+export const DELETE_MOODBOARD_ERROR = 'DELETE_MOODBOARD_ERROR';
+export const deleteMoodboardError = (error) =>({
+  type:DELETE_MOODBOARD_ERROR,
   error
 });

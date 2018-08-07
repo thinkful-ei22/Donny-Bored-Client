@@ -48,31 +48,33 @@ export const imagesReducer = (state=initialState, action) => {
         error: action.error
       });
 
-      //saves images/image positions to server side
-    case(types.SAVE_IMAGES_REQUEST):
-      return Object.assign({}, state, {
-        loading: false,
-        error: action.error
-      });
+        //saves images/image positions to server side
+      case(types.SAVE_IMAGES_REQUEST):
+        return Object.assign({}, state, {
+          loading: false,
+          error: action.error
+        });
 
-    case(types.UPDATE_IMAGE):
-    //const newState = { ...state };
-     //return console.log('THE STATE', newState.moodboardImages)
-       console.log('ACTION',action);
-         let id = action.imageId;
-         let newPos=[action.xpos,action.ypos];
-         let newSize=[action.width,action.height];
-            const updateObj = {
-              ...state, 
-                allImages: { 
-                    ...state.allImages,
-                  [id]: {
-                      ...state.allImages[id],
-                    position: newPos,
-                    dimensions: newSize
-                  }
-              }    
-          }
+
+
+      case(types.UPDATE_IMAGE):
+      //const newState = { ...state };
+      //return console.log('THE STATE', newState.moodboardImages)
+        console.log('ACTION',action);
+          let id = action.imageId;
+          let newPos=[action.xpos,action.ypos];
+          let newSize=[action.width,action.height];
+              const updateObj = {
+                ...state, 
+                  allImages: { 
+                      ...state.allImages,
+                    [id]: {
+                        ...state.allImages[id],
+                      position: newPos,
+                      dimensions: newSize
+                    }
+                }    
+            }
 
           
          // let myImages = state;

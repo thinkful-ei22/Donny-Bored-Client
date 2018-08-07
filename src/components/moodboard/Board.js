@@ -5,6 +5,7 @@ import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
 import {fetchImages, updateImage} from '../../actions/images';
+import {API_BASE_URL} from '../../config.js'
 
 export class Board extends React.Component {
 
@@ -13,32 +14,16 @@ export class Board extends React.Component {
   // }
   
     //gets list of images as json object array from our server, add it to our state
-    getImages(){
-          fetch(`http://localhost:9090/api/moodboards/${this.props.moodboard}`)
-          .then(response =>{
-           //console.log('RESPONSE JSON',response.json());
-            return response.json();
-          })
-          .then(console.log('MY STATE PROPS', this.props, this.props.state));
-    } 
+    // getImages(){
+    //       fetch(`http://localhost:9090/api/moodboards/${this.props.moodboard}`)
+    //       .then(response =>{
+    //        //console.log('RESPONSE JSON',response.json());
+    //         return response.json();
+    //       })
+    //       .then(console.log('MY STATE PROPS', this.props, this.props.state));
+    // } 
     
-    saveImage(){
-      console.log('test Save');
-      const updateObject={
-        id:621,
-        position: [
-          100,
-          100
-        ],
-        dimensions: [
-          259,
-          194
-        ]
-      };
-       //const update = moodboardImages
-      this.props.dispatch(updateImage(updateObject));
-
-    }
+  
 
     //LIFE CYCLE
     componentDidMount() {
@@ -72,9 +57,8 @@ export class Board extends React.Component {
           // })
 
           //using fetch insead of Axios library
-         return fetch("http://localhost:9090/api/cloudinary",{
+         return fetch(`${API_BASE_URL}/api/cloudinary`,{
             method:'POST',
-            // headers: { "X-Requested-With": "XMLHttpRequest" },
             body:formData
           })
           .then(response => console.log(response) );
@@ -119,7 +103,7 @@ export class Board extends React.Component {
 
       const updaters= updateObjectArray.map(data => {
         //using fetch insead of Axios library
-       return fetch(`http://localhost:9090/api/images/${data.id}`,{
+       return fetch(`${API_BASE_URL}/api/images/${data.id}`,{
           method:'PUT',
           headers: {
             'Accept': 'application/json',
@@ -138,18 +122,18 @@ export class Board extends React.Component {
    
            
             
-     console.log('ToBeUpdated',updateObjectArray);
+    console.log('ToBeUpdated',updateObjectArray);
    
       
 
-      // // Once all the files are uploaded 
-      // Promise
-      //   .all(updaters)
-      //   .then(() => {
-      //     //this.props.dispatch(fetchImages());
-      //     console.log('UPATED MOODBOARD' + this.props.allImages);
-      // });
-    }
+      // Once all the files are uploaded 
+      Promise
+        .all(updaters)
+        .then(() => {
+          //this.props.dispatch(fetchImages());
+          console.log('UPATED MOODBOARD' + this.props.allImages);
+      });
+   }
 
     render() {
       const imagesIds = this.props.imageIds;

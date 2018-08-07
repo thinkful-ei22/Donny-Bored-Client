@@ -1,7 +1,7 @@
 import { API_BASE_URL } from '../config';
 
 
-
+//GET IMAGE RELATED ACTIONS
 export const FETCH_IMAGES_REQUEST = 'FETCH_IMAGES_REQUEST';
 export const fetchImagesRequest = () => ({
     type: FETCH_IMAGES_REQUEST
@@ -21,7 +21,6 @@ export const fetchImagesError = error => ({
     type: FETCH_IMAGES_ERROR,
     error
 });
-
 
 
 export const FETCH_IMAGES = 'FETCH_IMAGES';
@@ -51,6 +50,17 @@ export const fetchImages = (boardId) => (dispatch, getState)=> {
       });
 }
 
+
+//UPLOAD IMAGE
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
+export const uploadImage = (files) =>({
+    type:UPLOAD_IMAGE,
+    files
+
+});
+
+
+//UPDATE IMAGE
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
 export const updateImage =(imageId,xpos,ypos,width,height) =>({
     type:UPDATE_IMAGE,
@@ -61,7 +71,7 @@ export const updateImage =(imageId,xpos,ypos,width,height) =>({
     height
 });
 
-
+//SAVE IMAGE
 export const SAVE_IMAGES_REQUEST = 'SAVE_IMAGES_REQUEST';
 export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
     type:SAVE_IMAGES_REQUEST,
@@ -72,6 +82,17 @@ export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
     height
 });
 
-//more to come
+//DELETE IMAGE
+
+export const DELETE_IMAGES_REQUEST = 'DELETE_IMAGE_REQUEST';
+export const deleteImagesRequest =(imageId,xpos,ypos,width,height) =>({
+    type:DELETE_IMAGES_REQUEST,
+    imageId,
+    xpos,
+    ypos,
+    width,
+    height
+});
+
 
 
