@@ -1,6 +1,10 @@
 import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
+
+
+
+//GET MOODBOARD RELATED ACTIONS
 export const FETCH_MOODBOARDS_REQUEST = 'FETCH_MOODBOARDS_REQUEST';
 export const fetchMoodboardsRequest = () => ({
   type: FETCH_MOODBOARDS_REQUEST
@@ -22,7 +26,6 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
   console.log('fetching...',user_id);
   const authToken = getState().auth.authToken;
   dispatch(fetchMoodboardsRequest(user_id));
-
   return fetch(`${API_BASE_URL}/api/moodboards/?user_id=${user_id}`, {
     method: 'GET',
     headers: {
@@ -44,3 +47,24 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
       dispatch(fetchMoodboardsError(err));
     });
 };
+
+
+
+//CREATE MOODBOARD RELATED ACTIONS
+
+export const CREATE_MOODBOARD_REQUEST = 'CREATE_MOODBOARDS_REQUEST';
+export const createMoodboardRequest = (data) => ({
+  type: CREATE_MOODBOARD_REQUEST,
+  data
+});
+
+export const CREATE_MOODBOARD_SUCCESS = 'CREATE_MOODBOARD_SUCCESS';
+export const createMoodboardSuccess = () =>({
+  tyype:CREATE_MOODBOARD_SUCCESS
+});
+
+export const CREATE_MOODBOARD_ERROR = 'CREATE_MOODBOARD_ERROR';
+export const createMoodboardError = (error) =>({
+  type:CREATE_MOODBOARD_ERROR,
+  error
+});

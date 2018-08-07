@@ -13,3 +13,9 @@ export const clearAuthToken = () => {
         localStorage.removeItem('authToken');
     } catch (e) {}
 };
+
+
+export const currentPage =()=>{
+    return localStorage.getItem('currentPage');
+}
+
