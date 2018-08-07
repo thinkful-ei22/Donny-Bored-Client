@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
+import ButtonTest from './ButtonTest';
+
 
 export class HeaderBar extends React.Component {
     logOut() {
@@ -9,33 +11,38 @@ export class HeaderBar extends React.Component {
         clearAuthToken();
     }
 
-
-    createNewBoard(){
-
-        this.props.dispatch();
+    showForm(){
+        this.props.dispatch(this.showForm());
     }
+
+
+    componentDidMount() {
+   
+        console.log('THIS BUTTON REDIRECT PROPS',this.props);
+      
+    } 
+
+    
 
     render() {
         // Only render the log out button if we are logged in
-        let logOutButton;
-        let createBoardButton;
-        let deleteBoardButton;
+        let logOutButton = (
+            <button onClick={() => this.logOut()}>Log out</button>
+        );
+
+        
         if (this.props.loggedIn) {
-            logOutButton = (
-                <button onClick={() => this.logOut()}>Log out</button>
-            );
-            createBoardButton = (
-                <button >Create New Bored</button>
+           
+            return (
+                <div className="header-bar">
+                    {/* <h1>Bored</h1> */}
+                    {logOutButton}
+                  <ButtonTest/>
+                </div>
             );
           
-        }
-        return (
-            <div className="header-bar">
-                {/* <h1>Bored</h1> */}
-                {logOutButton}
-                {createBoardButton}
-            </div>
-        );
+        } else return null;
+     
     }
 }
 

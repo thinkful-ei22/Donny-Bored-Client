@@ -29,6 +29,7 @@ export class App extends React.Component {
         this.idleTimer = null;
         this.onActive = this._onActive.bind(this);
        this.onIdle = this._onIdle.bind(this);
+       console.log('MY APP PROPS',this.props);
 
 
      }
@@ -72,7 +73,7 @@ export class App extends React.Component {
             onActive={this.onActive}
             onIdle={this.onIdle}
             timeout={1000 * 12}>
-                <HeaderBar />
+              <HeaderBar />
                 <Route exact path="/" component={LandingPage} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/moodboards/:boardId" component={Board} />
