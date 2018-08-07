@@ -1,0 +1,101 @@
+import {API_BASE_URL} from '../config';
+import {normalizeResponseErrors} from './utils';
+
+
+//GET MOODBOARD RELATED ACTIONS
+export const FETCH_MOODBOARDS_REQUEST = 'FETCH_MOODBOARDS_REQUEST';
+export const fetchMoodboardsRequest = () => ({
+  type: FETCH_MOODBOARDS_REQUEST
+});
+
+export const FETCH_MOODBOARDS_SUCCESS = 'FETCH_MOODBOARDS_SUCCESS';
+export const fetchMoodboardsSuccess = (data) => ({
+  type: FETCH_MOODBOARDS_SUCCESS,
+  data
+});
+export const FETCH_MOODBOARDS_ERROR = 'FETCH_MOODBOARDS_ERROR';
+export const fetchMoodboardsError = (error) => ({
+  type: FETCH_MOODBOARDS_ERROR,
+  error
+});
+
+export const FETCH_MOODBOARDS = 'FETCH_MOODBOARDS';
+export const fetchMoodboards = (user_id) => (dispatch,getState) => {
+  console.log('fetching...',user_id);
+  const authToken = getState().auth.authToken;
+  dispatch(fetchMoodboardsRequest(user_id));
+  return fetch(`${API_BASE_URL}/api/moodboards/?user_id=${user_id}`, {
+    method: 'GET',
+    headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+     // console.log('FETCH MOODBOARD SUCCESS',res.json());
+      return res.json();
+    })
+    .then(data => {
+      dispatch(fetchMoodboardsSuccess(data));
+    })
+    .catch(err => {
+      dispatch(fetchMoodboardsError(err));
+    });
+};
+
+
+
+//CREATE MOODBOARD RELATED ACTIONS
+
+export const CREATE_MOODBOARD_REQUEST = 'CREATE_MOODBOARDS_REQUEST';
+export const createMoodboard = (info) => (dispatch,getState) => {
+    console.log('cREATE MOODBOARD...',info);
+    const authToken = getState().auth.authToken;
+ //  dispatch(fetchMoodboardsRequest(user_id));
+    return fetch(`http://localhost:9090/api/moodboards`, {
+        method: 'POST',
+        headers: {
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/json'
+        },
+        body: JSON.stringify(info)
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+       // console.log('FETCH MOODBOARD SUCCESS',res.json());
+        return res.json();
+      })
+      .then(data => {
+           dispatch(fetchMoodboards(info.user_id));
+          console.log('CREATE NWE MOODBOARD SUCESSFUL',data)
+       // dispatch(fetchMoodboardsSuccess(data));
+      })
+      .catch(err => {
+      //  dispatch(fetchMoodboardsError(err));
+      });
+  };
+  
+
+
+//DELETE MOODBOARD RELATED ACTIONS
+export const DELETE_MOODBOARD_REQUEST = 'DELETE_MOODBOARDS_REQUEST';
+export const deleteMoodboardRequest = (data) => ({
+  type: DELETE_MOODBOARD_REQUEST,
+  data
+});
+
+export const DELETE_MOODBOARD_SUCCESS = 'DELETE_MOODBOARD_SUCCESS';
+export const deleteMoodboardSuccess = () =>({
+  type:DELETE_MOODBOARD_SUCCESS
+});
+
+export const DELETE_MOODBOARD_ERROR = 'DELETE_MOODBOARD_ERROR';
+export const deleteMoodboardError = (error) =>({
+  type:DELETE_MOODBOARD_ERROR,
+  error
+});

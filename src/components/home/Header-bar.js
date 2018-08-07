@@ -9,18 +9,31 @@ export class HeaderBar extends React.Component {
         clearAuthToken();
     }
 
+
+    createNewBoard(){
+
+        this.props.dispatch();
+    }
+
     render() {
         // Only render the log out button if we are logged in
         let logOutButton;
+        let createBoardButton;
+        let deleteBoardButton;
         if (this.props.loggedIn) {
             logOutButton = (
                 <button onClick={() => this.logOut()}>Log out</button>
             );
+            createBoardButton = (
+                <button >Create New Bored</button>
+            );
+          
         }
         return (
             <div className="header-bar">
                 {/* <h1>Bored</h1> */}
                 {logOutButton}
+                {createBoardButton}
             </div>
         );
     }

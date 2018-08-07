@@ -1,7 +1,7 @@
 import {
     FETCH_MOODBOARDS_SUCCESS,
     FETCH_MOODBOARDS_ERROR
-} from '../actions';
+} from '../actions/moodboards';
 
 const initialState = {
     data: [],

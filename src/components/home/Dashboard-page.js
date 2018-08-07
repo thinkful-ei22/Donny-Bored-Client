@@ -2,8 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './Requires-login';
 import {fetchProtectedData} from '../../actions/protected-data';
+import MoodboardForm from './Moodboard-form';
 import {Link} from 'react-router-dom';
-import {fetchMoodboards} from '../../actions';
+import {fetchMoodboards} from '../../actions/moodboards';
+
 
 export class Dashboard extends React.Component {
     componentDidMount() {
@@ -14,16 +16,23 @@ export class Dashboard extends React.Component {
           
     render() {
 
-        if(!this.props || this.props.moodboards == undefined){
+        if(!this.props || this.props.moodboards === undefined){
             return null; //You can change here to put a customized loading spinner 
           }
 
-
+          
         return (
             <div className="dashboard">
+            <MoodboardForm userId={this.props.userId}/>
                 <div className="dashboard-username">
                     Username: {this.props.username}
                 </div>
+
+                <div className="create-new-moodboard">
+
+                </div>
+
+
                 <div className="dashboard-name">Moodboards {this.props.name}</div>
                 <ul>
         
