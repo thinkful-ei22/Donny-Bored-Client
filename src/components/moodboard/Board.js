@@ -74,7 +74,7 @@ export class Board extends React.Component {
           //using fetch insead of Axios library
          return fetch("http://localhost:9090/api/cloudinary",{
             method:'POST',
-            headers: { "X-Requested-With": "XMLHttpRequest" },
+            // headers: { "X-Requested-With": "XMLHttpRequest" },
             body:formData
           })
           .then(response => console.log(response) );
