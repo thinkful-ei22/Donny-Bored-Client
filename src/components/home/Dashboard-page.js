@@ -5,7 +5,7 @@ import {fetchProtectedData} from '../../actions/protected-data';
 import MoodboardForm from './Moodboard-form';
 import {Link} from 'react-router-dom';
 import {fetchMoodboards} from '../../actions/moodboards';
-
+import './dashboard.css';
 import Boardlist from './Boardlist';
 
 
@@ -28,11 +28,14 @@ export class Dashboard extends React.Component {
             <div className="dashboard">
        
               <MoodboardForm userId={this.props.userId}/>
+              <p></p>
                 <div className="dashboard-username">
-                    Username: {this.props.username}
-                </div>
+                  Hey {this.props.username} !
+                </div> 
 
-               <div className="dashboard-name">Moodboards {this.props.name}></div>
+                <p></p>
+
+               <div className="dashboard-name">Your creations:{this.props.name}</div>
                <Boardlist moodboards={this.props.moodboards}/>
                </div>
               

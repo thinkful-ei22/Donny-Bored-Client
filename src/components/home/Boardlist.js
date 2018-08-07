@@ -10,7 +10,8 @@ export default function Boardlist(props){
                 props.moodboards.map(moodboard =>{
                     // const index =  this.props.moodboardImages.indexOf(image);
                     return <li key={moodboard.id}>
-                    <Link to={`/moodboards/${moodboard.id}`}>{moodboard.board_name}</Link>
+                    <Link to={`/moodboards/${moodboard.id}`}>{moodboard.board_name}</Link>  
+                    <button>Delete</button>
                     </li>
                   
                 })
