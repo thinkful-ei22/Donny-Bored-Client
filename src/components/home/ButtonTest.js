@@ -1,24 +1,18 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
+import {
+  withRouter
+} from 'react-router-dom'
 
-export default class ButtonTest extends React.Component {
+
+class ButtonTest extends React.Component {
  
-  
-  state = {
-      toDashboard: false,
-    }
     handleSubmit = () => {
-       this.setState(() => ({
-          toDashboard: true
-        }))
+      this.props.history.push('/dashboard');
+      console.log('BUTTON TEST HISTORY',this.props.history.location.pathname==='/dashboard');
     }
     render() {
-
-      
-      if (this.state.toDashboard === true) {
-        return <Redirect to='/dashboard' />
-      }
-  
+     
       return (
         <div>
          
@@ -26,4 +20,7 @@ export default class ButtonTest extends React.Component {
         </div>
       )
     }
+    
   }
+
+  export default withRouter(ButtonTest)
