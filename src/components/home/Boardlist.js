@@ -4,11 +4,8 @@ import {Link} from 'react-router-dom';
 
 export default function Boardlist(props){
      
-
-
-        return (
+    return (
                 <ul>
-
                {
                 props.moodboards.map(moodboard =>{
                     // const index =  this.props.moodboardImages.indexOf(image);
@@ -19,7 +16,6 @@ export default function Boardlist(props){
                   
                 })
                } 
-            
                </ul>
       
         );

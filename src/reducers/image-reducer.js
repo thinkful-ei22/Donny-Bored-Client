@@ -55,6 +55,8 @@ export const imagesReducer = (state=initialState, action) => {
           error: action.error
         });
 
+    
+
       case(types.CLEAR_IMAGES):
        console.log('CLEARING IMAGES');
         return Object.assign({}, state, {
@@ -84,7 +86,7 @@ export const imagesReducer = (state=initialState, action) => {
             }
            
 
-        
+          
 
        
          // let myImages = state;
