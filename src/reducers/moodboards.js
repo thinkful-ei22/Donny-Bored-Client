@@ -1,6 +1,7 @@
 import {
     FETCH_MOODBOARDS_SUCCESS,
-    FETCH_MOODBOARDS_ERROR
+    FETCH_MOODBOARDS_ERROR,
+    DELETE_MOODBOARD_SUCCESS
 } from '../actions/moodboards';
 
 const initialState = {
@@ -19,6 +20,16 @@ export function moodboardReducer(state = initialState, action) {
         return Object.assign({}, state, {
             error: action.error
         });
+
+    } else if (action.type === DELETE_MOODBOARD_SUCCESS){
+        return Object.assign({}, state, {
+            data: action.data,
+            error: action.error
+        });
+
     }
+
+
+
     return state;
 }

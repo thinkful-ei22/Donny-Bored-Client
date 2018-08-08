@@ -51,6 +51,10 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
 //CREATE MOODBOARD RELATED ACTIONS
 
 export const CREATE_MOODBOARD_REQUEST = 'CREATE_MOODBOARDS_REQUEST';
+
+
+
+
 export const createMoodboard = (info) => (dispatch,getState) => {
     console.log('cREATE MOODBOARD...',info);
     const authToken = getState().auth.authToken;
@@ -76,26 +80,46 @@ export const createMoodboard = (info) => (dispatch,getState) => {
        // dispatch(fetchMoodboardsSuccess(data));
       })
       .catch(err => {
-      //  dispatch(fetchMoodboardsError(err));
+         //dispatch(fetchMoodboardsError(err));
       });
   };
   
 
 
+
 //DELETE MOODBOARD RELATED ACTIONS
-export const DELETE_MOODBOARD_REQUEST = 'DELETE_MOODBOARDS_REQUEST';
-export const deleteMoodboardRequest = (data) => ({
-  type: DELETE_MOODBOARD_REQUEST,
-  data
+export const DELETE_MOODBOARD_SUCCESS = 'DELETE_MOODBOARDS_SUCCESS';
+export const deleteMoodboardSuccess = (board_id) => ({
+  type: DELETE_MOODBOARD_SUCCESS,
+  board_id
 });
 
-export const DELETE_MOODBOARD_SUCCESS = 'DELETE_MOODBOARD_SUCCESS';
-export const deleteMoodboardSuccess = () =>({
-  type:DELETE_MOODBOARD_SUCCESS
-});
 
-export const DELETE_MOODBOARD_ERROR = 'DELETE_MOODBOARD_ERROR';
-export const deleteMoodboardError = (error) =>({
-  type:DELETE_MOODBOARD_ERROR,
-  error
-});
+
+export const deleteMoodboard = (board_id, user_id) => (dispatch,getState) => {
+    console.log('dELETE MOODBOARD...',board_id,user_id);
+    const authToken = getState().auth.authToken;
+ // dispatch(fetchMoodboardsRequest(user_id));
+    return fetch(`http://localhost:9090/api/moodboards/${board_id}`, {
+        method: 'DELETE',
+        headers: {
+        Authorization: `Bearer ${authToken}`,
+        'content-type': 'application/json'
+        }
+        //body: JSON.stringify()
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+        console.log('DELET MOODBOARD SUCESSFUL',res)
+        dispatch(fetchMoodboards(user_id));
+        //return res.json();
+      })
+      .catch(err => {
+      //  dispatch(fetchMoodboardsError(err));
+      });
+  };
+
+
+

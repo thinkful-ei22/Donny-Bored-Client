@@ -5,6 +5,7 @@ import {fetchProtectedData} from '../../actions/protected-data';
 import MoodboardForm from './Moodboard-form';
 import {Link} from 'react-router-dom';
 import {fetchMoodboards} from '../../actions/moodboards';
+import {deleteMoodboard} from '../../actions/moodboards';
 import './dashboard.css';
 import Boardlist from './Boardlist';
 
@@ -15,7 +16,14 @@ export class Dashboard extends React.Component {
         console.log('THIS DASHBORD PROPS',this.props);
       
     }
-          
+        
+    
+    deleteMoodboard(moodboard_id,user_id){
+         
+        this.props.dispatch(deleteMoodboard(moodboard_id,user_id));
+
+    }
+
     render() {
 
         if(!this.props || this.props.moodboards === undefined){
@@ -36,7 +44,7 @@ export class Dashboard extends React.Component {
                 <p></p>
 
                <div className="dashboard-name">Your creations:{this.props.name}</div>
-               <Boardlist moodboards={this.props.moodboards}/>
+               <Boardlist moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
               
                 
