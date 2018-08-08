@@ -4,8 +4,9 @@ import {connect} from 'react-redux'
 import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
-import {fetchImages, updateImage} from '../../actions/images';
+import {fetchImages, updateImage,clearImages} from '../../actions/images';
 import {API_BASE_URL} from '../../config.js'
+import Fullscreen from './Fullscreen';
 
 export class Board extends React.Component {
 
@@ -35,44 +36,46 @@ export class Board extends React.Component {
 
     componentWillUnmount(){
       //clear images from state
-
-
+       this.props.dispatch(clearImages());
+       console.log('UNMOUNTING?');
     }
         
-    //DROPZONE handler
-    onDrop(files) {
-      console.log(files);
-        const uploaders = files.map(file => {
-          // Initial FormData
-          //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-          const formData = new FormData();
-          formData.append('file', file);
-          formData.append('moodboard_id',this.props.match.params.boardId)
+    // //DROPZONE handler
+    // onDrop(files) {
+    //   console.log(files);
+    //     const uploaders = files.map(file => {
+    //       // Initial FormData
+    //       //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+    //       const formData = new FormData();
+    //       formData.append('file', file);
+    //       formData.append('moodboard_id',this.props.match.params.boardId)
           
-          // Make an AJAX upload request using Axios 
-          // return axios.post("http://localhost:9090/api/cloudinary", formData, {
-          //   headers: { "X-Requested-With": "XMLHttpRequest" },
-          // }).then(response => {  
-          //   console.log(response);
-          // })
+    //       // Make an AJAX upload request using Axios 
+    //       // return axios.post("http://localhost:9090/api/cloudinary", formData, {
+    //       //   headers: { "X-Requested-With": "XMLHttpRequest" },
+    //       // }).then(response => {  
+    //       //   console.log(response);
+    //       // })
 
-          //using fetch insead of Axios library
-         return fetch(`${API_BASE_URL}/api/cloudinary`,{
-            method:'POST',
-            body:formData
-          })
-          .then(response => console.log(response) );
-        });
+    //       //using fetch insead of Axios library
+    //      return fetch(`${API_BASE_URL}/api/cloudinary`,{
+    //         method:'POST',
+    //         body:formData
+    //       })
+    //       .then(response => console.log(response) );
+    //     });
 
-        // Once all the files are uploaded 
-        Promise
-          .all(uploaders)
-          .then(() => {
-            this.props.dispatch(fetchImages(this.props.match.params.boardId));
-            //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
-        });
+    //     // Once all the files are uploaded 
+    //     Promise
+    //       .all(uploaders)
+    //       .then(() => {
+    //         this.props.dispatch(fetchImages(this.props.match.params.boardId));
+    //         //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
+    //     });
+    // }
+    getImages(){
+      this.props.dispatch(fetchImages(this.props.match.params.boardId));
     }
-
 
     getImage(imageId){
       const match = this.props.allImages[imageId];
@@ -114,18 +117,8 @@ export class Board extends React.Component {
         .then(response => console.log(response) );
       
       
-      });
-
-        
-
-
-   
-           
-            
-    console.log('ToBeUpdated',updateObjectArray);
-   
-      
-
+      }); 
+      console.log('ToBeUpdated',updateObjectArray);
       // Once all the files are uploaded 
       Promise
         .all(updaters)
@@ -134,6 +127,7 @@ export class Board extends React.Component {
           console.log('UPATED MOODBOARD' + this.props.allImages);
       });
    }
+
 
     render() {
       const imagesIds = this.props.imageIds;
@@ -146,21 +140,18 @@ export class Board extends React.Component {
       return (
     
         <section>
-          <div className="dropzone">
-            <Dropzone disableClick={false} disablePreview={true} onDrop={this.onDrop.bind(this)}>
-              <p>Try dropping some files here, or click to select files to upload.</p>
-            </Dropzone>
-          </div>
-          <div><button onClick={()=> this.saveUploadImages()}>Save IMAGES</button></div>
+            <div><button onClick={()=> this.saveUploadImages()}>Save IMAGES</button></div>
+              <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
+       
           <aside>
-            <h2>Dropped files</h2>
+           
             <ul>
         
              {
               this.props.imageIds.map(imageId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
                // return <li key={image.id}><img src={image.imageurl} /></li>
-                 return  <DragRect imageId={imageId} key={imageId} image={this.props.allImages[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
+                 return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
                })
               } 
               

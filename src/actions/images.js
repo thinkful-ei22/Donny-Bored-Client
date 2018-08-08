@@ -95,4 +95,9 @@ export const deleteImagesRequest =(imageId,xpos,ypos,width,height) =>({
 });
 
 
+//CLEAR STORE IMAGE ARRAY
+export const CLEAR_IMAGES = 'CLEAR_IMAGES';
+export const clearImages=()=>({
+    type:CLEAR_IMAGES
+});
 

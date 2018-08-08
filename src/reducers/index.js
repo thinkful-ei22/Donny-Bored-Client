@@ -55,7 +55,14 @@ export const imagesReducer = (state=initialState, action) => {
           error: action.error
         });
 
+      case(types.CLEAR_IMAGES):
+       console.log('CLEARING IMAGES');
+        return Object.assign({}, state, {
 
+          allImages:{},
+          imageIds:[]
+             
+        });
 
       case(types.UPDATE_IMAGE):
       //const newState = { ...state };
@@ -90,33 +97,7 @@ export const imagesReducer = (state=initialState, action) => {
     }
   };
 
-  
-//Action for getting an image from the Redux Store
-function imageUpdateReducer(imageId){
-  const match = initialState.allImages[imageId];
-  return match;
-}
 
 
 
-
-  //Actions for updating an individual image
-
-  // export const imageUpdateReducer = (state=initialState,action) => {
-  //    // const imageArray = action.moodboardImages[0].images;
-  //       const imageArray = state.moodBoardimages;
-  //       return imageArray.map( (image) => {
-  //           console.log('ACTION',action)
-  //           if(image.id !== action.id) {
-  //               // This isn't the item we care about - keep it as-is
-  //               return image;
-  //           }
-  //           // Otherwise, this is the one we want - return an updated value
-  //           return {
-  //               ...image,
-  //               ...action
-  //           };    
-  //       });
-
-  // };
 

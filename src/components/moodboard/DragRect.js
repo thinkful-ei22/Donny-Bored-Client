@@ -64,6 +64,10 @@ export default class DragRect extends Component {
 
   render() {
     const {width, top, left, height, rotateAngle} = this.state
+
+    if(!this.props == undefined){
+      return null; 
+    }
    // console.log('statelog',this.state);
     return (
       <div className="App" >
