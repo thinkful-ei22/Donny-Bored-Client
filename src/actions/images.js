@@ -86,8 +86,8 @@ export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
 //DELETE IMAGE
 
 export const DELETE_IMAGE= 'DELETE_IMAGE';
-export const deleteImage = (imageId,user_id) => (dispatch, getState)=> {
-    console.log('DELETING...',imageId,user_id);
+export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
+    console.log('DELETING...',imageId,board_id);
     const authToken = getState().auth.authToken;
    // dispatch(fetchImagesRequest());
     return fetch(`${API_BASE_URL}/api/images/${imageId}`, {
@@ -101,7 +101,7 @@ export const deleteImage = (imageId,user_id) => (dispatch, getState)=> {
           throw new Error(res.statusText);
         }
 
-        dispatch(fetchMoodboards(user_id));
+        dispatch(fetchImages(board_id));
         console.log('DELETED',res);
         //return res.json();
       })

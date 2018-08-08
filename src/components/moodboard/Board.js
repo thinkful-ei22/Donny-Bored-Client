@@ -5,6 +5,7 @@ import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
 import {fetchImages, updateImage,clearImages} from '../../actions/images';
+import {setMoodboardId} from '../../actions/moodboards';
 import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
 
@@ -13,6 +14,7 @@ export class Board extends React.Component {
     //LIFE CYCLE
     componentDidMount() {
      this.props.fetchImages(this.props.match.params.boardId);
+     this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
      console.log('PROPS MATCH PARMAS',this.props.match.params.boardId);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));

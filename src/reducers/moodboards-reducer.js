@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     data: [],
-    boardId:null,
+    board_id:null,
     error: null
 };
 
@@ -29,8 +29,9 @@ export function moodboardReducer(state = initialState, action) {
             error: action.error
         });
     }else if(action.type === SET_MOODBOARD_ID){
+        console.log('SETTING BOARD ID',action);
         return Object.assign({},state, {
-            boardId:action.data,
+            board_id:action.board_id,
             error:action.error
         })
     }
