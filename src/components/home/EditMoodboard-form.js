@@ -31,7 +31,7 @@ export class EditMoodboardForm extends React.Component {
                 <Field component={Input} type="text" name="board_name" />
                
                
-                <label htmlFor="passwordConfirm">Description</label>
+                <label htmlFor="description">Description</label>
                 <Field component={Input} element="textarea"  name="description" id="description" validate={[required,nonEmpty]}>
                 Test this</Field>
                 <button

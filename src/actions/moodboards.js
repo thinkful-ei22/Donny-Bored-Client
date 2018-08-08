@@ -98,18 +98,26 @@ export const setMoodboardId = (board_id) => ({
 })
 
 
+export const EDIT_MOODBOARD='EDIT_MOODBOARD';
+export const editMoodboard = (board_id) => (dispatch, getState) =>{
+  console.log('EDITING MOODBOARD...');
+  const authToken=getState().auth.authToken;
+
+}
+
+
 
 export const deleteMoodboard = (board_id, user_id) => (dispatch,getState) => {
     console.log('dELETE MOODBOARD...',board_id,user_id);
     const authToken = getState().auth.authToken;
- // dispatch(fetchMoodboardsRequest(user_id));
+ 
     return fetch(`${API_BASE_URL}/api/moodboards/${board_id}`, {
         method: 'DELETE',
         headers: {
         Authorization: `Bearer ${authToken}`,
         'content-type': 'application/json'
         }
-        //body: JSON.stringify()
+       
     })
       .then(res => {
         if (!res.ok) {

@@ -15,7 +15,7 @@ export class Board extends React.Component {
     componentDidMount() {
      this.props.fetchImages(this.props.match.params.boardId);
      this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
-     console.log('PROPS MATCH PARMAS',this.props.match.params.boardId);
+     console.log('PROPS MATCH PARMAS',this.props);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
