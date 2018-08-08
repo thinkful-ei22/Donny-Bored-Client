@@ -10,71 +10,22 @@ import Fullscreen from './Fullscreen';
 
 export class Board extends React.Component {
 
-  // constructor(props) {
-  //   super(props)
-  // }
-  
-    //gets list of images as json object array from our server, add it to our state
-    // getImages(){
-    //       fetch(`http://localhost:9090/api/moodboards/${this.props.moodboard}`)
-    //       .then(response =>{
-    //        //console.log('RESPONSE JSON',response.json());
-    //         return response.json();
-    //       })
-    //       .then(console.log('MY STATE PROPS', this.props, this.props.state));
-    // } 
-    
-  
-
     //LIFE CYCLE
     componentDidMount() {
-     this.props.dispatch(fetchImages(this.props.match.params.boardId));
+     this.props.fetchImages(this.props.match.params.boardId);
      console.log('PROPS MATCH PARMAS',this.props.match.params.boardId);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
 
+     //clears images store object from redux store   
     componentWillUnmount(){
-      //clear images from state
-       this.props.dispatch(clearImages());
+       this.props.clearImages();
        console.log('UNMOUNTING?');
     }
-        
-    // //DROPZONE handler
-    // onDrop(files) {
-    //   console.log(files);
-    //     const uploaders = files.map(file => {
-    //       // Initial FormData
-    //       //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-    //       const formData = new FormData();
-    //       formData.append('file', file);
-    //       formData.append('moodboard_id',this.props.match.params.boardId)
-          
-    //       // Make an AJAX upload request using Axios 
-    //       // return axios.post("http://localhost:9090/api/cloudinary", formData, {
-    //       //   headers: { "X-Requested-With": "XMLHttpRequest" },
-    //       // }).then(response => {  
-    //       //   console.log(response);
-    //       // })
-
-    //       //using fetch insead of Axios library
-    //      return fetch(`${API_BASE_URL}/api/cloudinary`,{
-    //         method:'POST',
-    //         body:formData
-    //       })
-    //       .then(response => console.log(response) );
-    //     });
-
-    //     // Once all the files are uploaded 
-    //     Promise
-    //       .all(uploaders)
-    //       .then(() => {
-    //         this.props.dispatch(fetchImages(this.props.match.params.boardId));
-    //         //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
-    //     });
-    // }
+   
     getImages(){
-      this.props.dispatch(fetchImages(this.props.match.params.boardId));
+      this.props.fetchImages(this.props.match.params.boardId);
     }
 
     getImage(imageId){
@@ -82,7 +33,7 @@ export class Board extends React.Component {
       return match;
     }
 
-    updateImage(imageId,xpos,ypos,width,height){
+    updateImage =(imageId,xpos,ypos,width,height)=>{
        // this.props.dispatch(updateImage());
        this.props.dispatch(updateImage(imageId,xpos,ypos,width,height));
       // console.log('going ot dispatch');
@@ -161,14 +112,18 @@ export class Board extends React.Component {
       );
     }
   }
-  const mapStateToProps = state => ({
+
+const mapStateToProps = state => ({
     allImages: state.images.allImages,
     imageIds: state.images.imageIds,
 
-    
-
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchImages: (id) =>dispatch(fetchImages(id)),
+    clearImages:() => dispatch(clearImages())
+  }
+}
 
-
-  export default requiresLogin()(connect(mapStateToProps)(Board));
+export default requiresLogin()(connect(mapStateToProps,mapDispatchToProps)(Board));

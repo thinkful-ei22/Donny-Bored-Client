@@ -3,6 +3,21 @@ import Dropzone from 'react-dropzone';
 import {API_BASE_URL} from '../../config.js'
 import {fetchImages, updateImage,clearImages} from '../../actions/images';
 
+
+const overlayStyle = {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    width:'100%',
+    height:'100%',
+    padding: '2.5em 0',
+    background: 'rgba(0,0,0,0)',
+    textAlign: 'center',
+    color: '#fff'
+  };
+
 export default class FullScreen extends React.Component {
     constructor(props) {
       super(props)
@@ -11,16 +26,18 @@ export default class FullScreen extends React.Component {
         files: [],
         dropzoneActive: false
       }
+
+      
     }
   
-    onDragEnter() {
+    onDragEnter=()=> {
         console.log("ONDRAGENTER DROPZONE");
       this.setState({
         dropzoneActive: true
       });
     }
   
-    onDragLeave() {
+    onDragLeave =()=> {
         console.log('ONDRAGLEAVE DROPZONE');
       this.setState({
         dropzoneActive: false
@@ -28,7 +45,7 @@ export default class FullScreen extends React.Component {
     }
   
        //DROPZONE handler
-    onDrop(files) {
+    onDrop=(files)=>{
         console.log('DRAG',this.props);
       console.log(files);
         const uploaders = files.map(file => {
@@ -74,27 +91,15 @@ export default class FullScreen extends React.Component {
   
     render() {
       const { accept, files, dropzoneActive } = this.state;
-      const overlayStyle = {
-        position: 'absolute',
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        width:'100%',
-        height:'100%',
-        padding: '2.5em 0',
-        background: 'rgba(0,0,0,0)',
-        textAlign: 'center',
-        color: '#fff'
-      };
+   
       return (
         <Dropzone
           disableClick
           style={{position: "fixed", width:'100%', height:'100%'}}
           accept={accept}
-          onDrop={this.onDrop.bind(this)}
-          onDragEnter={this.onDragEnter.bind(this)}
-          onDragLeave={this.onDragLeave.bind(this)}
+          onDrop={this.onDrop}
+          onDragEnter={this.onDragEnter}
+          onDragLeave={this.onDragLeave}
         >
           { dropzoneActive && <div style={overlayStyle}>Drop files...</div> }
         

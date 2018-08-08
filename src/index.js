@@ -8,10 +8,10 @@ import {loadAuthToken} from './local-storage';
 import './index.css';
 import App from './components/home/App';
 import registerServiceWorker from './registerServiceWorker';
-import { imagesReducer} from './reducers';
-import { authReducer} from './reducers/auth';
+import { imagesReducer} from './reducers/image-reducer';
+import { authReducer} from './reducers/auth-reducer';
 import {reducer as formReducer} from 'redux-form';
-import {moodboardReducer} from './reducers/moodboards';
+import {moodboardReducer} from './reducers/moodboards-reducer';
 import {setAuthToken, refreshAuthToken} from './actions/auth';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

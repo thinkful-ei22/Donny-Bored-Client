@@ -52,9 +52,6 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
 
 export const CREATE_MOODBOARD_REQUEST = 'CREATE_MOODBOARDS_REQUEST';
 
-
-
-
 export const createMoodboard = (info) => (dispatch,getState) => {
     console.log('cREATE MOODBOARD...',info);
     const authToken = getState().auth.authToken;
@@ -93,6 +90,12 @@ export const deleteMoodboardSuccess = (board_id) => ({
   type: DELETE_MOODBOARD_SUCCESS,
   board_id
 });
+
+export const SET_MOODBOARD_ID = 'SET_MOODBOARD_ID';
+export const setMoodboardId = (board_id) => ({
+  type: SET_MOODBOARD_ID,
+  board_id
+})
 
 
 

@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '../config';
+import {fetchMoodboards} from './moodboards';
 
 
 //GET IMAGE RELATED ACTIONS
@@ -84,15 +85,34 @@ export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
 
 //DELETE IMAGE
 
-export const DELETE_IMAGES_REQUEST = 'DELETE_IMAGE_REQUEST';
-export const deleteImagesRequest =(imageId,xpos,ypos,width,height) =>({
-    type:DELETE_IMAGES_REQUEST,
-    imageId,
-    xpos,
-    ypos,
-    width,
-    height
-});
+export const DELETE_IMAGE= 'DELETE_IMAGE';
+export const deleteImage = (imageId,user_id) => (dispatch, getState)=> {
+    console.log('DELETING...',imageId,user_id);
+    const authToken = getState().auth.authToken;
+   // dispatch(fetchImagesRequest());
+    return fetch(`${API_BASE_URL}/api/images/${imageId}`, {
+    method: 'DELETE',
+    headers: {
+      // Provide our auth token as credentials
+      Authorization: `Bearer ${authToken}`
+  }
+	}).then(res => {
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+
+        dispatch(fetchMoodboards(user_id));
+        console.log('DELETED',res);
+        //return res.json();
+      })
+      .then(data => {
+         // console.log('dispatching imagees...');
+       
+      })
+      .catch(err => {
+        dispatch(fetchImagesError(err));
+      });
+}
 
 
 //CLEAR STORE IMAGE ARRAY

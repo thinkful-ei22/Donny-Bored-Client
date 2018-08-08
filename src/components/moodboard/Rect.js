@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import { getLength, getAngle, getCursor } from './utils';
 import {connect} from 'react-redux';
+import {deleteImage} from '../../actions/images';
 import './css/image.css';
 
 
@@ -150,6 +151,7 @@ class Rect extends PureComponent {
         className="rect single-resizer"
         style={style}
       >
+          <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.user_id))}>delet</button></div>
         {rotatable && <div className="rotate" onMouseDown={this.startRotate}><i></i></div>}
         {direction.map(d => {
           const cursor = `${getCursor(rotateAngle + parentRotateAngle, d)}-resize`
@@ -172,6 +174,7 @@ class Rect extends PureComponent {
 const mapStateToProps = state => ({
   //moodboardImages: state.images.moodboardImages,
   allImages: state.images.allImages,
+  user_id:state.auth.currentUser.id
  
   
 });

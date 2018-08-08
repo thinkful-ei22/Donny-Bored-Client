@@ -10,11 +10,28 @@
 
 }
 
+.delete-image{
+  position:absolute;
+  bottom:0px;left:20px;
+  opacity:0;
+}
+.rect{
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */      
+}
 
 .rect:hover .square{
 opacity:1;
   
 }
+
+.rect:hover .delete-image{
+  opacity:1;
+    
+  }
+  
 
 
 .rect:hover .rotate{

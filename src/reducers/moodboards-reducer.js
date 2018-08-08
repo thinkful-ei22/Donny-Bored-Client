@@ -1,11 +1,13 @@
 import {
     FETCH_MOODBOARDS_SUCCESS,
     FETCH_MOODBOARDS_ERROR,
+    SET_MOODBOARD_ID,
     DELETE_MOODBOARD_SUCCESS
 } from '../actions/moodboards';
 
 const initialState = {
     data: [],
+    boardId:null,
     error: null
 };
 
@@ -26,7 +28,11 @@ export function moodboardReducer(state = initialState, action) {
             data: action.data,
             error: action.error
         });
-
+    }else if(action.type === SET_MOODBOARD_ID){
+        return Object.assign({},state, {
+            boardId:action.data,
+            error:action.error
+        })
     }
 
 

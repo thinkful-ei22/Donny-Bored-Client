@@ -82,8 +82,11 @@ export const imagesReducer = (state=initialState, action) => {
                     }
                 }    
             }
+           
 
-          
+        
+
+       
          // let myImages = state;
 
 
