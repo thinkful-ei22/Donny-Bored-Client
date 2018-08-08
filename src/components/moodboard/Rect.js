@@ -151,7 +151,8 @@ class Rect extends PureComponent {
         className="rect single-resizer"
         style={style}
       >
-          <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))}>delet</button></div>
+      <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))}>delet</button></div>
+
         {rotatable && <div className="rotate" onMouseDown={this.startRotate}><i></i></div>}
         {direction.map(d => {
           const cursor = `${getCursor(rotateAngle + parentRotateAngle, d)}-resize`
