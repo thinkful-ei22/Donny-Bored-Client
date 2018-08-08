@@ -95,6 +95,7 @@ export default class FullScreen extends React.Component {
       return (
         <Dropzone
           disableClick
+          disablePreview
           style={{position: "fixed", width:'100%', height:'100%'}}
           accept={accept}
           onDrop={this.onDrop}
