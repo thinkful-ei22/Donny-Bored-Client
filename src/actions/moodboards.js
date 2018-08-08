@@ -59,7 +59,7 @@ export const createMoodboard = (info) => (dispatch,getState) => {
     console.log('cREATE MOODBOARD...',info);
     const authToken = getState().auth.authToken;
  //  dispatch(fetchMoodboardsRequest(user_id));
-    return fetch(`http://localhost:9090/api/moodboards`, {
+    return fetch(`${API_BASE_URL}/api/moodboards`, {
         method: 'POST',
         headers: {
         Authorization: `Bearer ${authToken}`,
@@ -100,7 +100,7 @@ export const deleteMoodboard = (board_id, user_id) => (dispatch,getState) => {
     console.log('dELETE MOODBOARD...',board_id,user_id);
     const authToken = getState().auth.authToken;
  // dispatch(fetchMoodboardsRequest(user_id));
-    return fetch(`http://localhost:9090/api/moodboards/${board_id}`, {
+    return fetch(`${API_BASE_URL}/api/moodboards/${board_id}`, {
         method: 'DELETE',
         headers: {
         Authorization: `Bearer ${authToken}`,
