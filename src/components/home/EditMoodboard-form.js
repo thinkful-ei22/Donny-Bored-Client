@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {registerUser} from '../../actions/users';
+import {editMoodboard} from '../../actions/moodboards';
 import {createMoodboard} from '../../actions/moodboards';
 import Input from './Input';
 import './moodboardForm.css';
@@ -13,10 +13,11 @@ export class EditMoodboardForm extends React.Component {
     onSubmit(values) {
         const user_id = this.props.userId;
         const {board_name, description} = values;
+        const board_id=1;
         const moodboardInfo = {board_name,description,user_id };
         return this.props
-            .dispatch(createMoodboard(moodboardInfo))
-            .then(() => console.log('MOODBOARD CREATION REQEESTED'));
+            .dispatch(editMoodboard(board_id,moodboardInfo))
+            .then(() => console.log('MOODBOARD Editing REQEESTED'));
     }
 
     render() {
@@ -47,6 +48,6 @@ export class EditMoodboardForm extends React.Component {
 
 export default reduxForm({
     form: 'moodboard-edit-form',
-    onSubmitFail: (errors, dispatch) =>
-        dispatch(focus('registration', Object.keys(errors)[0]))
-})(MoodboardForm);
+    // onSubmitFail: (errors, dispatch) =>
+    //     dispatch(focus('registration', Object.keys(errors)[0]))
+})(EditMoodboardForm);

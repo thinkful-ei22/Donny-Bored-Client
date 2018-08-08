@@ -99,38 +99,47 @@ export const setMoodboardId = (board_id) => ({
 
 
 export const EDIT_MOODBOARD='EDIT_MOODBOARD';
-export const editMoodboard = (board_id) => (dispatch, getState) =>{
+export const editMoodboard = (board_id=1,info) => (dispatch, getState) =>{
   console.log('EDITING MOODBOARD...');
   const authToken=getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/api/moodboards/${board_id}`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application/json'
+    },
+    body:JSON.stringify(info)
+  })
+    .then(res=>console.log(res));
 
 }
 
 
 
-export const deleteMoodboard = (board_id, user_id) => (dispatch,getState) => {
-    console.log('dELETE MOODBOARD...',board_id,user_id);
-    const authToken = getState().auth.authToken;
- 
-    return fetch(`${API_BASE_URL}/api/moodboards/${board_id}`, {
-        method: 'DELETE',
-        headers: {
-        Authorization: `Bearer ${authToken}`,
-        'content-type': 'application/json'
-        }
-       
+export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
+  console.log('dELETE MOODBOARD...', board_id, user_id);
+  const authToken = getState().auth.authToken;
+
+  return fetch(`${API_BASE_URL}/api/moodboards/${board_id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+      'content-type': 'application/json'
+    }
+
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      console.log('DELET MOODBOARD SUCESSFUL', res)
+      dispatch(fetchMoodboards(user_id));
+      //return res.json();
     })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-        console.log('DELET MOODBOARD SUCESSFUL',res)
-        dispatch(fetchMoodboards(user_id));
-        //return res.json();
-      })
-      .catch(err => {
+    .catch(err => {
       //  dispatch(fetchMoodboardsError(err));
-      });
-  };
+    });
+};
 
 
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './Requires-login';
-import {fetchProtectedData} from '../../actions/protected-data';
 import MoodboardForm from './Moodboard-form';
+import EditMoodboardForm from './EditMoodboard-form';
 import {Link} from 'react-router-dom';
 import {fetchMoodboards} from '../../actions/moodboards';
 import {deleteMoodboard} from '../../actions/moodboards';
@@ -45,7 +45,15 @@ export class Dashboard extends React.Component {
 
                <div className="dashboard-name">Your creations:{this.props.name}</div>
                <Boardlist moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
+               
+                <div id="edit-moodboard">
+                    <EditMoodboardForm /> 
+                </div>
+               
                </div>
+
+
+           
               
                 
         );
