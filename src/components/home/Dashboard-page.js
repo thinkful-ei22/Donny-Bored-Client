@@ -47,7 +47,7 @@ export class Dashboard extends React.Component {
                <Boardlist moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                
                 <div id="edit-moodboard">
-                    <EditMoodboardForm /> 
+                    <EditMoodboardForm userId={this.props.userId}/> 
                 </div>
                
                </div>

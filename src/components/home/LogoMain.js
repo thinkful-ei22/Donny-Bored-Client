@@ -46,7 +46,7 @@ export default class LogoMain extends React.Component{
 
 
     componentDidMount() {
-      this.interval = setInterval(() => this.tick(), 100);
+      // this.interval = setInterval(() => this.tick(), 100);
      // this.splitLetters();
     }
     

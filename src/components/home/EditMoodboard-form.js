@@ -12,11 +12,12 @@ const matchesPassword = matches('password');
 export class EditMoodboardForm extends React.Component {
     onSubmit(values) {
         const user_id = this.props.userId;
+        console.log('this props userid',this.props);
         const {board_name, description} = values;
         const board_id=1;
         const moodboardInfo = {board_name,description,user_id };
         return this.props
-            .dispatch(editMoodboard(board_id,moodboardInfo))
+            .dispatch(editMoodboard(board_id,moodboardInfo,user_id))
             .then(() => console.log('MOODBOARD Editing REQEESTED'));
     }
 
@@ -48,6 +49,7 @@ export class EditMoodboardForm extends React.Component {
 
 export default reduxForm({
     form: 'moodboard-edit-form',
+
     // onSubmitFail: (errors, dispatch) =>
     //     dispatch(focus('registration', Object.keys(errors)[0]))
 })(EditMoodboardForm);

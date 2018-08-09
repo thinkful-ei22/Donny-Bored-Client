@@ -21,7 +21,7 @@ export const fetchMoodboardsError = (error) => ({
 
 export const FETCH_MOODBOARDS = 'FETCH_MOODBOARDS';
 export const fetchMoodboards = (user_id) => (dispatch,getState) => {
-  console.log('fetching...',user_id);
+  console.log('fetching moodboards...',user_id);
   const authToken = getState().auth.authToken;
   dispatch(fetchMoodboardsRequest(user_id));
   return fetch(`${API_BASE_URL}/api/moodboards/?user_id=${user_id}`, {
@@ -101,6 +101,7 @@ export const setMoodboardId = (board_id) => ({
 export const EDIT_MOODBOARD='EDIT_MOODBOARD';
 export const editMoodboard = (board_id=1,info) => (dispatch, getState) =>{
   console.log('EDITING MOODBOARD...');
+  console.log('userid',info)
   const authToken=getState().auth.authToken;
   return fetch(`${API_BASE_URL}/api/moodboards/${board_id}`, {
     method: 'PUT',
@@ -110,7 +111,7 @@ export const editMoodboard = (board_id=1,info) => (dispatch, getState) =>{
     },
     body:JSON.stringify(info)
   })
-    .then(res=>console.log(res));
+    .then(()=> dispatch(fetchMoodboards(info.user_id)));
 
 }
 
