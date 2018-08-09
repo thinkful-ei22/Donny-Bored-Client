@@ -93,7 +93,10 @@ export class Board extends React.Component {
       return (
     
         <section>
-            <div><button onClick={()=> this.saveUploadImages()}>Save IMAGES</button></div>
+            <div>
+            {/* <button type="button" onClick="zoomin()"> Zoom In</button>
+            <button type="button" onClick="zoomout()"> Zoom Out</button> */}
+              <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button></div>
               <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
        
           <aside>

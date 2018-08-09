@@ -30,7 +30,7 @@ export class EditMoodboardForm extends React.Component {
         const moodboardInfo = {board_name,description,user_id };
         return this.props
             .dispatch(editMoodboard(board_id,moodboardInfo,user_id))
-            .then(() => console.log('MOODBOARD Editing REQEESTED'));
+            .then(() => this.setState({visibility:{display:"none"}}));
     }
 
     render() {
@@ -41,6 +41,7 @@ export class EditMoodboardForm extends React.Component {
                 className="moodboard-edit-form"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
+
                 )}>
                 <label htmlFor="board_name">Moodboard Name</label>
                 <Field component={Input} type="text" name="board_name" id={this.props.moodboardId} />
