@@ -1,3 +1,9 @@
+body{
+  background-color:#fff;
+  background-size:cover;
+}
+
+
 fieldset{
     margin:0px;
     padding:0px;
@@ -11,6 +17,16 @@ fieldset{
   a, a:hover, a:visited, a:active{
   
   }
+
+  .logo-text{
+    font-size:120px;
+    margin-top:-100px;
+  }
+
+  .logo-main{
+    text-align:center;
+    width:100%;
+  }
   
 .title{
     margin:auto;
@@ -19,7 +35,7 @@ fieldset{
 
   .mainTitle{
       font-size:150px;
-      font-family:'Times New Roman','Times',serif;
+      
   }
   button, input[type="text"] {
     padding: 5px;
@@ -31,7 +47,7 @@ fieldset{
   }
   
   input[type=text],input[type=url], input[type=password],select, textarea {
-    width: 80%;
+    width: 100%;
     padding: 12px;
     border: 2px solid #666;
     border-radius: 4px;
@@ -40,7 +56,16 @@ fieldset{
 
 
   .home{
-
-    max-width:300px;
+  position:fixed;
+  text-align:center;
+    width:100%;
     margin:auto;
+    bottom:20px;
+  }
+
+  .home-registration{
+    margin:auto;
+    max-width:300px;
+    padding-top:160px;
+    background:white;
   }

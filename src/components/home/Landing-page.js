@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
+import LogoMain from './LogoMain';
 import './login.css';
-
+import './landingpage.css';
 import LoginForm from './Login-form';
 
 export function LandingPage(props) {
@@ -12,13 +13,16 @@ export function LandingPage(props) {
     }
 
     return (
-     <main>   
-     <div className="title">   <h1 className="mainTitle">bored</h1>  </div>
+     
+        
+     <main class="content middle-align">   
+           <LogoMain/>
         <div className="home">
          
-            <h2>A moodboard/collage app for freaks, neets and mums</h2>
-            <LoginForm />
-            <Link to="/register">Register</Link>
+            {/* <h2>A moodboard/collage app for freaks, neets and mums</h2> */}
+            {/* <LoginForm /> */}
+     
+            <Link to="/register">Sign Up</Link><span> | <Link to="/login"> Login</Link> </span>
         </div>
         </main>
     );

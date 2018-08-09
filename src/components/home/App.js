@@ -7,6 +7,7 @@ import LandingPage from './Landing-page';
 import Dashboard from './Dashboard-page';
 import Board from '../moodboard/Board';
 import RegistrationPage from './Registration-page';
+import LoginPage from './Login-page';
 import {refreshAuthToken} from '../../actions/auth';
 import IdleTimer from 'react-idle-timer';
 
@@ -78,6 +79,7 @@ export class App extends React.Component {
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/moodboards/:boardId" component={Board} />
                 <Route exact path="/register" component={RegistrationPage} />
+                <Route exact path="/login" component={LoginPage} />
                 </IdleTimer>
             </div>
            

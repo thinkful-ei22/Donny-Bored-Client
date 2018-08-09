@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
+import './normalize.css';
 import './index.css';
 import App from './components/home/App';
 import registerServiceWorker from './registerServiceWorker';

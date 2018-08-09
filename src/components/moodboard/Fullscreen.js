@@ -46,8 +46,10 @@ export default class FullScreen extends React.Component {
   
        //DROPZONE handler
     onDrop=(files)=>{
-        console.log('DRAG',this.props);
-      console.log(files);
+        console.log('DROPPED',this.props);
+
+       
+      console.log('FILES',files);
         const uploaders = files.map(file => {
           // Initial FormData
           //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
