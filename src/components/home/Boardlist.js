@@ -15,7 +15,7 @@ export default class Boardlist extends React.Component{
                 <Link to={`/moodboards/${moodboard.id}`}>{moodboard.board_name}</Link>  
                 <button onClick={() => this.props.deleteMoodboard(moodboard.id)}>Delete</button>
                 <div id="edit-moodboard" style={this.state}>
-                <EditMoodboardForm form={moodboard.id} moodboardId={moodboard.id} userId={this.props.userId}/> 
+                <EditMoodboardForm form={`editform_${moodboard.id}`} moodboardId={moodboard.id} userId={this.props.userId}/> 
                 </div>
               
                 </li>

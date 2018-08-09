@@ -15,7 +15,7 @@ export function LandingPage(props) {
     return (
      
         
-     <main class="content middle-align">   
+     <main className="content middle-align">   
            <LogoMain/>
         <div className="home">
          
