@@ -38,7 +38,7 @@ export class EditMoodboardForm extends React.Component {
            <div className="edit-board-form"> 
              <button onClick={() => this.setState({visibility:{display:"block"}})}>Edit</button>
              <button onClick={() => this.setState({visibility:{display:"none"}})}>Cancel</button>
-             <button onClick={() => this.props.deleteMoodboard(this.props.moodboard.id)}>Delete</button>
+             <button onClick={() => this.props.deleteMoodboard(this.props.moodboardId)}>Delete</button>
             <form name={this.props.moodboardId} style={this.state.visibility}
                 className="moodboard-edit-form"
                 onSubmit={this.props.handleSubmit(values =>

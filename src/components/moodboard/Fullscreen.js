@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Dropzone from 'react-dropzone';
 import {API_BASE_URL} from '../../config.js'
-import {fetchImages, updateImage,clearImages} from '../../actions/images';
 
 
 const overlayStyle = {

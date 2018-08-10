@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
 import ButtonTest from './ButtonTest';
-import Dropdown from './Dropdown';
+
 
 
 export class HeaderBar extends React.Component {
