@@ -40,6 +40,9 @@ export class Board extends React.Component {
      //clears images store object from redux store   
     componentWillUnmount(){
        this.props.clearImages();
+       window.removeEventListener("dragenter", e => console.log('removed dragenter listner'));
+       window.removeEventListener("dragleave", e => console.log('removed drageleavelistner'));
+       window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
        console.log('UNMOUNTING?');
     }
    

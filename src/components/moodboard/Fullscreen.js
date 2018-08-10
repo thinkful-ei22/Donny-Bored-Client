@@ -28,8 +28,8 @@ export default class FullScreen extends React.Component {
         zindex: 9999,
         style : {position: "fixed", width:'100%', height:'100%'}
       }
-
-      
+       this.onDragOver = this.onDragOver.bind(this);
+     
     }
 
     startDropListener =()=>{
@@ -60,30 +60,27 @@ export default class FullScreen extends React.Component {
     }
 
 
-    startDragOverListener=()=>{
-      window.addEventListener("dragover", e => {
-        e.preventDefault();
-        console.log('dragover');
-        this.setState({
-          dropzoneActive: true,
-          style:{position:"fixed",width:"100%",height:"100%",zIndex:99999}
-        });
-     });
-
-    }
-
+  
     componentDidMount() {
-      this.startDropListener();
-       this.startOnLeaveListener();
-       this.startDragOverListener();
+      //this.startDropListener();
+       //this.startOnLeaveListener();
+      window.addEventListener("dragover", this.onDragOver);
+      
     }
 
     componentWillUnmount(){
-      window.removeEventListener("dragenter", e => console.log('removed dragenter listner'));
-      window.removeEventListener("dragleave", e => console.log('removed drageleavelistner'));
-      window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
+      window.removeEventListener("dragover", this.onDragOver);
     }
 
+
+    onDragOver=(e)=>{
+      e.preventDefault();
+      console.log('dragover');
+      this.setState({
+        dropzoneActive: true,
+        style:{position:"fixed",width:"100%",height:"100%",zIndex:99999}
+      })
+    }
   
     onDragEnter=()=> {
         console.log("ONDRAGENTER DROPZONE");
@@ -97,7 +94,7 @@ export default class FullScreen extends React.Component {
         console.log('ONDRAGLEAVE DROPZONE');
       this.setState({
         dropzoneActive: false,
-      
+        style:{position:"fixed",width:"100%",height:"100%",zIndex:0}
 
       });
     }
