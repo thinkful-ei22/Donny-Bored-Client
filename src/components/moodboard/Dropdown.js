@@ -48,9 +48,9 @@ export default class Dropdown extends Component {
                 }}
               >
               <ul>
-                <li><button> Save</button></li>
-                <li> <button> Dashboard </button></li>
-                <li><button> Grid Mode </button></li>
+                <li><button onClick={()=>this.props.saveUploadImages()}> Save</button></li>
+                <li> <button > Dashboard </button></li>
+                <li><button onClick={()=>this.props.setViewMode("grid")}> Grid Mode </button></li>
               </ul>
               </div>
             )

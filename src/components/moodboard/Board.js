@@ -62,6 +62,14 @@ export class Board extends React.Component {
 
       }
 
+
+    setViewMode=(mode)=>{
+      this.setState({ 
+        viewMode:mode
+      })
+    }
+
+
     saveUploadImages(imageId=631,xpos,ypos,width,height){
        
       console.log('Saving Images...');
@@ -117,14 +125,14 @@ export class Board extends React.Component {
 
         <div id="board-container">
               <div id="board_menu">
-                  <Menubar saveImages={this.saveUploadImages}/>
+                  <Menubar setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
               </div>
     
                 <section>
 
-                    {/* <div>
-                
-                      <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button>
+
+                       {/* <div>
+                         <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button>
                       </div> */}
                       <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
               
@@ -135,11 +143,22 @@ export class Board extends React.Component {
                     {
                       this.props.imageIds.map(imageId =>{
                         // const index =  this.props.moodboardImages.indexOf(image);
-                        if(this.state.viewMode === "grid"){
-                          return <li key={imageId}><img src={images[imageId].imageurl} /></li>
-                        } else{
-                            return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
+                       
+                          
+                          if(this.state.viewMode === "list"){
+                            return <li key={imageId}><img src={images[imageId].imageurl} /></li>
+                          } 
+
+                          else if(this.state.viewMode ==="grid"){
+                            return <li key={imageId}><img src={images[imageId].imageurl} /></li>
                           }
+                          else {
+
+                            return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
+
+                          }
+
+
                         })
                       } 
                       

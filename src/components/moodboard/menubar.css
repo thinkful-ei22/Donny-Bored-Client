@@ -1,0 +1,14 @@
+#view-options img{
+    width:25px;
+}
+
+#view-options span{
+    font-size:12px;
+    font-weight:800;
+}
+
+#view-options{
+  opacity:0.5;
+  margin-left:10px;
+
+}
