@@ -8,6 +8,7 @@ import {fetchMoodboards} from '../../actions/moodboards';
 import {deleteMoodboard} from '../../actions/moodboards';
 import {editMoodboard} from '../../actions/moodboards';
 import './dashboard.css';
+import './grid.css';
 import Boardlist from './Boardlist';
 import HeaderBar from './Header-bar';
 
@@ -41,22 +42,25 @@ export class Dashboard extends React.Component {
         return (
         
             <div className="dashboard">
-                <div className="dashboard-username">
-                  Howdy {this.props.username} !
-                </div> 
-                <HeaderBar />
+                <div className="dashboard-header">
+                    <div className="dashboard-username">
+                        <strong>  Howdy {this.props.username} !   <img src="assets/wavey.gif"/> </strong>
+                        </div> 
+                        <HeaderBar />
+                    </div>
                 <br/><br/>
-               <p>What's new? Always different, always bored. </p>
-              <MoodboardForm userId={this.props.userId}/>
-             <div className="board-list-container">
+               <p className="normal-text">What's new? Always different, always bored. </p>
+               <div className="container">
+                    <div id="dashboard-side-bar">
+                        <MoodboardForm userId={this.props.userId}/>
+                    </div>
 
-               <div className="dashboard-name">Your creations:{this.props.name}</div>
-               <Boardlist userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
-               
-               
-               
+
+                <div className="board-list-container">
+                     <Boardlist userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
                </div>
+            </div>
                 
         );
     }
