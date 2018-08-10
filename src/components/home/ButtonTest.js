@@ -14,10 +14,10 @@ class ButtonTest extends React.Component {
     render() {
      
       return (
-        <div>
+        
          
           <button onClick={this.handleSubmit}> Dashboard </button>
-        </div>
+ 
       )
     }
     

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
 import ButtonTest from './ButtonTest';
+import Dropdown from './Dropdown';
 
 
 export class HeaderBar extends React.Component {
@@ -37,7 +38,7 @@ export class HeaderBar extends React.Component {
                 <div className="header-bar">
                     {/* <h1>Bored</h1> */}
                     {logOutButton}
-                  <ButtonTest/>
+                 
                 </div>
             );
           

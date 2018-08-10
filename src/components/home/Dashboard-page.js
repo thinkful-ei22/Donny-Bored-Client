@@ -9,6 +9,7 @@ import {deleteMoodboard} from '../../actions/moodboards';
 import {editMoodboard} from '../../actions/moodboards';
 import './dashboard.css';
 import Boardlist from './Boardlist';
+import HeaderBar from './Header-bar';
 
 
 export class Dashboard extends React.Component {
@@ -38,22 +39,23 @@ export class Dashboard extends React.Component {
 
           
         return (
-          
+        
             <div className="dashboard">
-       
-              <MoodboardForm userId={this.props.userId}/>
-              <p></p>
                 <div className="dashboard-username">
-                  Hey {this.props.username} !
+                  Howdy {this.props.username} !
                 </div> 
-
-                <p></p>
+                <HeaderBar />
+                <br/><br/>
+               <p>What's new? Always different, always bored. </p>
+              <MoodboardForm userId={this.props.userId}/>
+             <div className="board-list-container">
 
                <div className="dashboard-name">Your creations:{this.props.name}</div>
                <Boardlist userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                
                
                
+               </div>
                </div>
                 
         );

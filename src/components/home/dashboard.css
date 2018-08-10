@@ -7,3 +7,28 @@
 .edit-board-form{
     max-width:300px;
 }
+
+.boardForm{
+    float:left;
+   
+}
+
+.board-list-container{
+    margin-left:50px;
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.board-list-container li{
+
+   width:250px;
+   height:250px;
+   float:left;
+   border:1px solid;
+   margin:10px;
+}
