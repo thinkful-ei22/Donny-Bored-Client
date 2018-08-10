@@ -23,30 +23,89 @@ export default class FullScreen extends React.Component {
       this.state = {
         accept: '',
         files: [],
-        dropzoneActive: false
+        dropzoneActive: false,
+        dragActive:false,
+        zindex: 9999,
+        style : {position: "fixed", width:'100%', height:'100%'}
       }
 
       
     }
+
+    startDropListener =()=>{
+      window.addEventListener("dragenter", e => {
+          console.log('dragenter');
+          // this.setState({
+          //   dropzoneActive: true,
+          //   style:{position:"fixed",width:"100%",height:"100%",zIndex:99999}
+          // });
+       });
+    }
+
+
+    startOnLeaveListener=()=>{
+      window.addEventListener("dragleave", e =>{
+        e.preventDefault();
+
+        console.log('dragleave');
+        
+     
+        // this.setState({
+        //   dropzoneActive: false,
+        //   style:{position:"fixed",width:"100%",height:"100%",zIndex:0}
+        // });
+
+
+     });
+    }
+
+
+    startDragOverListener=()=>{
+      window.addEventListener("dragover", e => {
+        e.preventDefault();
+        console.log('dragover');
+        this.setState({
+          dropzoneActive: true,
+          style:{position:"fixed",width:"100%",height:"100%",zIndex:99999}
+        });
+     });
+
+    }
+
+    componentDidMount() {
+      this.startDropListener();
+       this.startOnLeaveListener();
+       this.startDragOverListener();
+    }
+
+    componentWillUnmount(){
+      window.removeEventListener("dragenter", e => console.log('removed dragenter listner'));
+      window.removeEventListener("dragleave", e => console.log('removed drageleavelistner'));
+      window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
+    }
+
   
     onDragEnter=()=> {
         console.log("ONDRAGENTER DROPZONE");
       this.setState({
-        dropzoneActive: true
+        dropzoneActive: true,
+       
       });
     }
   
     onDragLeave =()=> {
         console.log('ONDRAGLEAVE DROPZONE');
       this.setState({
-        dropzoneActive: false
+        dropzoneActive: false,
+      
+
       });
     }
   
        //DROPZONE handler
     onDrop=(files)=>{
         console.log('DROPPED',this.props);
-
+       
        
       console.log('FILES',files);
         const uploaders = files.map(file => {
@@ -77,7 +136,8 @@ export default class FullScreen extends React.Component {
           .then(() => {
               this.props.getImages();
               this.setState({
-                dropzoneActive: false
+                dropzoneActive: false,
+                style:{position:"fixed",width:"100%",height:"100%",zIndex:0}
               });
            // this.props.dispatch(fetchImages(this.props.boardId));
             //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
@@ -97,7 +157,7 @@ export default class FullScreen extends React.Component {
         <Dropzone
           disableClick
           disablePreview
-          style={{position: "fixed", width:'100%', height:'100%'}}
+          style={this.state.style}
           accept={accept}
           onDrop={this.onDrop}
           onDragEnter={this.onDragEnter}

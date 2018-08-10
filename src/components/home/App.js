@@ -6,6 +6,7 @@ import HeaderBar from './Header-bar';
 import LandingPage from './Landing-page';
 import Dashboard from './Dashboard-page';
 import Board from '../moodboard/Board';
+
 import RegistrationPage from './Registration-page';
 import LoginPage from './Login-page';
 import {refreshAuthToken} from '../../actions/auth';

@@ -7,14 +7,32 @@ import {fetchImages, updateImage,clearImages} from '../../actions/images';
 import {setMoodboardId} from '../../actions/moodboards';
 import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
+import Menubar from './Menubar';
+
+
+
 
 export class Board extends React.Component {
 
+     constructor(props){
+       super(props);
+
+       this.state={
+          viewMode: "free"
+       }
+
+     }
+
+  
+
+      
     //LIFE CYCLE
     componentDidMount() {
      this.props.fetchImages(this.props.match.params.boardId);
      this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
      console.log('PROPS MATCH PARMAS',this.props);
+    
+     
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
@@ -90,29 +108,42 @@ export class Board extends React.Component {
       }
   
       return (
-    
-        <section>
-            <div>
-            {/* <button type="button" onClick="zoomin()"> Zoom In</button>
-            <button type="button" onClick="zoomout()"> Zoom Out</button> */}
-              <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button></div>
-              <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
-       
-          <aside>
-           
-            <ul>
         
-             {
-              this.props.imageIds.map(imageId =>{
-                // const index =  this.props.moodboardImages.indexOf(image);
-               // return <li key={image.id}><img src={image.imageurl} /></li>
-                 return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
-               })
-              } 
+
+
+
+        <div id="board-container">
+              <div id="board_menu">
+                  <Menubar saveImages={this.saveUploadImages}/>
+              </div>
+    
+                <section>
+
+                    {/* <div>
+                
+                      <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button>
+                      </div> */}
+                      <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
               
-            </ul>
-          </aside>
-        </section>
+                  <aside>
+                  
+                    <ul>
+                
+                    {
+                      this.props.imageIds.map(imageId =>{
+                        // const index =  this.props.moodboardImages.indexOf(image);
+                        if(this.state.viewMode === "grid"){
+                          return <li key={imageId}><img src={images[imageId].imageurl} /></li>
+                        } else{
+                            return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
+                          }
+                        })
+                      } 
+                      
+                    </ul>
+                  </aside>
+                </section>
+            </div>
       );
     }
   }

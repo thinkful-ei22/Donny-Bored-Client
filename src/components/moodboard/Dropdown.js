@@ -48,9 +48,9 @@ export default class Dropdown extends Component {
                 }}
               >
               <ul>
-                <li><button> Menu item 1 </button></li>
-                <li> <button> Menu item 2 </button></li>
-                <li><button> Menu item 3 </button></li>
+                <li><button> Save</button></li>
+                <li> <button> Dashboard </button></li>
+                <li><button> Grid Mode </button></li>
               </ul>
               </div>
             )
