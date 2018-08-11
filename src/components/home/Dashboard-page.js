@@ -34,6 +34,7 @@ export class Dashboard extends React.Component {
             return null; 
           }
 
+
           
         return (
             <div className="dashboard">
@@ -50,6 +51,7 @@ export class Dashboard extends React.Component {
                         <MoodboardForm userId={this.props.userId}/>
                     </div>
                 <div className="board-list-container">
+                       
                      <Boardlist userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
                </div>

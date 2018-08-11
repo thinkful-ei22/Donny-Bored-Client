@@ -57,3 +57,11 @@ float:left;
     padding-bottom:15px;
     border-bottom:1px dashed;
 }
+
+#no_moodboards{
+    text-align:center;
+}
+
+#no_moodboards img{
+    padding-bottom:20px;
+}
