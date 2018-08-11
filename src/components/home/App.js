@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Route, withRouter} from 'react-router-dom';
 
-import HeaderBar from './Header-bar';
+
 import LandingPage from './Landing-page';
 import Dashboard from './Dashboard-page';
 import Board from '../moodboard/Board';
@@ -47,6 +47,8 @@ export class App extends React.Component {
 
     componentWillUnmount() {
         this.stopPeriodicRefresh();
+       
+      
        
     }
 

@@ -4,7 +4,7 @@ import requiresLogin from './Requires-login';
 import MoodboardForm from './Moodboard-form';
 
 import {Link} from 'react-router-dom';
-import {fetchMoodboards,clearMoodboards} from '../../actions/moodboards';
+import {fetchMoodboards} from '../../actions/moodboards';
 import {deleteMoodboard} from '../../actions/moodboards';
 import {editMoodboard} from '../../actions/moodboards';
 import './dashboard.css';
@@ -20,11 +20,9 @@ export class Dashboard extends React.Component {
     }
 
     componentWillUnmount(){
-        this.props.dispatch(clearMoodboards());
-        console.log('CLEAERING MOODBOARDS');
+       
     }
         
-    
     deleteMoodboard(moodboard_id,user_id){
         this.props.dispatch(deleteMoodboard(moodboard_id,user_id));
     }
@@ -57,7 +55,7 @@ export class Dashboard extends React.Component {
                     </div>
                 <div className="board-list-container">
                        
-                     <Boardlist loading={this.props.moodboardLoading} userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
+                     <Boardlist loading={this.props.moodboardLoading} userId={this.props.userId} moodboards={this.props.moodboards} moodboardIds={this.props.moodboardIds} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
                </div>
             </div> 
@@ -72,6 +70,7 @@ const mapStateToProps = state => {
         username: state.auth.currentUser.username,
         userId:state.auth.currentUser.id,
         moodboards:state.moodboards.data,
+        moodboardIds:state.moodboards.boardIds,
         moodboardLoading:state.moodboards.loading
     
        // name: `${currentUser.firstName} ${currentUser.lastName}`,

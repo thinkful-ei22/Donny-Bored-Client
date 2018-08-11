@@ -85,6 +85,7 @@ export class Board extends React.Component {
 
       const updaters= updateObjectArray.map(data => {
         //using fetch insead of Axios library
+        console.log('SAVING IMAGES...');
        return fetch(`${API_BASE_URL}/api/images/${data.id}`,{
           method:'PUT',
           headers: {
@@ -103,7 +104,7 @@ export class Board extends React.Component {
         .all(updaters)
         .then(() => {
           //this.props.dispatch(fetchImages());
-          console.log('UPATED MOODBOARD' + this.props.allImages);
+          console.log('UPDATED MOODBOARD' + this.props.allImages);
       });
    }
 
@@ -141,7 +142,6 @@ export class Board extends React.Component {
                       this.props.imageIds.map(imageId =>{
                         // const index =  this.props.moodboardImages.indexOf(image);
                        
-                          
                           if(this.state.viewMode === "list"){
                             return <li key={imageId}><img src={images[imageId].imageurl} /></li>
                           } 

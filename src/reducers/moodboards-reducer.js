@@ -8,10 +8,11 @@ import {
 } from '../actions/moodboards';
 
 const initialState = {
-    data: [],
+    data: {},
     board_id:null,
     error: null,
-    loading:null
+    loading:null,
+    boardIds:[]
 };
 
 export function moodboardReducer(state = initialState, action) {
@@ -24,8 +25,16 @@ export function moodboardReducer(state = initialState, action) {
     
     else if (action.type === FETCH_MOODBOARDS_SUCCESS) {
         console.log('FETCH MOODBOARDS SUCCESS ACTION',action.data)
+        const normalizedBoards = 
+        action.data.reduce((accumulator, current) => {
+         accumulator[current.id] = current;
+         return accumulator
+       }, {});
+       //return an array of the keys
+      const keyArray = Object.keys(normalizedBoards);
         return Object.assign({}, state, {
-            data: action.data,
+            data: normalizedBoards,
+            boardIds:keyArray,
             error: null,
             loading:false
         });
@@ -49,7 +58,8 @@ export function moodboardReducer(state = initialState, action) {
     } else if(action.type === CLEAR_MOODBOARDS){
         console.log('CLEARING MOODBOARDS');
         return Object.assign({}, state, {
-          data:[]
+          data:{},
+          boardIds:[]
       })
     }
 

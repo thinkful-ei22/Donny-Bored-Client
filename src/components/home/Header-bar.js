@@ -2,13 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {clearAuth} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
-import ButtonTest from './ButtonTest';
+import {clearMoodboards} from '../../actions/moodboards';
 
 
 
 export class HeaderBar extends React.Component {
     logOut() {
         this.props.dispatch(clearAuth());
+        this.props.dispatch(clearMoodboards());
+        console.log('CLEARING MOODBOARDS');
         clearAuthToken();
     }
 
