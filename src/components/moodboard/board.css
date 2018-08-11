@@ -1,0 +1,18 @@
+#list{
+
+    max-width:700px;
+   margin:auto;
+   top:0px;
+
+}
+
+#list img{
+    width:100%;
+    margin-bottom:20px;
+
+}
+
+#board_menu{
+    position:fixed;
+    z-index:99999999;
+}

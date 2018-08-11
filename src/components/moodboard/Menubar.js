@@ -13,6 +13,8 @@ export default class Menubar extends Component {
             <li> <button onClick={()=>this.props.setViewMode("list")}><img src="../assets/listicon.png"/></button></li>
             <li>  <button onClick={()=>this.props.setViewMode("free")}><img src="../assets/cuetflag.png"/></button></li>
             <li>  <button onClick={()=>this.props.setViewMode("grid")}><img src="../assets/svg-rounded_grid-512.png"/></button></li>
+            <li>  <button onClick={()=>this.props.setViewMode("grid")}><img src="../assets/zoomin.png"/></button></li>
+            <li>  <button onClick={()=>this.props.setViewMode("grid")}><img src="../assets/zoomout.png"/></button></li>
             </ul>
         </div>
         )

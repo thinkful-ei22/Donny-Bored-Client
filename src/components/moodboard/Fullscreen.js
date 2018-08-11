@@ -75,6 +75,7 @@ export default class FullScreen extends React.Component {
 
     onDragOver=(e)=>{
       e.preventDefault();
+      
       console.log('dragover');
       this.setState({
         dropzoneActive: true,
@@ -82,7 +83,8 @@ export default class FullScreen extends React.Component {
       })
     }
   
-    onDragEnter=()=> {
+    onDragEnter=(e)=> {
+      console.log('MOUSE COORD',e.pageX,e.pageY)
         console.log("ONDRAGENTER DROPZONE");
       this.setState({
         dropzoneActive: true,
@@ -102,8 +104,8 @@ export default class FullScreen extends React.Component {
        //DROPZONE handler
     onDrop=(files)=>{
         console.log('DROPPED',this.props);
-       
-       
+       console.log('event',files.clientX);
+      
       console.log('FILES',files);
         const uploaders = files.map(file => {
           // Initial FormData

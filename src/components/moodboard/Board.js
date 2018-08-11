@@ -8,6 +8,8 @@ import {setMoodboardId} from '../../actions/moodboards';
 import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
 import Menubar from './Menubar';
+import './board.css';
+import './view-grid.css';
 
 
 
@@ -18,7 +20,10 @@ export class Board extends React.Component {
        super(props);
 
        this.state={
-          viewMode: "free"
+          viewMode: "free",
+          zoomOut:{transform:'scale(0.5)'},
+          zoomIn:{transform:'scale(2)'},
+          scaleFactor:{transform:'scale(1)'}
        }
 
      }
@@ -130,15 +135,14 @@ export class Board extends React.Component {
     
                 <section>
 
-
                        {/* <div>
                          <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button>
                       </div> */}
                       <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
               
-                  <aside>
+                  <aside style={this.state.scaleFactor}>
                   
-                    <ul>
+                    <ul id={this.state.viewMode}>
                 
                     {
                       this.props.imageIds.map(imageId =>{
@@ -150,7 +154,7 @@ export class Board extends React.Component {
                           } 
 
                           else if(this.state.viewMode ==="grid"){
-                            return <li key={imageId}><img src={images[imageId].imageurl} /></li>
+                            return <li className="grid_block" key={imageId}><img src={images[imageId].imageurl} /></li>
                           }
                           else {
 
