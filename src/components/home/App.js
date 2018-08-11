@@ -33,7 +33,6 @@ export class App extends React.Component {
        this.onIdle = this._onIdle.bind(this);
        console.log('MY APP PROPS',this.props);
 
-
      }
 
      _onActive(e) {
@@ -48,6 +47,7 @@ export class App extends React.Component {
 
     componentWillUnmount() {
         this.stopPeriodicRefresh();
+       
     }
 
     startPeriodicRefresh() {

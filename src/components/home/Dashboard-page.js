@@ -52,7 +52,7 @@ export class Dashboard extends React.Component {
                     </div>
                 <div className="board-list-container">
                        
-                     <Boardlist userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
+                     <Boardlist loading={this.props.moodboardLoading} userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
                </div>
             </div> 
@@ -66,7 +66,8 @@ const mapStateToProps = state => {
     return {
         username: state.auth.currentUser.username,
         userId:state.auth.currentUser.id,
-        moodboards:state.moodboards.data
+        moodboards:state.moodboards.data,
+        moodboardLoading:state.moodboards.loading
     
        // name: `${currentUser.firstName} ${currentUser.lastName}`,
        // protectedData: state.protectedData.data
