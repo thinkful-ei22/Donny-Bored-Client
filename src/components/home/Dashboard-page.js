@@ -17,21 +17,15 @@ export class Dashboard extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchMoodboards(this.props.userId));
         console.log('THIS DASHBORD PROPS',this.props);
-  
-      
-      
     }
         
     
     deleteMoodboard(moodboard_id,user_id){
-         
         this.props.dispatch(deleteMoodboard(moodboard_id,user_id));
-
     }
 
     editMoodboard(board_id,moodboardInfo,user_id){
-        this.props.dispatch(editMoodboard(board_id,moodboardInfo,user_id))
-        
+        this.props.dispatch(editMoodboard(board_id,moodboardInfo,user_id))    
     }
 
     render() {
@@ -42,7 +36,6 @@ export class Dashboard extends React.Component {
 
           
         return (
-        
             <div className="dashboard">
                 <div className="dashboard-header">
                     <div className="dashboard-username">
@@ -56,14 +49,11 @@ export class Dashboard extends React.Component {
                     <div id="dashboard-side-bar">
                         <MoodboardForm userId={this.props.userId}/>
                     </div>
-
-
                 <div className="board-list-container">
                      <Boardlist userId={this.props.userId} moodboards={this.props.moodboards} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
                </div>
-            </div>
-                
+            </div> 
         );
     }
 }

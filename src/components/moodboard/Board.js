@@ -36,6 +36,7 @@ export class Board extends React.Component {
      this.props.fetchImages(this.props.match.params.boardId);
      this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
      console.log('PROPS MATCH PARMAS',this.props);
+     console.log('BOARD TEST HISTORY',this.props.history);
     
      
      //console.log('what is it', this.props);  
@@ -115,6 +116,12 @@ export class Board extends React.Component {
    }
 
 
+      handleHome = () => {
+        this.props.history.push('/dashboard');
+        console.log('BUTTON TEST HISTORY',this.props.history.location.pathname==='/dashboard');
+      }
+
+
     render() {
       const imagesIds = this.props.imageIds;
       const images =  this.props.allImages;
@@ -130,7 +137,7 @@ export class Board extends React.Component {
 
         <div id="board-container">
               <div id="board_menu">
-                  <Menubar setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
+                  <Menubar handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
               </div>
     
                 <section>
