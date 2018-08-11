@@ -9,6 +9,7 @@ const initialState = {
   error:null,
   allImages:{},
   imageIds:[],
+  updatedImageIds:[]
   
 };
   
@@ -61,6 +62,12 @@ export const imagesReducer = (state=initialState, action) => {
           imageIds:[]          
         });
 
+      case(types.CLEAR_UPDATED_IMAGES):
+      console.log('CLEARING UPDATED IMAGES');
+      return Object.assign({},state,{
+        updatedImageIds:[]
+      });
+
       case(types.UPDATE_IMAGE):
       //const newState = { ...state };
       //return console.log('THE STATE', newState.moodboardImages)
@@ -68,20 +75,31 @@ export const imagesReducer = (state=initialState, action) => {
           let id = action.imageId;
           let newPos=[action.xpos,action.ypos];
           let newSize=[action.width,action.height];
-              const updateObj = {
-                ...state, 
-                  allImages: { 
-                      ...state.allImages,
-                    [id]: {
-                        ...state.allImages[id],
-                      position: newPos,
-                      dimensions: newSize
-                    }
-                }    
-            }
+            //   const updateObj = {
+            //     ...state, 
+            //       allImages: { 
+            //           ...state.allImages,
+            //         [id]: {
+            //             ...state.allImages[id],
+            //           position: newPos,
+            //           dimensions: newSize
+            //         }
+            //     }    
+            // }
            
-          console.log('UPDATING STATE',updateObj===state);
-          return  updateObj;
+        //  console.log('UPDATING STATE',updateObj===state);
+          return Object.assign({},state,{
+                allImages: { 
+                      ...state.allImages,
+                          [id]: {
+                           ...state.allImages[id],
+                              position: newPos,
+                              dimensions: newSize
+                        }
+                    },
+                updatedImageIds: [...state.updatedImageIds,id]
+               
+          });
     default:
       return state;
     }

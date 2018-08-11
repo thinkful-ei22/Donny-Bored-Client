@@ -62,6 +62,8 @@ export const uploadImage = (files) =>({
 
 
 //UPDATE IMAGE
+
+
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
 export const updateImage =(imageId,xpos,ypos,width,height) =>({
     type:UPDATE_IMAGE,
@@ -70,6 +72,12 @@ export const updateImage =(imageId,xpos,ypos,width,height) =>({
     ypos,
     width,
     height
+});
+
+export const UPDATE_IMAGE_SUCCESS = "UPDATE_IMAGE_SUCCESS";
+export const updateImageSuccess=()=>({
+    type:UPDATE_IMAGE_SUCCESS
+
 });
 
 //SAVE IMAGE
@@ -124,4 +132,12 @@ export const CLEAR_IMAGES = 'CLEAR_IMAGES';
 export const clearImages=()=>({
     type:CLEAR_IMAGES
 });
+
+//CLEAR STORE IMAGE ARRAY
+export const CLEAR_UPDATED_IMAGES = 'CLEAR_UPDATED_IMAGES';
+export const clearUpdatedImages=()=>({
+    type:CLEAR_UPDATED_IMAGES
+});
+
+
 

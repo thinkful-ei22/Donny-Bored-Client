@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
-import {fetchImages, updateImage,clearImages} from '../../actions/images';
+import {fetchImages, updateImage,clearImages, clearUpdatedImages} from '../../actions/images';
 import {setMoodboardId} from '../../actions/moodboards';
 import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
@@ -22,7 +22,8 @@ export class Board extends React.Component {
           viewMode: "free",
           zoomOut:{transform:'scale(0.5)'},
           zoomIn:{transform:'scale(2)'},
-          scaleFactor:{transform:'scale(1)'}
+          scaleFactor:{transform:'scale(1)'},
+       
        }
 
      }
@@ -58,6 +59,7 @@ export class Board extends React.Component {
     updateImage =(imageId,xpos,ypos,width,height)=>{
        // this.props.dispatch(updateImage());
        this.props.dispatch(updateImage(imageId,xpos,ypos,width,height));
+     
       // console.log('going ot dispatch');
 
       }
@@ -73,37 +75,42 @@ export class Board extends React.Component {
     saveUploadImages(imageId=631,xpos,ypos,width,height){
        
       console.log('Saving Images...');
-      const updateImages = this.props.allImages;
-      const updateImage = this.props.allImages[imageId];
-      const updateObjectArray=[];
-
-      for (let key in updateImages) {
-        if (updateImages.hasOwnProperty(key)) {
-           updateObjectArray.push(updateImages[key]);
-        }
+     // const updateImages = this.props.allImages;
+      const updatedImageIdList = this.props.updatedImageIds;
+      let length =  updatedImageIdList.length;
+      let uniqueIDList = [];
+      let seen = new Set();
+     
+      outer: 
+      for (let index = 0; index < length; index++) {
+        let value = updatedImageIdList[index];
+        if (seen.has(value)) continue outer;
+        seen.add(value);
+        uniqueIDList.push(value);
       }
 
-      const updaters= updateObjectArray.map(data => {
+      const updaters=uniqueIDList.map(id => {
         //using fetch insead of Axios library
         console.log('SAVING IMAGES...');
-       return fetch(`${API_BASE_URL}/api/images/${data.id}`,{
+       return fetch(`${API_BASE_URL}/api/images/${id}`,{
           method:'PUT',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
           },
-           body: JSON.stringify(data)
+           body: JSON.stringify(this.props.allImages[id])
         })
         .then(response => console.log(response) );
       
       
       }); 
-      console.log('ToBeUpdated',updateObjectArray);
+      //console.log('ToBeUpdated',updateObjectArray);
       // Once all the files are uploaded 
       Promise
         .all(updaters)
         .then(() => {
           //this.props.dispatch(fetchImages());
+          this.props.dispatch(clearUpdatedImages());
           console.log('UPDATED MOODBOARD' + this.props.allImages);
       });
    }
@@ -170,6 +177,7 @@ export class Board extends React.Component {
 const mapStateToProps = state => ({
     allImages: state.images.allImages,
     imageIds: state.images.imageIds,
+    updatedImageIds: state.images.updatedImageIds
 
 });
 

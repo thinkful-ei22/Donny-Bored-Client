@@ -62,6 +62,7 @@ export function moodboardReducer(state = initialState, action) {
           boardIds:[]
       })
     }
+  
 
     return state;
 }
