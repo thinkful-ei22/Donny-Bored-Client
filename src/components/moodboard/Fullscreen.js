@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import {API_BASE_URL} from '../../config.js'
+import axios from 'axios';
 
 
 const overlayStyle = {
@@ -23,6 +24,7 @@ export default class FullScreen extends React.Component {
       this.state = {
         accept: '',
         files: [],
+        fileprogress:null,
         dropzoneActive: false,
         dragActive:false,
         zindex: 9999,
@@ -32,38 +34,9 @@ export default class FullScreen extends React.Component {
      
     }
 
-    startDropListener =()=>{
-      window.addEventListener("dragenter", e => {
-          console.log('dragenter');
-          // this.setState({
-          //   dropzoneActive: true,
-          //   style:{position:"fixed",width:"100%",height:"100%",zIndex:99999}
-          // });
-       });
-    }
-
-
-    startOnLeaveListener=()=>{
-      window.addEventListener("dragleave", e =>{
-        e.preventDefault();
-
-        console.log('dragleave');
-        
-     
-        // this.setState({
-        //   dropzoneActive: false,
-        //   style:{position:"fixed",width:"100%",height:"100%",zIndex:0}
-        // });
-
-
-     });
-    }
-
 
   
     componentDidMount() {
-      //this.startDropListener();
-       //this.startOnLeaveListener();
       window.addEventListener("dragover", this.onDragOver);
       
     }
@@ -75,7 +48,7 @@ export default class FullScreen extends React.Component {
 
     onDragOver=(e)=>{
       e.preventDefault();
-      
+      console.log('MOUSE COORD',e.pageX,e.pageY)
       console.log('dragover');
       this.setState({
         dropzoneActive: true,
@@ -84,9 +57,9 @@ export default class FullScreen extends React.Component {
     }
   
     onDragEnter=(e)=> {
-      console.log('MOUSE COORD',e.pageX,e.pageY)
+  
         console.log("ONDRAGENTER DROPZONE");
-      this.setState({
+        this.setState({
         dropzoneActive: true,
        
       });
@@ -105,7 +78,7 @@ export default class FullScreen extends React.Component {
     onDrop=(files)=>{
         console.log('DROPPED',this.props);
        console.log('event',files.clientX);
-      
+     
       console.log('FILES',files);
         const uploaders = files.map(file => {
           // Initial FormData
@@ -113,24 +86,33 @@ export default class FullScreen extends React.Component {
           const formData = new FormData();
           formData.append('file', file);
           formData.append('moodboard_id',this.props.boardId)
+       
+          //Make an AJAX upload request using Axios 
+          return axios.post("http://localhost:9090/api/cloudinary", formData, {
+            onUploadProgress: (p) => {
+              console.log('UPLOAD PROGERSS',p.loaded/p.total); 
+              this.setState({
+                fileprogress: p.loaded / p.total
+              })
+            }
+          }).then(response => { 
+            this.setState({
+              fileprogress: 1.0,
+            }) 
+            console.log(response);
+          });
           
-          // Make an AJAX upload request using Axios 
-          // return axios.post("http://localhost:9090/api/cloudinary", formData, {
-          //   headers: { "X-Requested-With": "XMLHttpRequest" },
-          // }).then(response => {  
-          //   console.log(response);
-          // })
-
-          //using fetch insead of Axios library
-         return fetch(`${API_BASE_URL}/api/cloudinary`,{
-            method:'POST',
-            body:formData
-          })
-          .then(response => console.log(response) );
+       
+        //   //using fetch insead of Axios library
+        //  return fetch(`${API_BASE_URL}/api/cloudinary`,{
+        //     method:'POST',
+        //     body:formData
+        //   })
+        //   .then(response => console.log(response) );
         });
 
         // Once all the files are uploaded 
-        Promise
+        axios
           .all(uploaders)
           .then(() => {
               this.props.getImages();
@@ -162,7 +144,8 @@ export default class FullScreen extends React.Component {
           onDragEnter={this.onDragEnter}
           onDragLeave={this.onDragLeave}
         >
-          { dropzoneActive && <div style={overlayStyle}>Drop files...</div> }
+          {/* { dropzoneActive && <div style={overlayStyle}>Drop files...</div> } */}
+        
         
         </Dropzone>
       );

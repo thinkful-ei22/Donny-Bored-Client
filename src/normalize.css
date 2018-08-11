@@ -50,7 +50,7 @@
   }
   p:last-child, blockquote:last-child, details:last-child, dd:last-child, dl:last-child, fieldset:last-child, figure:last-child, header[role=banner]:last-child, li:last-child, ol:last-child, pre:last-child, ul:last-child,
   h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child {
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
   }
   
   p, blockquote, details, dd, dl, fieldset, figure, header[role=banner], li, ol, pre, ul {
