@@ -7,8 +7,12 @@ import './grid.css';
 export default class Boardlist extends React.Component{
 
     render(){
+
+        if(!this.props || this.props.moodboards === undefined ){
+            return null
+        }
       
-        if(!this.props || this.props.moodboards === undefined || this.props.moodboards < 1){
+        if(this.props.moodboards < 1){
             return  <div id="no_moodboards"><img src="../assets/board.gif" alt="Mona Lisa"/><h3>Hint: Get started by creating a new board.</h3> </div>
           }
 
