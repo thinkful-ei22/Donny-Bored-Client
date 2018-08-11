@@ -52,6 +52,16 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
 //CREATE MOODBOARD RELATED ACTIONS
 
 export const CREATE_MOODBOARD_REQUEST = 'CREATE_MOODBOARDS_REQUEST';
+export const createMoodboardRequest=()=>({
+  type:CREATE_MOODBOARD_REQUEST
+});
+
+
+export const CREATE_MOODBOARD_SUCCESS = 'CREATE_MOODBOARD_SUCCESS';
+export const createMoodboardSuccess=(data)=>({
+  type:CREATE_MOODBOARD_SUCCESS,
+  data
+})
 
 export const createMoodboard = (info) => (dispatch,getState) => {
     console.log('cREATE MOODBOARD...',info);
@@ -99,6 +109,17 @@ export const setMoodboardId = (board_id) => ({
 })
 
 
+export const EDIT_MOODBOARD_REQUEST='EDIT_MOODBOARD_REQUEST';
+export const editMoodboardRequest = ()=>({
+  type:EDIT_MOODBOARD_REQUEST
+});
+
+export const EDIT_MOODBOARD_SUCCESS='EDIT_MOODBOARD_SUCCESS';
+export const editMoodboardSuccess = (board_id) =>({
+  type:EDIT_MOODBOARD_SUCCESS,
+  board_id
+});
+
 export const EDIT_MOODBOARD='EDIT_MOODBOARD';
 export const editMoodboard = (board_id=1,info) => (dispatch, getState) =>{
   console.log('EDITING MOODBOARD...');
@@ -116,8 +137,7 @@ export const editMoodboard = (board_id=1,info) => (dispatch, getState) =>{
 
 }
 
-
-
+export const DELETE_MOODBOARD='DELETE_MOODBOARD';
 export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
   console.log('dELETE MOODBOARD...', board_id, user_id);
   const authToken = getState().auth.authToken;
@@ -142,6 +162,14 @@ export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
       //  dispatch(fetchMoodboardsError(err));
     });
 };
+
+
+
+//CLEAR STORE IMAGE ARRAY
+export const CLEAR_MOODBOARDS = 'CLEAR_MOODBOARDS';
+export const clearMoodboards=()=>({
+    type:CLEAR_MOODBOARDS
+});
 
 
 

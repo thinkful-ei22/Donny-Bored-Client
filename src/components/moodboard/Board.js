@@ -18,7 +18,6 @@ export class Board extends React.Component {
 
      constructor(props){
        super(props);
-
        this.state={
           viewMode: "free",
           zoomOut:{transform:'scale(0.5)'},
@@ -28,17 +27,12 @@ export class Board extends React.Component {
 
      }
 
-  
-
-      
     //LIFE CYCLE
     componentDidMount() {
      this.props.fetchImages(this.props.match.params.boardId);
      this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
      console.log('PROPS MATCH PARMAS',this.props);
      console.log('BOARD TEST HISTORY',this.props.history);
-    
-     
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
@@ -80,10 +74,8 @@ export class Board extends React.Component {
        
       console.log('Saving Images...');
       const updateImages = this.props.allImages;
-      
       const updateImage = this.props.allImages[imageId];
       const updateObjectArray=[];
-
 
       for (let key in updateImages) {
         if (updateImages.hasOwnProperty(key)) {
@@ -131,17 +123,11 @@ export class Board extends React.Component {
       }
   
       return (
-        
-
-
-
         <div id="board-container">
               <div id="board_menu">
                   <Menubar handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
               </div>
-    
                 <section>
-
                        {/* <div>
                          <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button>
                       </div> */}

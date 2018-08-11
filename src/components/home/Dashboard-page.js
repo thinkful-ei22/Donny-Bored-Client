@@ -4,7 +4,7 @@ import requiresLogin from './Requires-login';
 import MoodboardForm from './Moodboard-form';
 
 import {Link} from 'react-router-dom';
-import {fetchMoodboards} from '../../actions/moodboards';
+import {fetchMoodboards,clearMoodboards} from '../../actions/moodboards';
 import {deleteMoodboard} from '../../actions/moodboards';
 import {editMoodboard} from '../../actions/moodboards';
 import './dashboard.css';
@@ -17,6 +17,11 @@ export class Dashboard extends React.Component {
     componentDidMount() {
         this.props.dispatch(fetchMoodboards(this.props.userId));
         console.log('THIS DASHBORD PROPS',this.props);
+    }
+
+    componentWillUnmount(){
+        this.props.dispatch(clearMoodboards());
+        console.log('CLEAERING MOODBOARDS');
     }
         
     

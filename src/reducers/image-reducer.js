@@ -36,7 +36,6 @@ export const imagesReducer = (state=initialState, action) => {
           console.log('keys', keyArray);
           console.log('NORMALIZED', normalizedImages);
       return Object.assign({}, state, {
-         // moodboardImages : action.moodboardImages[0].images,
         allImages : normalizedImages,
         imageIds: keyArray,
         loading: false
@@ -55,15 +54,11 @@ export const imagesReducer = (state=initialState, action) => {
           error: action.error
         });
 
-    
-
       case(types.CLEAR_IMAGES):
        console.log('CLEARING IMAGES');
         return Object.assign({}, state, {
-
           allImages:{},
-          imageIds:[]
-             
+          imageIds:[]          
         });
 
       case(types.UPDATE_IMAGE):
@@ -85,16 +80,6 @@ export const imagesReducer = (state=initialState, action) => {
                 }    
             }
            
-
-          
-
-       
-         // let myImages = state;
-
-
-         //myImages.allImages[id].position=newPos;
-         //myImages.allImages[id].dimensions=newSize;
-
           console.log('UPDATING STATE',updateObj===state);
           return  updateObj;
     default:

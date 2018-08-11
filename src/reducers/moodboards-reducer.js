@@ -2,6 +2,7 @@ import {
     FETCH_MOODBOARDS_SUCCESS,
     FETCH_MOODBOARDS_REQUEST,
     FETCH_MOODBOARDS_ERROR,
+    CLEAR_MOODBOARDS,
     SET_MOODBOARD_ID,
     DELETE_MOODBOARD_SUCCESS
 } from '../actions/moodboards';
@@ -45,9 +46,12 @@ export function moodboardReducer(state = initialState, action) {
             board_id:action.board_id,
             error:action.error
         })
+    } else if(action.type === CLEAR_MOODBOARDS){
+        console.log('CLEARING MOODBOARDS');
+        return Object.assign({}, state, {
+          data:[]
+      })
     }
-
-
 
     return state;
 }

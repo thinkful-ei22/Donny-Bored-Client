@@ -85,6 +85,10 @@ export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
 
 //DELETE IMAGE
 
+export const DELETE_IMAGE_REQUEST='DELETE_IMAGE_REQUEST';
+export const DELETE_IMAGE_SUCCESS='DELETE_IMAGE_SUCCESS';
+
+
 export const DELETE_IMAGE= 'DELETE_IMAGE';
 export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
     console.log('DELETING...',imageId,board_id);
