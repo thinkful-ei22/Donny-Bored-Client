@@ -126,14 +126,22 @@ export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
 }
 
 
+//EDITING MODES
+export const EDIT_IMAGE_MODE='EDIT_IMAGE_MODE';
+export const editImageMode=(mode)=>({
+    type:EDIT_IMAGE_MODE,
+    mode
 
-
+})
 
 
 //DELETE IMAGE
 
 export const DELETE_IMAGE_REQUEST='DELETE_IMAGE_REQUEST';
 export const DELETE_IMAGE_SUCCESS='DELETE_IMAGE_SUCCESS';
+export const deleteImageSuccess=()=>({
+    type:DELETE_IMAGE_SUCCESS
+});
 
 
 export const DELETE_IMAGE= 'DELETE_IMAGE';

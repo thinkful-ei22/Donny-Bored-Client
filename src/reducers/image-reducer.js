@@ -6,6 +6,7 @@ const initialState = {
   files: [] ,
   moodboard:null,
   loading: false,
+  editMode:null,
   error:null,
   allImages:{},
   imageIds:[],
@@ -74,6 +75,12 @@ export const imagesReducer = (state=initialState, action) => {
       console.log('CLEARING UPDATED IMAGES');
       return Object.assign({},state,{
         updatedImageIds:[]
+      });
+
+      case(types.EDIT_IMAGE_MODE):
+      return Object.assign({},state,{
+        editMode:action.mode
+        
       });
 
       case(types.UPDATE_IMAGE):

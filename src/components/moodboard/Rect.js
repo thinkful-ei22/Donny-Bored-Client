@@ -3,7 +3,9 @@ import React, { PureComponent } from 'react';
 import { getLength, getAngle, getCursor } from './utils';
 import {connect} from 'react-redux';
 import {deleteImage} from '../../actions/images';
+import EditMenu from './EditMenu';
 import './css/image.css';
+import {editImageMode} from '../../actions/images';
 
 
 const zoomableMap = {
@@ -99,6 +101,8 @@ class Rect extends PureComponent {
     document.addEventListener('mouseup', onUp)
   }
 
+
+
   // Resize
   startResize = (e, cursor) => {
     if (e.button !== 0) return
@@ -142,7 +146,15 @@ class Rect extends PureComponent {
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d)
    // console.log('RECT CHILD SEE IF I CAN GET STORE',this.props.allImages);
     //console.log('image id test', this.props.imageId);
-  
+   // console.log('THIS PROPS RECT',this.props);
+   if(this.props.editMode === "delete"){ 
+      return(
+        <div
+        ref={this.setElementRef}   className="rect" style={style}>
+          <div className="delete-image"><EditMenu handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))} editMode={this.props.editMode}/></div>
+        </div>
+      )
+   } else {
 
     return (
       <div
@@ -151,8 +163,8 @@ class Rect extends PureComponent {
         className="rect single-resizer"
         style={style}
       >
-      <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))}>delet</button></div>
-
+      {/* <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))}><img src="../assets/redtrash.png"/></button></div> */}
+     
         {rotatable && <div className="rotate" onMouseDown={this.startRotate}><i></i></div>}
         {direction.map(d => {
           const cursor = `${getCursor(rotateAngle + parentRotateAngle, d)}-resize`
@@ -168,6 +180,7 @@ class Rect extends PureComponent {
       </div>
     )
   }
+  }
 }
 
 
@@ -176,7 +189,9 @@ const mapStateToProps = state => ({
   //moodboardImages: state.images.moodboardImages,
   allImages: state.images.allImages,
   user_id:state.auth.currentUser.id,
-  board_id:state.moodboards.board_id
+  board_id:state.moodboards.board_id,
+  editMode:state.images.editMode
+
  
   
 });

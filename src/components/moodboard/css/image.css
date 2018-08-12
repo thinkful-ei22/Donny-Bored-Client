@@ -12,8 +12,41 @@
 
 .delete-image{
   position:absolute;
-  bottom:0px;left:20px;
+  left:50%;
+  bottom:50%;
+  transform:translate(-50%,50%);
   opacity:0;
+  height:120px;
+  width:120px;
+}
+
+#flame{
+  position:absolute;
+  left:50%;
+  bottom:50%;
+  transform:translate(-50%,50%);
+  width:100px;
+  height:200px;
+  opacity:0;
+
+ 
+}
+
+#flame:hover{
+  opacity:1.0;
+  filter:alpha(opacity=100);/*position where      
+  enlarged image should offset horizontally */
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+  
+}
+
+
+.delete-image button{
+  border:none;
+  padding:0px;
 }
 .rect{
   -webkit-user-select: none;  /* Chrome all / Safari all */

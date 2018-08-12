@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
-import {fetchImages, updateImage,clearImages, clearUpdatedImages,saveImages} from '../../actions/images';
+import {fetchImages, updateImage,clearImages, clearUpdatedImages,saveImages,editImageMode} from '../../actions/images';
 import {setMoodboardId} from '../../actions/moodboards';
 import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
@@ -21,6 +21,7 @@ export class Board extends React.Component {
        super(props);
        this.state={
           viewMode: "free",
+          deleteMode:false,
           zoomOut:{transform:'scale(0.5)'},
           zoomIn:{transform:'scale(2)'},
           scaleFactor:{transform:'scale(1)'},
@@ -73,6 +74,12 @@ export class Board extends React.Component {
       })
     }
 
+    deleteModeToggle=()=>{
+      this.setState({
+        deleteMode: !this.state.deleteMode
+      })
+    }
+
 
     saveUploadImages(imageId=631,xpos,ypos,width,height){
        
@@ -103,7 +110,7 @@ export class Board extends React.Component {
         <div id="board-container">
              <LoadingScreen loading={this.props.loading}/>
         <div id="board_menu">
-                  <Menubar handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
+                  <Menubar editImageMode={(mode)=>this.props.editImageMode(mode)} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
               </div>
                 <section>
                        {/* <div>
@@ -148,7 +155,9 @@ const mapStateToProps = state => ({
     allImages: state.images.allImages,
     imageIds: state.images.imageIds,
     updatedImageIds: state.images.updatedImageIds,
-    loading:state.images.loading
+    loading:state.images.loading,
+   
+  
 
 });
 
@@ -157,7 +166,8 @@ const mapDispatchToProps = dispatch => {
     fetchImages: (id) =>dispatch(fetchImages(id)),
     clearImages:() => dispatch(clearImages()),
     clearUpdatedImages:()=>dispatch(clearUpdatedImages()),
-    saveImages:(imageIds,images)=>dispatch(saveImages(imageIds,images))
+    saveImages:(imageIds,images)=>dispatch(saveImages(imageIds,images)),
+    editImageMode:(mode)=>dispatch(editImageMode(mode))
   }
 }
 
