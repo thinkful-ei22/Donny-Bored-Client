@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
-import {fetchImages, updateImage,clearImages, clearUpdatedImages} from '../../actions/images';
+import {fetchImages, updateImage,clearImages, clearUpdatedImages,saveImages} from '../../actions/images';
 import {setMoodboardId} from '../../actions/moodboards';
 import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
@@ -41,6 +41,7 @@ export class Board extends React.Component {
      //clears images store object from redux store   
     componentWillUnmount(){
        this.props.clearImages();
+       this.props.clearUpdatedImages();
        window.removeEventListener("dragenter", e => console.log('removed dragenter listner'));
        window.removeEventListener("dragleave", e => console.log('removed drageleavelistner'));
        window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
@@ -74,45 +75,12 @@ export class Board extends React.Component {
 
     saveUploadImages(imageId=631,xpos,ypos,width,height){
        
-      console.log('Saving Images...');
+    
      // const updateImages = this.props.allImages;
       const updatedImageIdList = this.props.updatedImageIds;
-      let length =  updatedImageIdList.length;
-      let uniqueIDList = [];
-      let seen = new Set();
-     
-      outer: 
-      for (let index = 0; index < length; index++) {
-        let value = updatedImageIdList[index];
-        if (seen.has(value)) continue outer;
-        seen.add(value);
-        uniqueIDList.push(value);
-      }
-
-      const updaters=uniqueIDList.map(id => {
-        //using fetch insead of Axios library
-        console.log('SAVING IMAGES...');
-       return fetch(`${API_BASE_URL}/api/images/${id}`,{
-          method:'PUT',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-           body: JSON.stringify(this.props.allImages[id])
-        })
-        .then(response => console.log(response) );
-      
-      
-      }); 
-      //console.log('ToBeUpdated',updateObjectArray);
-      // Once all the files are uploaded 
-      Promise
-        .all(updaters)
-        .then(() => {
-          //this.props.dispatch(fetchImages());
-          this.props.dispatch(clearUpdatedImages());
-          console.log('UPDATED MOODBOARD' + this.props.allImages);
-      });
+      const images = this.props.allImages;
+      console.log('Saving Images...',updatedImageIdList);
+      this.props.saveImages(updatedImageIdList, images);
    }
 
 
@@ -184,7 +152,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     fetchImages: (id) =>dispatch(fetchImages(id)),
-    clearImages:() => dispatch(clearImages())
+    clearImages:() => dispatch(clearImages()),
+    clearUpdatedImages:()=>dispatch(clearUpdatedImages()),
+    saveImages:(imageIds,images)=>dispatch(saveImages(imageIds,images))
   }
 }
 

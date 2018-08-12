@@ -75,6 +75,8 @@ export const imagesReducer = (state=initialState, action) => {
           let id = action.imageId;
           let newPos=[action.xpos,action.ypos];
           let newSize=[action.width,action.height];
+          let updateIds=null;
+        
             //   const updateObj = {
             //     ...state, 
             //       allImages: { 
@@ -86,20 +88,30 @@ export const imagesReducer = (state=initialState, action) => {
             //         }
             //     }    
             // }
-           
+
+            if(!state.updatedImageIds.includes(id)){
+              updateIds = [...state.updatedImageIds,id]
+              
+            } else {
+              updateIds = [...state.updatedImageIds]
+
+            }
+
+            return Object.assign({},state,{
+              allImages: { 
+                    ...state.allImages,
+                        [id]: {
+                         ...state.allImages[id],
+                            position: newPos,
+                            dimensions: newSize
+                      }
+                  },
+              updatedImageIds: updateIds
+             
+        });
+          
         //  console.log('UPDATING STATE',updateObj===state);
-          return Object.assign({},state,{
-                allImages: { 
-                      ...state.allImages,
-                          [id]: {
-                           ...state.allImages[id],
-                              position: newPos,
-                              dimensions: newSize
-                        }
-                    },
-                updatedImageIds: [...state.updatedImageIds,id]
-               
-          });
+       
     default:
       return state;
     }

@@ -61,7 +61,7 @@ export const uploadImage = (files) =>({
 });
 
 
-//UPDATE IMAGE
+//UPDATE IMAGE LOCATION AND SIZE IN REDUX STORE
 
 
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
@@ -80,16 +80,49 @@ export const updateImageSuccess=()=>({
 
 });
 
-//SAVE IMAGE
+//SAVE BOARD IMAGES POSITIONS TO DATABASE
 export const SAVE_IMAGES_REQUEST = 'SAVE_IMAGES_REQUEST';
-export const saveImagesRequest =(imageId,xpos,ypos,width,height) =>({
-    type:SAVE_IMAGES_REQUEST,
-    imageId,
-    xpos,
-    ypos,
-    width,
-    height
+export const saveImagesRequest =() =>({
+    type:SAVE_IMAGES_REQUEST
 });
+
+export const SAVE_IMAGES = 'SAVE_IMAGES';
+export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
+    saveImagesRequest();
+    console.log('saving...uploading new data to server...!!',imageIds);
+    const updaters=imageIds.map(id => {
+        //using fetch insead of Axios library
+        console.log('SAVING IMAGES...');
+       return fetch(`${API_BASE_URL}/api/images/${id}`,{
+          method:'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+           body: JSON.stringify({
+             position: images[id].position,
+             dimensions: images[id].dimensions
+  
+          })
+        })
+        .then(response => console.log(response) );
+    });
+
+    Promise
+    .all(updaters)
+    .then(() => {
+      //this.props.dispatch(fetchImages());
+      dispatch(clearUpdatedImages());
+      console.log('UPDATED MOODBOARD');
+  });
+
+
+}
+
+
+
+
+
 
 //DELETE IMAGE
 
