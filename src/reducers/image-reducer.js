@@ -63,6 +63,22 @@ export const imagesReducer = (state=initialState, action) => {
       
       });
 
+      case(types.DELETE_IMAGE_REQUEST):
+      return Object.assign({}, state, {
+        loading: true
+      });
+
+      case(types.DELETE_IMAGE_SUCCESS):
+        // let filterIds=[];
+        // if(state.updatedImageIds.includes(action.imageId)){
+        //   filterIds = state.updatedImageIds.filter(id => id != action.imagId)
+        
+        // }
+        return Object.assign({}, state, {
+          loading: false,
+          updatedImageIds : state.updatedImageIds.filter(id => id != action.imageId)
+        
+        });
 
       case(types.CLEAR_IMAGES):
        console.log('CLEARING IMAGES');

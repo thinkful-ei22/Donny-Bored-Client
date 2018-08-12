@@ -16,8 +16,12 @@ export default class EditMenu extends Component {
     if(this.props.editMode === 'delete'){
         return (
         <div id="edit-menu">
-           <button onClick={()=>this.props.handleDelete()}><img src="../assets/redx.png"/></button>
-           <div id="flame" ><img src="../assets/smallflame.gif"/></div>
+          <img src="../assets/redx.png"/>     
+            <div id="flame" > 
+            <button id="delete_button" onClick={()=>this.props.handleDelete()}>
+            <img src="../assets/smallflame.gif" alt="Flame gif"/>
+            </button> 
+            </div>
         </div>
       
         );

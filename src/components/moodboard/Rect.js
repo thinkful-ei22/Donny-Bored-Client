@@ -160,7 +160,7 @@ class Rect extends PureComponent {
       <div
         ref={this.setElementRef}
         onMouseDown={this.startDrag}
-        className="rect single-resizer"
+        className="rect single-resizer fadeInFast"
         style={style}
       >
       {/* <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))}><img src="../assets/redtrash.png"/></button></div> */}

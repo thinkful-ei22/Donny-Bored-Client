@@ -138,14 +138,22 @@ export const editImageMode=(mode)=>({
 //DELETE IMAGE
 
 export const DELETE_IMAGE_REQUEST='DELETE_IMAGE_REQUEST';
+export const deleteImageRequest=()=>({
+    type:DELETE_IMAGE_REQUEST
+
+});
+
+
 export const DELETE_IMAGE_SUCCESS='DELETE_IMAGE_SUCCESS';
-export const deleteImageSuccess=()=>({
-    type:DELETE_IMAGE_SUCCESS
+export const deleteImageSuccess=(imageId)=>({
+    type:DELETE_IMAGE_SUCCESS,
+    imageId
 });
 
 
 export const DELETE_IMAGE= 'DELETE_IMAGE';
 export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
+    dispatch(deleteImageRequest);
     console.log('DELETING...',imageId,board_id);
     const authToken = getState().auth.authToken;
    // dispatch(fetchImagesRequest());
@@ -159,14 +167,14 @@ export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
         if (!res.ok) {
           throw new Error(res.statusText);
         }
-
-        dispatch(fetchImages(board_id));
+        dispatch(deleteImageSuccess(imageId));
+       
         console.log('DELETED',res);
         //return res.json();
       })
-      .then(data => {
+      .then(() => {
          // console.log('dispatching imagees...');
-       
+         dispatch(fetchImages(board_id));
       })
       .catch(err => {
         dispatch(fetchImagesError(err));

@@ -40,7 +40,7 @@ export class Dashboard extends React.Component {
 
           
         return (
-            <div className="dashboard">
+            <div className="dashboard fadeInFast">
                 <div className="dashboard-header">
                     <div className="dashboard-username">
                         <strong>  Howdy {this.props.username} !   <img src="assets/wavey.gif"/> </strong>
