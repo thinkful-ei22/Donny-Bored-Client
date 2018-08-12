@@ -86,9 +86,15 @@ export const saveImagesRequest =() =>({
     type:SAVE_IMAGES_REQUEST
 });
 
+export const SAVE_IMAGES_SUCCESS = ' SAVE_IMAGES_SUCCESS';
+export const saveImagesSuccess = ()=>({
+    type:SAVE_IMAGES_SUCCESS
+});
+
+
 export const SAVE_IMAGES = 'SAVE_IMAGES';
 export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
-    saveImagesRequest();
+    dispatch(saveImagesRequest());
     console.log('saving...uploading new data to server...!!',imageIds);
     const updaters=imageIds.map(id => {
         //using fetch insead of Axios library
@@ -112,7 +118,7 @@ export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
     .all(updaters)
     .then(() => {
       //this.props.dispatch(fetchImages());
-      dispatch(clearUpdatedImages());
+      dispatch(saveImagesSuccess());
       console.log('UPDATED MOODBOARD');
   });
 

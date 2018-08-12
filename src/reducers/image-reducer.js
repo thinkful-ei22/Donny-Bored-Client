@@ -51,9 +51,17 @@ export const imagesReducer = (state=initialState, action) => {
         //saves images/image positions to server side
       case(types.SAVE_IMAGES_REQUEST):
         return Object.assign({}, state, {
-          loading: false,
-          error: action.error
+          loading: true
+        
         });
+
+      case(types.SAVE_IMAGES_SUCCESS):
+      return Object.assign({}, state, {
+        loading: false,
+        updatedImageIds:[]
+      
+      });
+
 
       case(types.CLEAR_IMAGES):
        console.log('CLEARING IMAGES');

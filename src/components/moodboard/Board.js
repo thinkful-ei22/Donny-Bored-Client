@@ -10,6 +10,7 @@ import Fullscreen from './Fullscreen';
 import Menubar from './Menubar';
 import './board.css';
 import './view-grid.css';
+import LoadingScreen from './Loading-screen';
 
 
 
@@ -100,7 +101,8 @@ export class Board extends React.Component {
   
       return (
         <div id="board-container">
-              <div id="board_menu">
+             <LoadingScreen loading={this.props.loading}/>
+        <div id="board_menu">
                   <Menubar handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
               </div>
                 <section>
@@ -145,7 +147,8 @@ export class Board extends React.Component {
 const mapStateToProps = state => ({
     allImages: state.images.allImages,
     imageIds: state.images.imageIds,
-    updatedImageIds: state.images.updatedImageIds
+    updatedImageIds: state.images.updatedImageIds,
+    loading:state.images.loading
 
 });
 
