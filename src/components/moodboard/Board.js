@@ -45,6 +45,11 @@ export class Board extends React.Component {
     componentWillUnmount(){
        this.props.clearImages();
        this.props.clearUpdatedImages();
+       //check to see if delete mode is enabled if true turn off (this works okay for now )
+       if(this.props.editMode){
+         console.log(this.props.editMode);
+         this.props.dispatch(editImageMode())
+       }
        window.removeEventListener("dragenter", e => console.log('removed dragenter listner'));
        window.removeEventListener("dragleave", e => console.log('removed drageleavelistner'));
        window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
