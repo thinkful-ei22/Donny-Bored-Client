@@ -21,8 +21,15 @@
 }
 
   
-
-#flame{
+.flame{
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-62%);
+  opacity:0;
+}
+/* .flame{
   position:absolute;
   left:50%;
   bottom:50%;
@@ -30,11 +37,9 @@
   width:100px;
   height:200px;
   opacity:0;
+} */
 
- 
-}
-
-#flame:hover{
+.flame:hover{
   opacity:1.0;
   filter:alpha(opacity=100);/*position where      
   enlarged image should offset horizontally */

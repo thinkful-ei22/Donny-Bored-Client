@@ -20,4 +20,5 @@ body {
 
 button {
   outline: none;
+  border:0px;
 }

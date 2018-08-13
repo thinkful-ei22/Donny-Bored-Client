@@ -15,13 +15,13 @@ export default class EditMenu extends Component {
    console.log('EDITMENU', this.props);
     if(this.props.editMode){
         return (
-        <div id="edit-menu">
+        <div className="edit-menu">
           <img src="../assets/redx.png"/>     
-            <div id="flame" > 
-                <button id="delete_button" onClick={()=>this.props.handleDelete()}>
+           
+                <button className="delete_button flame" onClick={()=>this.props.handleDelete()}>
                     <img src="../assets/smallflame.gif" alt="Flame gif"/>
                 </button> 
-            </div>
+          
         </div>
       
         );

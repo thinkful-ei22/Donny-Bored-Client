@@ -137,6 +137,9 @@ class Rect extends PureComponent {
     document.addEventListener('mouseup', onUp)
   }
 
+
+ 
+
   render () {
     const images=this.props.allImages;
     const imageId = this.props.imageId;
@@ -144,13 +147,13 @@ class Rect extends PureComponent {
     const style = { background:`url(${images[imageId].imageurl}) no-repeat 0px 0px/100% 100%`, width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
      //const style = {  width: Math.abs(width), height: Math.abs(height), transform: `rotate(${rotateAngle}deg)`, left: centerX - Math.abs(width) / 2, top: centerY - Math.abs(height) / 2 }
     const direction = zoomable.split(',').map(d => d.trim()).filter(d => d)
+    
    // console.log('RECT CHILD SEE IF I CAN GET STORE',this.props.allImages);
     //console.log('image id test', this.props.imageId);
    // console.log('THIS PROPS RECT',this.props);
    if(this.props.editMode === true){ 
       return(
-        <div
-        ref={this.setElementRef}   className="rect" style={style}>
+        <div className="rect" style={style}>
           <div className="delete-image"><EditMenu handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))} editMode={this.props.editMode}/></div>
         </div>
       )
