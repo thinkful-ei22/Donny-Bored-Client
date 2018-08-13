@@ -1,6 +1,6 @@
 import React from 'react';
-import Dropzone from 'react-dropzone';
-import {API_BASE_URL} from '../../config.js'
+import Dropzone from '../dropzone';
+import {API_BASE_URL} from '../../config.js';
 import axios from 'axios';
 
 
@@ -28,7 +28,9 @@ export default class FullScreen extends React.Component {
         dropzoneActive: false,
         dragActive:false,
         zindex: 9999,
-        style : {position: "fixed", width:'100%', height:'100%'}
+        style : {position: "fixed", width:'100%', height:'100%'},
+        mousePosX:0,
+        mousePosY:0
       }
        this.onDragOver = this.onDragOver.bind(this);
      
@@ -73,11 +75,18 @@ export default class FullScreen extends React.Component {
 
       });
     }
-  
+
+    getMousePosition=(mouseX,mouseY)=>{
+        this.setState({
+          mousePosX:mouseX,
+          mousePosY:mouseY
+        })
+
+    }
        //DROPZONE handler
     onDrop=(files)=>{
         console.log('DROPPED',this.props);
-       console.log('event',files.clientX);
+      
      
       console.log('FILES',files);
         const uploaders = files.map(file => {
@@ -85,8 +94,10 @@ export default class FullScreen extends React.Component {
           //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
           const formData = new FormData();
           formData.append('file', file);
-          formData.append('moodboard_id',this.props.boardId)
-       
+          formData.append('moodboard_id',this.props.boardId);
+          formData.append('positionX', Math.floor(this.state.mousePosX-250));
+          formData.append('positionY',Math.floor(this.state.mousePosY-250));
+           console.log("MOUSE XY",this.state.mousePosX,this.state.mousePosY);
           //Make an AJAX upload request using Axios 
           return axios.post("http://localhost:9090/api/cloudinary", formData, {
             onUploadProgress: (p) => {
@@ -124,6 +135,8 @@ export default class FullScreen extends React.Component {
             //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
         });
     }
+
+  
   
     applyMimeTypes(event) {
       this.setState({
@@ -136,6 +149,7 @@ export default class FullScreen extends React.Component {
    
       return (
         <Dropzone
+          getMousePosition={(mouseX,mouseY)=> this.getMousePosition(mouseX,mouseY)}
           disableClick
           disablePreview
           style={this.state.style}
