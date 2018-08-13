@@ -128,9 +128,8 @@ export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
 
 //EDITING MODES
 export const EDIT_IMAGE_MODE='EDIT_IMAGE_MODE';
-export const editImageMode=(mode)=>({
+export const editImageMode=()=>({
     type:EDIT_IMAGE_MODE,
-    mode
 
 })
 

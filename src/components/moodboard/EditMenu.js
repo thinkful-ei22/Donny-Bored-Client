@@ -13,7 +13,7 @@ export default class EditMenu extends Component {
 
   render() {
    console.log('EDITMENU', this.props);
-    if(this.props.editMode === 'delete'){
+    if(this.props.editMode){
         return (
         <div id="edit-menu">
           <img src="../assets/redx.png"/>     

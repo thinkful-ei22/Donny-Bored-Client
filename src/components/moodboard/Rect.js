@@ -147,7 +147,7 @@ class Rect extends PureComponent {
    // console.log('RECT CHILD SEE IF I CAN GET STORE',this.props.allImages);
     //console.log('image id test', this.props.imageId);
    // console.log('THIS PROPS RECT',this.props);
-   if(this.props.editMode === "delete"){ 
+   if(this.props.editMode === true){ 
       return(
         <div
         ref={this.setElementRef}   className="rect" style={style}>
@@ -160,7 +160,7 @@ class Rect extends PureComponent {
       <div
         ref={this.setElementRef}
         onMouseDown={this.startDrag}
-        className="rect single-resizer fadeInFast"
+        className="rect single-resizer"
         style={style}
       >
       {/* <div className="delete-image"><button onClick={()=>this.props.dispatch(deleteImage(imageId,this.props.board_id))}><img src="../assets/redtrash.png"/></button></div> */}

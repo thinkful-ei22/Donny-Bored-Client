@@ -6,7 +6,7 @@ const initialState = {
   files: [] ,
   moodboard:null,
   loading: false,
-  editMode:null,
+  editMode:false,
   error:null,
   allImages:{},
   imageIds:[],
@@ -90,7 +90,7 @@ export const imagesReducer = (state=initialState, action) => {
 
       case(types.EDIT_IMAGE_MODE):
       return Object.assign({},state,{
-        editMode:action.mode
+        editMode:!state.editMode
         
       });
 

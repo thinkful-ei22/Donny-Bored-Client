@@ -107,7 +107,7 @@ export class Board extends React.Component {
         <div id="board-container">
              <LoadingScreen loading={this.props.loading}/>
             <div id="board_menu">
-                  <Menubar viewMode={this.state.viewMode} editImageMode={(mode)=>this.props.editImageMode(mode)} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
+                  <Menubar editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
             </div>
           
              <section>
@@ -151,6 +151,7 @@ const mapStateToProps = state => ({
     imageIds: state.images.imageIds,
     updatedImageIds: state.images.updatedImageIds,
     loading:state.images.loading,
+    editMode:state.images.editMode
    
   
 
@@ -162,7 +163,7 @@ const mapDispatchToProps = dispatch => {
     clearImages:() => dispatch(clearImages()),
     clearUpdatedImages:()=>dispatch(clearUpdatedImages()),
     saveImages:(imageIds,images)=>dispatch(saveImages(imageIds,images)),
-    editImageMode:(mode)=>dispatch(editImageMode(mode))
+    editImageMode:()=>dispatch(editImageMode())
   }
 }
 

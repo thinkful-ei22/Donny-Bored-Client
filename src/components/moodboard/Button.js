@@ -17,7 +17,7 @@ export default class Button extends React.Component {
 
     handleEvents= () =>{
         this.props.handleClick();
-      
+       
 
     }
 
@@ -26,7 +26,7 @@ export default class Button extends React.Component {
     
      
       return (
-        <button style={!this.props.active ? {border:"0pc"} : {border:"1px solid red"}} onClick={()=>this.handleEvents()}><img src={this.props.iconGraphic}/></button>
+        <button style={!this.props.active ? {border:"0px"} : {border:"1px solid red"}} onClick={()=>this.handleEvents()}><img src={this.props.iconGraphic}/></button>
       )
 
     }
