@@ -181,6 +181,31 @@ export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
 }
 
 
+//ONDROP IMAGES 
+export const ON_DROP_REQUEST = 'ON_DROP_REQUEST';
+export const onDropRequest=()=>({
+    type:ON_DROP_REQUEST
+});
+
+export const ON_DROP_SUCCESS = 'ON_DROP_SUCCESS';
+export const onDropSuccess=()=>({
+    type:ON_DROP_SUCCESS
+});
+
+export const ON_DROP_ERROR = 'ON_DROP_ERROR';
+export const onDropError=(error)=>({
+    type:ON_DROP_ERROR,
+    error
+})
+
+
+export const onDrop=(files)=>(dispatch,getState)=>{
+    console.log("ON DROP FILES ACTION");
+    dispatch(onDropRequest());
+
+
+}
+
 //CLEAR STORE IMAGE ARRAY
 export const CLEAR_IMAGES = 'CLEAR_IMAGES';
 export const clearImages=()=>({

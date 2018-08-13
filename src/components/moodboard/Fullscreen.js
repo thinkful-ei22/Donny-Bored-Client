@@ -95,7 +95,7 @@ export default class FullScreen extends React.Component {
           const formData = new FormData();
           formData.append('file', file);
           formData.append('moodboard_id',this.props.boardId);
-          formData.append('positionX', Math.floor(this.state.mousePosX*0.77));
+          formData.append('positionX', Math.floor(this.state.mousePosX-250));
           formData.append('positionY',Math.floor(this.state.mousePosY-250));
            console.log("MOUSE XY",this.state.mousePosX,this.state.mousePosY);
           //Make an AJAX upload request using Axios 

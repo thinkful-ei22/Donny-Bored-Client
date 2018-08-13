@@ -50,8 +50,8 @@ export class EditMoodboardForm extends React.Component {
                
                
                 <label htmlFor="description">Description</label>
-                <Field component={Input} element="textarea"  name="description" id="description" validate={[required,nonEmpty]}>
-                Test this</Field>
+                <Field component={Input} element="textarea"  name="description" id="description" >
+                </Field>
                 <button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>

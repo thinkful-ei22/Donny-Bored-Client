@@ -32,7 +32,7 @@ export class MoodboardForm extends React.Component {
                
                
                 <label htmlFor="description">Description</label>
-                <Field component={Input} element="textarea"  name="description" id="description" validate={[required,nonEmpty]}>
+                <Field component={Input} element="textarea"  name="description" id="description">
                 Test this</Field>
                 <button
                     type="submit"

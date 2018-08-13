@@ -16,8 +16,16 @@
 
 .board-list-container{
     margin-left:320px;
-   
+   /* clear:both; */
 
+}
+
+@media only screen and (max-width: 600px) {
+    .board-list-container{
+        margin-left:0px;
+      clear:both; 
+    
+    }
 }
 
 .board-list{
@@ -31,7 +39,6 @@ ul {
 }
 
 .board-list-container li{
-
    /*width:250px;*/
    width:100%;
    padding-bottom:20px;
@@ -41,12 +48,10 @@ ul {
 }
 
 #dashboard-side-bar{
-height:100vh;
+/* height:100vh; */
 margin-right:10px;
-
 max-width:320px;
 float:left;
-
 }
 
 .normal-text{
