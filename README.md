@@ -1,1 +1,1 @@
-( ͡° ͜ʖ ͡°). ( ͡° ͜ʖ ͡°). (☭ ͜ʖ ☭). (ᴗ ͜ʖ ᴗ). ( ° ͜ʖ °). (⟃ ͜ʖ ⟄). ( ‾ ʖ̫ ‾). (͠≖ ͜ʖ͠≖). ( ͡° ʖ̯ ͡°). ʕ ͡° ʖ̯ ͡°ʔ. ( ͡° ل͜ ͡°). 
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/tree/master/screenshots" width=100%>
