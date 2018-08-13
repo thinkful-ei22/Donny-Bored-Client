@@ -1,1 +1,3 @@
-( ͡° ͜ʖ ͡°). ( ͡° ͜ʖ ͡°). (☭ ͜ʖ ☭). (ᴗ ͜ʖ ᴗ). ( ° ͜ʖ °). (⟃ ͜ʖ ⟄). ( ‾ ʖ̫ ‾). (͠≖ ͜ʖ͠≖). ( ͡° ʖ̯ ͡°). ʕ ͡° ʖ̯ ͡°ʔ. ( ͡° ل͜ ͡°). 
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/bored-screenshot-1.jpg" width=100%>
+# Introducing Bored
+## A creative moodboarding web application
