@@ -82,9 +82,6 @@ export class Board extends React.Component {
 
 
     saveUploadImages(imageId=631,xpos,ypos,width,height){
-       
-    
-     // const updateImages = this.props.allImages;
       const updatedImageIdList = this.props.updatedImageIds;
       const images = this.props.allImages;
       console.log('Saving Images...',updatedImageIdList);
@@ -109,13 +106,11 @@ export class Board extends React.Component {
       return (
         <div id="board-container">
              <LoadingScreen loading={this.props.loading}/>
-        <div id="board_menu">
-                  <Menubar editImageMode={(mode)=>this.props.editImageMode(mode)} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
-              </div>
-                <section>
-                       {/* <div>
-                         <button onClick={()=> this.saveUploadImages()}>Save IMAGES</button>
-                      </div> */}
+            <div id="board_menu">
+                  <Menubar viewMode={this.state.viewMode} editImageMode={(mode)=>this.props.editImageMode(mode)} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
+            </div>
+          
+             <section>
                       <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
               
                   <aside style={this.state.scaleFactor}>

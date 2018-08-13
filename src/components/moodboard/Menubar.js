@@ -1,30 +1,40 @@
 import React, { Component } from 'react';
-import Dropdown from './Dropdown';
+import Button from './Button';
 import './menubar.css';
 
 export default class Menubar extends Component {
-     
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          icons:{
+            freePath: "../assets/cuetflag.png",
+            listPath:"../assets/listicon.png",
+            gridPath:"../assets/svg-rounded_grid-512.png",
+            deletePath:"../assets/trashcan.png",
+            savePath:"../assets/save.png",
+            homePath:"../assets/homehappy.jpg"
+          }
+        };
+       
+      }
+    
     render(){
 
-        // return <Dropdown setViewMode={this.props.setViewMode} saveUploadImages={this.props.saveUploadImages}/>
-        return(<div id="view-options">
+     
+
+        return(
+        <div id="view-options">
            {/* <span> View mode:</span> */}
-           <ul>
-           <li>  <button onClick={()=>this.props.setViewMode("free")}><img src="../assets/cuetflag.png"/></button></li>
-            <li> <button onClick={()=>this.props.setViewMode("list")}><img src="../assets/listicon.png"/></button></li>
-         
-            <li>  <button onClick={()=>this.props.setViewMode("grid")}><img src="../assets/svg-rounded_grid-512.png"/></button></li>
-            {/* <li>  <button onClick={()=>this.props.setViewMode("grid")}><img src="../assets/zoomin.png"/></button></li>
-            <li>  <button onClick={()=>this.props.setViewMode("grid")}><img src="../assets/zoomout.png"/></button></li> */}
-         
-         <li>  <button onClick={()=>this.props.editImageMode('delete')}><img src="../assets/trashcan.png"/></button></li>
-            <li>  <button onClick={()=>this.props.saveUploadImages()}><img src="../assets/save.png"/></button></li>
-            <li>  <button onClick={()=>this.props.handleHome()}><img src="../assets/homehappy.jpg"/></button></li>
+              <ul>
+                 <li>  <Button active={this.props.viewMode === "free" ? true : false}  iconGraphic={this.state.icons.freePath} handleClick={()=>this.props.setViewMode("free")} /></li>
+                 <li>  <Button active={this.props.viewMode === "list" ? true : false}   iconGraphic={this.state.icons.listPath} handleClick={()=>this.props.setViewMode("list")} /></li>
+                 <li>  <Button active={this.props.viewMode === "grid" ? true : false}  iconGraphic={this.state.icons.gridPath} handleClick={()=>this.props.setViewMode("grid")} /></li>
+                 <li>  <Button iconGraphic={this.state.icons.deletePath} handleClick={()=>this.props.editImageMode('delete')} /></li>
+                 <li>  <Button iconGraphic={this.state.icons.savePath} handleClick={()=>this.props.saveUploadImages()} /></li>
+                 <li>  <Button iconGraphic={this.state.icons.homePath} handleClick={()=>this.props.handleHome()} /></li>
             </ul>
         </div>
         )
-
     }
-
-
 }

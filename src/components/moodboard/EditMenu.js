@@ -18,9 +18,9 @@ export default class EditMenu extends Component {
         <div id="edit-menu">
           <img src="../assets/redx.png"/>     
             <div id="flame" > 
-            <button id="delete_button" onClick={()=>this.props.handleDelete()}>
-            <img src="../assets/smallflame.gif" alt="Flame gif"/>
-            </button> 
+                <button id="delete_button" onClick={()=>this.props.handleDelete()}>
+                    <img src="../assets/smallflame.gif" alt="Flame gif"/>
+                </button> 
             </div>
         </div>
       
