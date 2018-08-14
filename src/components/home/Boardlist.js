@@ -31,6 +31,7 @@ export default class Boardlist extends React.Component{
                 // const index =  this.props.moodboardImages.indexOf(image);
                 return <li key={moodboardId} >
                 <h2><Link to={`/moodboards/${moodboardId}`}>{this.props.moodboards[moodboardId].board_name}</Link> </h2>
+                <div className="board-description"><p>{this.props.moodboards[moodboardId].description}</p></div>
                      <div className="edit-moodboard" style={this.state}>
                          <EditMoodboardForm deleteMoodboard={this.props.deleteMoodboard} form={`editform_${moodboardId}`} moodboardId={moodboardId} userId={this.props.userId}/> 
                     </div>

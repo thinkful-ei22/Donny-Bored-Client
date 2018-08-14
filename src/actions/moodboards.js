@@ -121,7 +121,7 @@ export const editMoodboardSuccess = (board_id) =>({
 });
 
 export const EDIT_MOODBOARD='EDIT_MOODBOARD';
-export const editMoodboard = (board_id=1,info) => (dispatch, getState) =>{
+export const editMoodboard = (board_id,info) => (dispatch, getState) =>{
   console.log('EDITING MOODBOARD...');
   console.log('userid',info)
   const authToken=getState().auth.authToken;

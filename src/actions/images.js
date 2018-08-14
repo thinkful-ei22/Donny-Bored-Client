@@ -29,6 +29,7 @@ export const fetchImages = (boardId) => (dispatch, getState)=> {
     console.log('FETCHING...');
     const authToken = getState().auth.authToken;
     dispatch(fetchImagesRequest());
+ 
     return fetch(`${API_BASE_URL}/api/moodboards/${boardId}`, {
     method: 'GET',
     headers: {
@@ -199,11 +200,36 @@ export const onDropError=(error)=>({
 })
 
 
-export const onDrop=(files)=>(dispatch,getState)=>{
+export const onDropFiles=(files,mousePosX,mousePosY,boardId)=>(dispatch,getState)=>{
     console.log("ON DROP FILES ACTION");
     dispatch(onDropRequest());
+        console.log('FILES',files);
+        const uploaders = files.map(file => {
+          // Initial FormData
+          //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('moodboard_id',boardId);
+          formData.append('positionX', Math.floor(mousePosX-250));
+          formData.append('positionY',Math.floor(mousePosY-250));
+           console.log("MOUSE XY",mousePosX,mousePosY);
+          //Make an AJAX upload request using Axios
+          //using fetch insead of Axios library
+         return fetch(`${API_BASE_URL}/api/cloudinary`,{
+            method:'POST',
+            body:formData
+          })
+          .then(response => console.log(response) );
+        });
 
-
+        // Once all the files are uploaded 
+       return Promise
+          .all(uploaders)
+        //   .then(()=>{
+        //     // this.props.saveUploadImages();
+        //     dispatch(fetchImages(boardId))
+        //   })
+    
 }
 
 //CLEAR STORE IMAGE ARRAY

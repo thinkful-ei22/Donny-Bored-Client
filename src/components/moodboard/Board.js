@@ -120,7 +120,7 @@ export class Board extends React.Component {
           
              <section>
                       
-                      <Fullscreen getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
+                      <Fullscreen saveUploadImages={()=>this.saveUploadImages()} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
                     
                   <aside style={this.state.scaleFactor}>
                   
@@ -128,8 +128,7 @@ export class Board extends React.Component {
                 
                     {
                       this.props.imageIds.map(imageId =>{
-                        // const index =  this.props.moodboardImages.indexOf(image);
-                       
+                        
                           if(this.state.viewMode === "list"){
                             return <li style={{position:"relative"}} key={imageId}>
                             <DeleteOverlay handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.match.params.boardId))} editMode={this.props.editMode}/>
@@ -144,10 +143,7 @@ export class Board extends React.Component {
                           else {
 
                             return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
-
                           }
-
-
                         })
                       } 
                       
@@ -165,9 +161,6 @@ const mapStateToProps = state => ({
     updatedImageIds: state.images.updatedImageIds,
     loading:state.images.loading,
     editMode:state.images.editMode
-   
-  
-
 });
 
 const mapDispatchToProps = dispatch => {
