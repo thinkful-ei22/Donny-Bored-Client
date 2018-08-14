@@ -50,8 +50,6 @@ export class Board extends React.Component {
          console.log(this.props.editMode);
          this.props.dispatch(editImageMode())
        }
-       window.removeEventListener("dragenter", e => console.log('removed dragenter listner'));
-       window.removeEventListener("dragleave", e => console.log('removed drageleavelistner'));
        window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
        console.log('UNMOUNTING?');
     }
@@ -128,7 +126,7 @@ export class Board extends React.Component {
                 
                     {
                       this.props.imageIds.map(imageId =>{
-                        
+
                           if(this.state.viewMode === "list"){
                             return <li style={{position:"relative"}} key={imageId}>
                             <DeleteOverlay handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.match.params.boardId))} editMode={this.props.editMode}/>
