@@ -20,9 +20,6 @@ export default class Menubar extends Component {
       }
     
     render(){
-
-     
-
         return(
         <div id="view-options">
            {/* <span> View mode:</span> */}

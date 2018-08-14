@@ -1,5 +1,7 @@
 import React from 'react';
 import Dropzone from '../dropzone';
+import {connect} from 'react-redux';
+import {onDropFiles,fetchImages} from '../../actions/images';
 import {API_BASE_URL} from '../../config.js';
 import axios from 'axios';
 
@@ -18,7 +20,7 @@ const overlayStyle = {
     color: '#fff'
   };
 
-export default class FullScreen extends React.Component {
+export class FullScreen extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -59,7 +61,6 @@ export default class FullScreen extends React.Component {
     }
   
     onDragEnter=(e)=> {
-  
         console.log("ONDRAGENTER DROPZONE");
         this.setState({
         dropzoneActive: true,
@@ -85,57 +86,21 @@ export default class FullScreen extends React.Component {
     }
        //DROPZONE handler
     onDrop=(files)=>{
-        console.log('DROPPED',this.props);
-      
-     
-      console.log('FILES',files);
-        const uploaders = files.map(file => {
-          // Initial FormData
-          //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
-          const formData = new FormData();
-          formData.append('file', file);
-          formData.append('moodboard_id',this.props.boardId);
-          formData.append('positionX', Math.floor(this.state.mousePosX-250));
-          formData.append('positionY',Math.floor(this.state.mousePosY-250));
-           console.log("MOUSE XY",this.state.mousePosX,this.state.mousePosY);
-          //Make an AJAX upload request using Axios 
-          return axios.post("http://localhost:9090/api/cloudinary", formData, {
-            onUploadProgress: (p) => {
-              console.log('UPLOAD PROGERSS',p.loaded/p.total); 
-              this.setState({
-                fileprogress: p.loaded / p.total
-              })
-            }
-          }).then(response => { 
-            this.setState({
-              fileprogress: 1.0,
-            }) 
-            console.log(response);
-          });
-          
-       
-        //   //using fetch insead of Axios library
-        //  return fetch(`${API_BASE_URL}/api/cloudinary`,{
-        //     method:'POST',
-        //     body:formData
-        //   })
-        //   .then(response => console.log(response) );
-        });
-
-        // Once all the files are uploaded 
-        axios
-          .all(uploaders)
-          .then(() => {
-              this.props.getImages();
-              this.setState({
-                dropzoneActive: false,
-                style:{position:"fixed",width:"100%",height:"100%",zIndex:0}
-              });
-           // this.props.dispatch(fetchImages(this.props.boardId));
-            //console.log('MOODBORED IMAGES' + this.state.moodboardImages);
-        });
+      this.props.dispatch(onDropFiles(files,this.state.mousePosX,this.state.mousePosY,this.props.boardId))
+       .then(()=> this.props.saveUploadImages())
+       .then(()=>{
+        this.hideDropzone();
+        this.props.dispatch(fetchImages(this.props.boardId));
+       })
     }
 
+
+    hideDropzone =()=>{
+      this.setState({
+        dropzoneActive: false,
+        style:{position:"fixed",width:"100%",height:"100%",zIndex:0}
+      });
+    }
   
   
     applyMimeTypes(event) {
@@ -165,3 +130,13 @@ export default class FullScreen extends React.Component {
       );
     }
   }
+
+
+  const mapStateToProps = state => ({
+    allImages: state.images.allImages,
+    imageIds: state.images.imageIds,
+    updatedImageIds: state.images.updatedImageIds,
+    loading:state.images.loading,
+    editMode:state.images.editMode
+});
+  export default connect(mapStateToProps)(FullScreen);
