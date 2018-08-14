@@ -31,6 +31,7 @@ export class FullScreen extends React.Component {
         dragActive:false,
         zindex: 9999,
         style : {position: "fixed", width:'100%', height:'100%'},
+        width: window.innerWidth,
         mousePosX:0,
         mousePosY:0
       }
@@ -38,7 +39,9 @@ export class FullScreen extends React.Component {
      
     }
 
-
+    componentWillMount() {
+      window.addEventListener('resize', this.handleWindowSizeChange);
+    }
   
     componentDidMount() {
       window.addEventListener("dragover", this.onDragOver);
@@ -47,7 +50,13 @@ export class FullScreen extends React.Component {
 
     componentWillUnmount(){
       window.removeEventListener("dragover", this.onDragOver);
-    }
+      window.removeEventListener('resize', this.handleWindowSizeChange);
+    }    
+
+    handleWindowSizeChange = () => {
+      this.setState({ width: window.innerWidth });
+    };
+   
 
 
     onDragOver=(e)=>{
@@ -111,10 +120,13 @@ export class FullScreen extends React.Component {
   
     render() {
       const { accept, files, dropzoneActive } = this.state;
-   
+      const { width } = this.state;
+      const isMobile = width <= 500;
+      let dropzoneRef;
       return (
         <Dropzone
           getMousePosition={(mouseX,mouseY)=> this.getMousePosition(mouseX,mouseY)}
+          ref={(node) => { dropzoneRef = node; }}
           disableClick
           disablePreview
           style={this.state.style}
@@ -123,6 +135,13 @@ export class FullScreen extends React.Component {
           onDragEnter={this.onDragEnter}
           onDragLeave={this.onDragLeave}
         >
+
+         <div className="mobile_menu" style={isMobile ? {display:"block"} : {display:"none"}}>
+              <button type="button" onClick={() => { dropzoneRef.open() }}>
+                Open File Dialog
+            </button>
+         </div>
+                
           {/* { dropzoneActive && <div style={overlayStyle}>Drop files...</div> } */}
         
         

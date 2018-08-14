@@ -208,4 +208,9 @@ opacity:1;
   }
 
 
- 
+ .board_menu{
+  display: block;
+  text-align: center;
+  margin: auto;
+  transform: translateY(-50px);
+ }

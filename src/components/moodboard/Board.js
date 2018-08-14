@@ -26,12 +26,19 @@ export class Board extends React.Component {
           zoomOut:{transform:'scale(0.5)'},
           zoomIn:{transform:'scale(2)'},
           scaleFactor:{transform:'scale(1)'},
+          width: window.innerWidth
        
        }
 
      }
 
     //LIFE CYCLE
+
+    componentWillMount() {
+      window.addEventListener('resize', this.handleWindowSizeChange);
+    }
+
+
     componentDidMount() {
      this.props.fetchImages(this.props.match.params.boardId);
      this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
@@ -51,8 +58,13 @@ export class Board extends React.Component {
          this.props.dispatch(editImageMode())
        }
        window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
+       window.removeEventListener('resize', this.handleWindowSizeChange);
        console.log('UNMOUNTING?');
     }
+
+    handleWindowSizeChange = () => {
+      this.setState({ width: window.innerWidth });
+    };
    
     getImages(){
       this.props.fetchImages(this.props.match.params.boardId);
@@ -103,6 +115,12 @@ export class Board extends React.Component {
     render() {
       const imagesIds = this.props.imageIds;
       const images =  this.props.allImages;
+
+      const { width } = this.state;
+      const isMobile = width <= 500;
+     
+
+      
     
 
       if(!this.props || imagesIds == undefined){
@@ -112,6 +130,14 @@ export class Board extends React.Component {
       return (
         <div id="board-container">
              <LoadingScreen loading={this.props.loading}/>
+            <div className="mobile_menu1" style={isMobile ? {display:"block"} : {display:"none"}}>
+               
+    
+
+
+            </div>
+
+
             <div id="board_menu">
                   <Menubar editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
             </div>
