@@ -47,9 +47,10 @@ export default class DragRect extends Component {
 
   handleDrag = (deltaX, deltaY) => {
    //this.props.dispatcher();
-     console.log('DRAGGING IMAGE RECT');
-
-     this.props.dispatcher( this.props.image.position[0] + deltaX,this.props.image.position[1] + deltaY,this.props.image.dimensions[0], this.props.image.dimensions[1]);
+    // console.log('DRAGGING IMAGE RECT');
+     const positions = this.props.image.position;
+     const dimensions = this.props.image.dimensions;
+     this.props.dispatcher( positions[0] + deltaX,positions[1] + deltaY,dimensions[0],dimensions[1]);
     // this.setState({
     //   left: this.state.left + deltaX,
     //   top: this.state.top + deltaY
@@ -67,6 +68,8 @@ export default class DragRect extends Component {
 
   render() {
     const {width, top, left, height, rotateAngle} = this.state
+    const positions = this.props.image.position;
+    const dimensions = this.props.image.dimensions;
 
     if(!this.props == undefined){
       return null; 
@@ -76,10 +79,10 @@ export default class DragRect extends Component {
       <div className="App" >
       
         <ResizableRect
-          left={this.props.image.position[0]}
-          top={this.props.image.position[1]}
-          width={this.props.image.dimensions[0]}
-          height={this.props.image.dimensions[1]}
+          left={positions[0]}
+          top={positions[1]}
+          width={dimensions[0]}
+          height={dimensions[1]}
           rotateAngle={rotateAngle}
           // aspectRatio={false}
           // minWidth={10}
@@ -91,11 +94,11 @@ export default class DragRect extends Component {
           // onRotateEnd={this.handleRotateEnd}
           // onResizeStart={this.handleResizeStart}
           onResize={this.handleResize}
-          onResizeEnd={this.handleResizeEnd}
+         // onResizeEnd={this.handleResizeEnd}
           // onResizeEnd={this.handleUp}
           // onDragStart={this.handleDragStart}
           onDrag={this.handleDrag}
-          onDragEnd={this.handleDragEnd}
+       //   onDragEnd={this.handleDragEnd}
           imageId={this.props.imageId}
           //image={this.props.image}
         >
