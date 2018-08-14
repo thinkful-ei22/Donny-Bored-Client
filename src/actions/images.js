@@ -172,6 +172,9 @@ export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
         console.log('DELETED',res);
         //return res.json();
       })
+      .then(()=>{
+         dispatch(saveImages(getState().images.updatedImageIds,getState().images.allImages));
+      })
       .then(() => {
          // console.log('dispatching imagees...');
          dispatch(fetchImages(board_id));
