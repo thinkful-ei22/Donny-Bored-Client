@@ -22,19 +22,18 @@ export default class DragRect extends Component {
     left = Math.round(left)
     width = Math.round(width)
     height = Math.round(height)
-    this.props.dispatcher(left,top,width,height);
-    // this.setState({
-    //   top,
-    //   left,
-    //   width,
-    //   height
-    // })
+    this.setState({
+      top,
+      left,
+      width,
+      height
+    })
   }
 
   handleResizeEnd =()=>{
 
     const {width, top, left, height, rotateAngle} = this.state
-  //  this.props.dispatcher(left,top,width,height);
+    this.props.dispatcher(left,top,width,height);
     console.log('RESIZE END',width,top,left,height);
 
   }
@@ -47,20 +46,17 @@ export default class DragRect extends Component {
 
   handleDrag = (deltaX, deltaY) => {
    //this.props.dispatcher();
-    // console.log('DRAGGING IMAGE RECT');
-     const positions = this.props.image.position;
-     const dimensions = this.props.image.dimensions;
-     this.props.dispatcher( positions[0] + deltaX,positions[1] + deltaY,dimensions[0],dimensions[1]);
-    // this.setState({
-    //   left: this.state.left + deltaX,
-    //   top: this.state.top + deltaY
-    // })
+   //  console.log('DRAGGING IMAGE RECT')
+    this.setState({
+      left: this.state.left + deltaX,
+      top: this.state.top + deltaY
+    })
   }
 
 
   handleDragEnd =() =>{
     const {width, top, left, height, rotateAngle} = this.state
-      //this.props.dispatcher(left,top,width,height);
+      this.props.dispatcher(left,top,width,height);
       console.log('DRAG END',width,top,left,height);
 
   }
@@ -68,8 +64,6 @@ export default class DragRect extends Component {
 
   render() {
     const {width, top, left, height, rotateAngle} = this.state
-    const positions = this.props.image.position;
-    const dimensions = this.props.image.dimensions;
 
     if(!this.props == undefined){
       return null; 
@@ -79,10 +73,10 @@ export default class DragRect extends Component {
       <div className="App" >
       
         <ResizableRect
-          left={positions[0]}
-          top={positions[1]}
-          width={dimensions[0]}
-          height={dimensions[1]}
+          left={left}
+          top={top}
+          width={width}
+          height={height}
           rotateAngle={rotateAngle}
           // aspectRatio={false}
           // minWidth={10}
@@ -94,11 +88,11 @@ export default class DragRect extends Component {
           // onRotateEnd={this.handleRotateEnd}
           // onResizeStart={this.handleResizeStart}
           onResize={this.handleResize}
-         // onResizeEnd={this.handleResizeEnd}
-          // onResizeEnd={this.handleUp}
+          onResizeEnd={this.handleResizeEnd}
+        
           // onDragStart={this.handleDragStart}
           onDrag={this.handleDrag}
-       //   onDragEnd={this.handleDragEnd}
+          onDragEnd={this.handleDragEnd}
           imageId={this.props.imageId}
           //image={this.props.image}
         >

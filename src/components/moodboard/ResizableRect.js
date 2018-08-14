@@ -105,13 +105,13 @@ class ResizableRect extends Component {
         parentRotateAngle={parentRotateAngle}
         onResizeStart={this.props.onResizeStart}
         onResize={this.handleResize}
-        onResizeEnd={this.props.onResizeEnd}
+       onResizeEnd={this.props.onResizeEnd}
         onRotateStart={this.props.onRotateStart}
         onRotate={this.handleRotate}
         onRotateEnd={this.props.onRotateEnd}
         onDragStart={this.props.onDragStart}
         onDrag={this.handleDrag}
-        onDragEnd={this.props.onDragEnd}
+       onDragEnd={this.props.onDragEnd}
         imageId={this.props.imageId}
         //image={this.props.image}
       />
