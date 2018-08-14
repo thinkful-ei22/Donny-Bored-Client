@@ -172,6 +172,9 @@ export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
         console.log('DELETED',res);
         //return res.json();
       })
+      .then(()=>{
+         dispatch(saveImages(getState().images.updatedImageIds,getState().images.allImages));
+      })
       .then(() => {
          // console.log('dispatching imagees...');
          dispatch(fetchImages(board_id));
@@ -200,7 +203,7 @@ export const onDropError=(error)=>({
 })
 
 
-export const onDropFiles=(files,mousePosX,mousePosY,boardId)=>(dispatch,getState)=>{
+export const onDropFiles=(files,mousePosX=640,mousePosY=640,boardId)=>(dispatch,getState)=>{
     console.log("ON DROP FILES ACTION");
     dispatch(onDropRequest());
         console.log('FILES',files);

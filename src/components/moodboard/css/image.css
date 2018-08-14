@@ -208,4 +208,16 @@ opacity:1;
   }
 
 
- 
+ .mobile_menu{
+  display: block;
+  text-align: center;
+  margin: auto;
+  transform: translateY(-50px);
+ }
+
+
+ .mobile_menu button{
+   display:block;
+   margin:auto;
+   margin-bottom:20px;
+ }
