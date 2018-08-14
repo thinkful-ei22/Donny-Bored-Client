@@ -219,7 +219,10 @@ export const onDropFiles=(files,mousePosX,mousePosY,boardId)=>(dispatch,getState
             method:'POST',
             body:formData
           })
-          .then(response => console.log(response) );
+          .then(response => console.log(response) )
+          .catch(err => {
+            dispatch(fetchImagesError(err));
+          });
         });
 
         // Once all the files are uploaded 
