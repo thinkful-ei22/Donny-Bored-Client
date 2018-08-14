@@ -46,8 +46,8 @@ class Rect extends PureComponent {
       if (!this._isMouseDown) return // patch: fix windows press win key during mouseup issue
       e.stopImmediatePropagation()
       const { clientX, clientY } = e
-      const deltaX = (clientX - startX)*2
-      const deltaY = (clientY - startY)*2
+      const deltaX = (clientX - startX)
+      const deltaY = (clientY - startY)
       this.props.onDrag(deltaX, deltaY)
       startX = clientX
       startY = clientY
