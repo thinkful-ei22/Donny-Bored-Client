@@ -1,3 +1,5 @@
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/themainidea.jpg" width=100%>
 <img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/bored-screenshot-1.jpg" width=100%>
-# Introducing Bored
-## A creative moodboarding web application
+
+#Introducing Bored
+##A creative moodboarding web application
