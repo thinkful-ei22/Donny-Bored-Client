@@ -129,7 +129,7 @@ export class FullScreen extends React.Component {
           ref={(node) => { dropzoneRef = node; }}
           disableClick
           disablePreview
-          style={this.state.style}
+          style={isMobile ? {position:"relative"} : this.state.style} 
           accept={accept}
           onDrop={this.onDrop}
           onDragEnter={this.onDragEnter}
@@ -137,8 +137,9 @@ export class FullScreen extends React.Component {
         >
 
          <div className="mobile_menu" style={isMobile ? {display:"block"} : {display:"none"}}>
+              <button type="button" onClick={()=>{this.props.handleHome()}}>Back to Dashboard</button>
               <button type="button" onClick={() => { dropzoneRef.open() }}>
-                Open File Dialog
+                Upload an image for later
             </button>
          </div>
                 

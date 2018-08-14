@@ -138,22 +138,22 @@ export class Board extends React.Component {
             </div>
 
 
-            <div id="board_menu">
+            <div id="board_menu" style={isMobile ? {display:"none"} : {display:"block"}}>
                   <Menubar editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
             </div>
           
              <section>
                       
-                      <Fullscreen saveUploadImages={()=>this.saveUploadImages()} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
+                      <Fullscreen  handleHome={()=>this.handleHome()} saveUploadImages={()=>this.saveUploadImages()} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
                     
                   <aside style={this.state.scaleFactor}>
                   
-                    <ul id={this.state.viewMode}>
+                    <ul id={isMobile ? "list" : this.state.viewMode}>
                 
                     {
                       this.props.imageIds.map(imageId =>{
 
-                          if(this.state.viewMode === "list"){
+                          if(this.state.viewMode === "list" || isMobile){
                             return <li style={{position:"relative"}} key={imageId}>
                             <DeleteOverlay handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.match.params.boardId))} editMode={this.props.editMode}/>
                             <img src={images[imageId].imageurl} /></li>

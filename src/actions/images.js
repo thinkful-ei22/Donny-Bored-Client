@@ -200,7 +200,7 @@ export const onDropError=(error)=>({
 })
 
 
-export const onDropFiles=(files,mousePosX=200,mousePosY=200,boardId)=>(dispatch,getState)=>{
+export const onDropFiles=(files,mousePosX=640,mousePosY=640,boardId)=>(dispatch,getState)=>{
     console.log("ON DROP FILES ACTION");
     dispatch(onDropRequest());
         console.log('FILES',files);
