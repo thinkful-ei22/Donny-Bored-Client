@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {shallow} from 'enzyme';
-import App from '../components/home/App.js';
+import {shallow,mount} from 'enzyme';
+import LoginForm from '../Login-form.js';
 
 it('renders without crashing', () => {
-  const wrapper=shallow(<App/>);
+  const wrapper=shallow(<LoginForm/>);
   console.log(wrapper.debug());
 
 });
