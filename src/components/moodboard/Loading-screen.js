@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import './loading.css';
 
 
-export default class LoadingScreen extends Component {
-     
-    render(){
+export default function LoadingScreen(props) {
 
-        if(this.props.loading){
+        if(props.loading){
             return(
                 <div id="saving_screen" className="fadeIn">
              <img src="../assets/revolve.gif" width="45"/>  <div className="status_message">  processing...</div>
@@ -17,8 +15,6 @@ export default class LoadingScreen extends Component {
            <img src="../assets/revolve.gif" width="45"/>  <div className="status_message">  processing...</div>
         </div>
          }
-
-    }
 
 
 }
