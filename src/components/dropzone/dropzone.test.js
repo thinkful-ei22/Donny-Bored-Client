@@ -58,7 +58,7 @@ describe('Dropzone', () => {
 
     it('should render an input HTML element', () => {
       const dropzone = mount(
-        <Dropzone>
+        <Dropzone disablePreview>
           <p>some content</p>
         </Dropzone>
       )
@@ -88,6 +88,7 @@ describe('Dropzone', () => {
           const dragLeaveSpy = spy()
           const component = mount(
             <Dropzone
+            disablePreview
               onDragStart={dragStartSpy}
               onDragEnter={dragEnterSpy}
               onDragOver={dragOverSpy}
@@ -107,7 +108,7 @@ describe('Dropzone', () => {
 
         it('should keep dragging active when leaving from arbitrary node', async () => {
             const arbitraryOverlay = mount(<div />)
-            const dropzone = mount(<Dropzone>{props => <DummyChildComponent {...props} />}</Dropzone>)
+            const dropzone = mount(<Dropzone disablePreview>{props => <DummyChildComponent {...props} />}</Dropzone>)
             await dropzone.simulate('dragEnter', { dataTransfer: { files: images } })
             dropzone.simulate('dragLeave', { target: arbitraryOverlay })
             expect(dropzone.state('isDragActive')).toBe(true)
@@ -116,7 +117,7 @@ describe('Dropzone', () => {
 
           it('should expose state to children', async () => {
             const dropzone = mount(
-              <Dropzone accept="image/*">
+              <Dropzone disablePreview accept="image/*">
                 {({ isDragActive, isDragAccept, isDragReject }) => {
                   if (isDragReject) {
                     return `${isDragActive && 'Active but'} Reject`
@@ -155,14 +156,14 @@ describe('Dropzone', () => {
     })
 
     it('should add valid files to rejected files on a multple drop when multiple false', async () => {
-        const dropzone = mount(<Dropzone getMousePosition={()=>''} accept="image/*" onDrop={dropSpy} multiple={false} />)
+        const dropzone = mount(<Dropzone disablePreview getMousePosition={()=>''} accept="image/*" onDrop={dropSpy} multiple={false} />)
         await dropzone.simulate('drop', { dataTransfer: { files: images } })
         const rejected = dropSpy.firstCall.args[0]
         expect(rejected.length).toEqual(1)
       })
 
       it('should allow single files to be dropped if multiple is false', async () => {
-        const dropzone = mount(<Dropzone getMousePosition={()=>''} accept="image/*" onDrop={dropSpy} multiple={false} />)
+        const dropzone = mount(<Dropzone  disablePreview getMousePosition={()=>''} accept="image/*" onDrop={dropSpy} multiple={false} />)
   
         await dropzone.simulate('drop', { dataTransfer: { files: [images[0]] } })
         const [accepted, rejected] = dropSpy.firstCall.args
@@ -171,7 +172,7 @@ describe('Dropzone', () => {
       })
 
       it('should take all dropped files if multiple is true', async () => {
-        const dropzone = mount(<Dropzone getMousePosition={()=>''}  onDrop={dropSpy} multiple />)
+        const dropzone = mount(<Dropzone disablePreview getMousePosition={()=>''}  onDrop={dropSpy} multiple />)
         await dropzone.simulate('drop', { dataTransfer: { files: images } })
         expect(dropSpy.firstCall.args[0]).toHaveLength(2)
         expect(dropSpy.firstCall.args[0][0].name).toEqual(images[0].name)
@@ -181,6 +182,7 @@ describe('Dropzone', () => {
       it('should call onDropAccepted callback if some files were accepted', async () => {
         const dropzone = mount(
           <Dropzone
+          disablePreview
             onDrop={dropSpy}
             getMousePosition={()=>''}
             onDropAccepted={dropAcceptedSpy}
@@ -200,6 +202,117 @@ describe('Dropzone', () => {
         expect(dropAcceptedSpy.lastCall.args[0]).toEqual([...images])
       })
 
-})
+      it('accepts a dropped image when Firefox provides a bogus file type', async () => {
+        const dropzone = mount(
+          <Dropzone
+          disablePreview
+            getMousePosition={()=>''}
+            onDrop={dropSpy}
+            onDropAccepted={dropAcceptedSpy}
+            onDropRejected={dropRejectedSpy}
+            accept="image/*"
+          />
+        )
+        const bogusImages = [
+          {
+            name: 'bogus.gif',
+            size: 1234,
+            type: 'application/x-moz-file'
+          }
+        ]
+  
+        await dropzone.simulate('drop', { dataTransfer: { files: bogusImages } })
+        expect(dropSpy.callCount).toEqual(1)
+        expect(dropSpy.firstCall.args[0]).toHaveLength(1)
+        expect(dropSpy.firstCall.args[1]).toHaveLength(0)
+        expect(dropAcceptedSpy.callCount).toEqual(1)
+        expect(dropAcceptedSpy.firstCall.args[0]).toHaveLength(1)
+        expect(dropRejectedSpy.callCount).toEqual(0)
+      })
+
+      it('accepts all dropped files and images when no accept prop is specified', async () => {
+        const dropzone = mount(
+          <Dropzone
+          disablePreview
+             getMousePosition={()=>''}
+            onDrop={dropSpy}
+            onDropAccepted={dropAcceptedSpy}
+            onDropRejected={dropRejectedSpy}
+          />
+        )
+        await dropzone.simulate('drop', {
+          dataTransfer: { files: files.concat(images) }
+        })
+        expect(dropSpy.callCount).toEqual(1)
+        expect(dropSpy.firstCall.args[0]).toHaveLength(3)
+        expect(dropSpy.firstCall.args[1]).toHaveLength(0)
+        expect(dropAcceptedSpy.callCount).toEqual(1)
+        expect(dropAcceptedSpy.firstCall.args[0]).toHaveLength(3)
+        expect(dropRejectedSpy.callCount).toEqual(0)
+      })
+  
+      it('applies the maxSize prop to the dropped files', async () => {
+        const dropzone = mount(
+          <Dropzone
+            getMousePosition={()=>''}
+            disablePreview
+            onDrop={dropSpy}
+            onDropAccepted={dropAcceptedSpy}
+            onDropRejected={dropRejectedSpy}
+            maxSize={1111}
+          />
+        )
+  
+        await dropzone.simulate('drop', { dataTransfer: { files } })
+        expect(dropSpy.callCount).toEqual(1)
+        expect(dropSpy.firstCall.args[0]).toHaveLength(1)
+        expect(dropSpy.firstCall.args[1]).toHaveLength(0)
+        expect(dropAcceptedSpy.callCount).toEqual(1)
+        expect(dropAcceptedSpy.firstCall.args[0]).toHaveLength(1)
+        expect(dropRejectedSpy.callCount).toEqual(0)
+      })
+
+      it('should not generate previews if disablePreview is true', async () => {
+        const dropSpy = spy()
+        const dropzone = mount(<Dropzone   getMousePosition={()=>''} disablePreview onDrop={dropSpy} />)
+        await dropzone.simulate('drop', { dataTransfer: { files: images } })
+        await dropzone.simulate('drop', { dataTransfer: { files } })
+        expect(dropSpy.callCount).toEqual(2)
+        expect(Object.keys(dropSpy.firstCall.args[0][0])).not.toContain('preview')
+        expect(Object.keys(dropSpy.lastCall.args[0][0])).not.toContain('preview')
+      })
+    })
+    describe('behavior', () => {
+        it('does not throw an error when html is dropped instead of files and multiple is false', () => {
+          const dropzone = mount(<Dropzone getMousePosition={()=>''} multiple={false} />)
+    
+          const fn = () => dropzone.simulate('drop', { dataTransfer: { files: [] } })
+          expect(fn).not.toThrow()
+        })
+    
+        it('does not allow actions when disabled props is true', done => {
+          const dropzone = mount(<Dropzone disabled />)
+    
+          spy(dropzone.instance(), 'open')
+          dropzone.simulate('click')
+          setTimeout(() => {
+            expect(dropzone.instance().open.callCount).toEqual(0)
+            done()
+          }, 0)
+        })
+    
+        it('when toggle disabled props, Dropzone works as expected', done => {
+          const dropzone = mount(<Dropzone disabled />)
+          spy(dropzone.instance(), 'open')
+    
+          dropzone.setProps({ disabled: false })
+    
+          dropzone.simulate('click')
+          setTimeout(() => {
+            expect(dropzone.instance().open.callCount).toEqual(1)
+            done()
+          }, 0)
+        })
+      })
 
 })

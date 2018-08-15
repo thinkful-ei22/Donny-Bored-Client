@@ -436,7 +436,7 @@ class Dropzone extends React.Component {
       <div
         className={className}
         style={appliedStyle}
-        // {...divProps /* expand user provided props first so event handlers are never overridden */}
+        {...divProps /* expand user provided props first so event handlers are never overridden */}
         onClick={this.composeHandlers(this.onClick)}
         onDragStart={this.composeHandlers(this.onDragStart)}
         onDragEnter={this.composeHandlers(this.onDragEnter)}
