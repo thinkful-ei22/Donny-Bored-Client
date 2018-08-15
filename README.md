@@ -15,6 +15,6 @@ The idea for **Bored** originates from my own experience as a student in art sch
 <img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/free.jpg" width=100%>
 
 **Grid view mode:**
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/grid3.jpg" width=100%>
 
-<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/grid3.jpg" width=100%>
-<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/grid4.jpg" width=100%>
+
