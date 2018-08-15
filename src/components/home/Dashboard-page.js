@@ -2,11 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import requiresLogin from './Requires-login';
 import MoodboardForm from './Moodboard-form';
-
-import {Link} from 'react-router-dom';
-import {fetchMoodboards} from '../../actions/moodboards';
-import {deleteMoodboard} from '../../actions/moodboards';
-import {editMoodboard} from '../../actions/moodboards';
+import {clearImages} from '../../actions/images';
+import {editMoodboard, deleteMoodboard,fetchMoodboards} from '../../actions/moodboards';
 import './dashboard.css';
 import './grid.css';
 import Boardlist from './Boardlist';
@@ -14,6 +11,11 @@ import HeaderBar from './Header-bar';
 
 
 export class Dashboard extends React.Component {
+
+    componentWillMount(){
+        this.props.dispatch(clearImages());
+    }
+
     componentDidMount() {
         this.props.dispatch(fetchMoodboards(this.props.userId));
         console.log('THIS DASHBORD PROPS',this.props);

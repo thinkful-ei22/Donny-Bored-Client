@@ -29,7 +29,7 @@ export default class Boardlist extends React.Component{
            {
             this.props.moodboardIds.map(moodboardId =>{
                 // const index =  this.props.moodboardImages.indexOf(image);
-                return <li key={moodboardId} >
+                return <li className="board-list-item" key={moodboardId} >
                 <h2><Link to={`/moodboards/${moodboardId}`}>{this.props.moodboards[moodboardId].board_name}</Link> </h2>
                 <div className="board-description"><p>{this.props.moodboards[moodboardId].description}</p></div>
                      <div className="edit-moodboard" style={this.state}>
