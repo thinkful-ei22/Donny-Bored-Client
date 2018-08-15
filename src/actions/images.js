@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config';
-import {fetchMoodboards} from './moodboards';
+
 
 
 //GET IMAGE RELATED ACTIONS
@@ -248,6 +248,12 @@ export const clearImages=()=>({
 export const CLEAR_UPDATED_IMAGES = 'CLEAR_UPDATED_IMAGES';
 export const clearUpdatedImages=()=>({
     type:CLEAR_UPDATED_IMAGES
+});
+
+//LOAD INITIAL IMAGES FOR HOMEPAGE
+export const LOAD_HOMEPAGE = 'LOAD_HOMEPAGE';
+export const loadHomepage=()=>({
+    type:LOAD_HOMEPAGE
 });
 
 

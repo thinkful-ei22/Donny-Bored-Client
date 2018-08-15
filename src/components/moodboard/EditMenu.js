@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 
-export default class EditMenu extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-    
-    };
-    
-  }
-  
-
-  render() {
-    if(this.props.editMode){
+export default function EditMenu(props) {
+ 
+    if(props.editMode){
         return (
         <div className="edit-menu">
           <img src="../assets/redx.png"/>           
-                <button className="delete_button flame" onClick={()=>this.props.handleDelete()}>
+                <button className="delete_button flame" onClick={()=>props.handleDelete()}>
                     <img src="../assets/smallflame.gif" alt="Flame gif"/>
                 </button>       
         </div>
@@ -24,7 +14,5 @@ export default class EditMenu extends Component {
         );
     } else {
         return null
-    }
-    
     }
 }

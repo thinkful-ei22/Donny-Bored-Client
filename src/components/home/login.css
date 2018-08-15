@@ -18,15 +18,7 @@ fieldset{
   
   }
 
-  .logo-text{
-    font-size:120px;
-    margin-top:-100px;
-  }
-
-  .logo-main{
-    text-align:center;
-    width:100%;
-  }
+ 
   
 .title{
     margin:auto;
@@ -49,7 +41,7 @@ fieldset{
   input[type=text],input[type=url], input[type=password],select, textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #666;
+    border: 2px solid #333;
     border-radius: 4px;
     resize: vertical;
   }

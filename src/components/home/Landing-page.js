@@ -4,6 +4,7 @@ import {Link, Redirect} from 'react-router-dom';
 import LogoMain from './LogoMain';
 import './login.css';
 import './landingpage.css';
+
 import LoginForm from './Login-form';
 
 export function LandingPage(props) {
@@ -22,7 +23,7 @@ export function LandingPage(props) {
             {/* <h2>A moodboard/collage app for freaks, neets and mums</h2> */}
             {/* <LoginForm /> */}
      
-            <Link to="/register">Sign Up</Link><span> | <Link to="/login"> Login</Link> </span>
+            <Link to="/register"><button>Sign Up</button></Link><span> | <Link to="/login"><button> Login</button></Link> </span>
         </div>
         </main>
     );

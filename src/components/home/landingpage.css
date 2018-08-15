@@ -1,6 +1,6 @@
 .content{
     position:absolute;
-    background:url("/assets/bg-temp.png");
+    /* background:url("/assets/bg-temp.png"); */
     background-size:cover;
     }
     
@@ -22,7 +22,7 @@
     
     #boredtext{
         font-family:sans-serif;
-        font-size:120px;
+        font-size:88px;
        
     }
    .randomLetter{
@@ -34,3 +34,108 @@
    .marginadjust{
        margin-top:-100px;
    }
+
+   #blank{
+    position:relative;
+    background: url("/assets/blank_browser.png") no-repeat;
+    background-size: contain;
+    width: 680px;
+    height: 510px;
+    margin: auto;
+   }
+
+   .logo-text{
+    font-size:110px;
+
+  }
+
+  .logo-main{
+    text-align:center;
+    margin-top:25%;
+    width:100%;
+  }
+
+  #img_jordan{
+    width: 96px;
+    position: absolute;
+    top: -50px;
+    left: 170px;
+  }
+
+  #img_puppy{
+    position: absolute;
+    width:100px;
+    bottom: 20px;
+    left: -50px;
+  }
+
+  #img_monalisa{
+    position: absolute;
+    right: -50px;
+    bottom: 230px;
+    width: 130px;
+  }
+
+  #img_pcl{
+    position: absolute;
+    right: -10px;
+    bottom: 12px;
+    width: 130px;
+  }
+
+  #img_angels{
+    position: absolute;
+    width: 100px;
+    bottom: 40px;
+    left: 150px;
+  }
+
+  #img_poster{
+      position:absolute;
+      width:120px;
+      top:130px;
+      left:-60px;
+  }
+
+  #img_fruits{
+    position:absolute;
+    top:-40px;
+    width:200px;
+    right:140px;
+
+  }
+
+  #img_bed{
+      position:absolute;
+      left:100px;
+      top:130px;
+      width:80px;  
+  }
+
+  #img_kleenex{
+      position:absolute;
+      bottom:-50px;
+      right:200px;
+      width:150px;
+  }
+
+  #img_happy{
+      position:absolute;
+      width:60px;
+      right:50px;
+  }
+
+  #img_smiley{
+      position:absolute;
+      width:36px;
+      bottom:150px;
+      right:50px;
+  }
+
+  #img_happy{
+    position:absolute;
+    width:28px;
+    top:105px;
+    right:140px;
+
+  }
