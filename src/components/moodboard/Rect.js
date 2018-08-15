@@ -189,7 +189,7 @@ class Rect extends PureComponent {
 const mapStateToProps = state => ({
   //moodboardImages: state.images.moodboardImages,
   allImages: state.images.allImages,
-  user_id:state.auth.currentUser.id,
+  //user_id:state.auth.currentUser.id,
   board_id:state.moodboards.board_id,
   editMode:state.images.editMode
 

@@ -1,6 +1,56 @@
 'use strict';
 import * as types from '../actions/images';
 
+const initialImages={
+  0: {
+   id:0,
+   imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333531/homepage/jordan.jpg',
+   position: [170,-50],
+   dimensions:[93,143],
+
+  },
+  1:{
+   id:1,
+   imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333558/homepage/board.gif',
+   position: [596,139],
+   dimensions:[130,130],
+
+  },
+  2:{
+    id:2,
+    imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333554/homepage/puppyjack.gif',
+    position:[-32,384],
+    dimensions:[100,100],
+  },
+  3:{
+    id:3,
+    imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333573/homepage/fruits.png',
+    position:[361,-36],
+    dimensions:[200,117],
+  },
+  4:{
+    id:4,
+    imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333573/homepage/poster.png',
+    position: [-60,130],
+    dimensions:[120,173],
+ 
+   },
+   5:{
+     id:5,
+     imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333569/homepage/pcl.jpg',
+     position:[560,363],
+     dimensions:[130,130],
+   },
+   6:{
+     id:6,
+     imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333518/homepage/bed.png',
+     position:[361,-36],
+     dimensions:[200,117],
+   }
+
+}
+
+//680x510
 
 const initialState = {
   files: [] ,
@@ -8,12 +58,14 @@ const initialState = {
   loading: false,
   editMode:false,
   error:null,
-  allImages:{},
-  imageIds:[],
+  allImages:initialImages,
+  imageIds:[0,1,2,3,4,5],
   updatedImageIds:[]
   
 };
-  
+
+
+
 //Actions for getting images from API
 
 export const imagesReducer = (state=initialState, action) => {
