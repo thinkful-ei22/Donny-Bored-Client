@@ -9,7 +9,15 @@ The idea for **Bored** originates from my own experience as a student in art sch
 
  **Bored** is a simple web application for organizing images into collections or "moodboards." A moodboard serves as a visual scrapbook for recording aesthetic sensibilities and inspiration. The word "scrapbook" is particularly applicable and something I find missing from most existing moodboarding type applications on the web. One thing I've always wanted was a simple space for throwing some images around and arranging them. I used to live with a photographer friend (now a successful "high-fashion" photographer in Los Angeles) and he would spend hours just arranging some images on a blank canvas in photoshop to get a feel for how they related to each other. So I've tried to incorporate that particular functionality with the knowledge I've gained since starting this bootcamp and I've had fun while doing it. 
 
-###Features
+ ## Summary and Tech info
+
+ * Type: creative CRUD app for web - primarily desktop
+ * Target Audience : Young creative types
+ * MVP features - account creation/create,update,delete moodboards, upload images, arrange and save them
+ * Tech Stack:  PERN - 🐘 Postgres as the database, Express and Node on the backend, React/Redux on the frontend
+ * Future plans - continued development and refinement of existing and new features
+
+### Features
 
 **Drag-and-Drop "Freeform" mode - drag images from your desktop directly onto the board, move them around wherever and save when you are finished:**
 

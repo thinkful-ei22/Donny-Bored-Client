@@ -2,8 +2,7 @@ import React from 'react';
 import Dropzone from '../dropzone';
 import {connect} from 'react-redux';
 import {onDropFiles,fetchImages} from '../../actions/images';
-import {API_BASE_URL} from '../../config.js';
-import axios from 'axios';
+
 
 
 const overlayStyle = {
@@ -24,7 +23,7 @@ export class FullScreen extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        accept: '',
+        accept: 'image/jpeg, image/png, image/gif',
         files: [],
         fileprogress:null,
         dropzoneActive: false,
@@ -125,12 +124,13 @@ export class FullScreen extends React.Component {
       let dropzoneRef;
       return (
         <Dropzone
+          accept="image/jpeg, image/png, image/gif"
           getMousePosition={(mouseX,mouseY)=> this.getMousePosition(mouseX,mouseY)}
           ref={(node) => { dropzoneRef = node; }}
           disableClick
           disablePreview
           style={isMobile ? {position:"relative"} : this.state.style} 
-          accept={accept}
+          // accept={accept}
           onDrop={this.onDrop}
           onDragEnter={this.onDragEnter}
           onDragLeave={this.onDragLeave}
