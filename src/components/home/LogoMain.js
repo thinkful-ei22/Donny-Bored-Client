@@ -108,17 +108,8 @@ class LogoMain extends React.Component{
                   })    
               } 
 
-            {/* <div id="img_jordan"><img src="assets/jordan.jpg" /></div> */}
-            {/* <div id="img_puppy"><img src="assets/puppyjack.gif" /></div> */}
-            {/* <div id="img_monalisa"><img src="assets/board.gif" /></div> */}
-            {/* <div id="img_pcl"><img src="assets/pcl.jpg" /></div> */}
-            {/* <div id="img_angels"><img src="assets/angels.png" /></div> */}
-            {/* <div id="img_poster"><img src="assets/poster.png" /></div> */}
-            {/* <div id="img_fruits"><img src="assets/fruits.png" /></div> */}
-            {/* <div id="img_bed"><img src="assets/bed.png" /></div>
-            <div id="img_kleenex"><img src="assets/kleenex.png" /></div>
-            <div id="img_smiley"><img src="assets/hi.gif" /></div> */}
-           {/* <div id="img_happy"><img src="assets/homehappy.jpg" /></div> */}
+          
+       
         </div>
       );
     }

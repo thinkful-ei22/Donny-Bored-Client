@@ -21,8 +21,8 @@
     
     
     #boredtext{
-        font-family:sans-serif;
-        font-size:88px;
+        font-family:'Helvetica Neue',sans-serif;
+        font-size:98px;
        
     }
    .randomLetter{
@@ -32,7 +32,7 @@
 
 
    .marginadjust{
-       margin-top:-100px;
+     /* //  margin-top:-100px; */
    }
 
    #blank{
@@ -50,9 +50,13 @@
   }
 
   .logo-main{
-    text-align:center;
+    /* text-align:center;
     margin-top:25%;
-    width:100%;
+    width:100%; */
+    position: absolute;
+    text-align: center;
+    top:30%;
+    width: 100%;
   }
 
   #img_jordan{

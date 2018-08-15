@@ -5,8 +5,7 @@ import {createMoodboard} from '../../actions/moodboards';
 import Input from './Input';
 import './moodboardForm.css';
 import {required, nonEmpty, matches, length, isTrimmed} from './validators';
-const passwordLength = length({min: 10, max: 72});
-const matchesPassword = matches('password');
+
 
 
 export class EditMoodboardForm extends React.Component {
