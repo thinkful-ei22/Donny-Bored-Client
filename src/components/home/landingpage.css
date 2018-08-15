@@ -37,7 +37,7 @@
 
    #blank{
     position:relative;
-    background: url("/assets/blank_browserblue.png") no-repeat;
+    background: url("/assets/blank_browser.png") no-repeat;
     background-size: contain;
     width: 680px;
     height: 510px;

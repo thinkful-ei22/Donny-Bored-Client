@@ -250,5 +250,11 @@ export const clearUpdatedImages=()=>({
     type:CLEAR_UPDATED_IMAGES
 });
 
+//LOAD INITIAL IMAGES FOR HOMEPAGE
+export const LOAD_HOMEPAGE = 'LOAD_HOMEPAGE';
+export const loadHomepage=()=>({
+    type:LOAD_HOMEPAGE
+});
+
 
 

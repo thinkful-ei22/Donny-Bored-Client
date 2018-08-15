@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {clearImages,loadHomepage} from '../../actions/images.js';
 import Letter from './Letter';
 import DragRect from '../moodboard/DragRect';
 
@@ -17,8 +18,6 @@ const flexContainerStyle = {
 }
 
 const fontFam=['sans-serif','serif','fantasy','monospace','cursive']
-
-
 
 class LogoMain extends React.Component{
 
@@ -44,6 +43,11 @@ class LogoMain extends React.Component{
       console.log('tick tock');
     }
 
+    componentWillMount() {
+      this.props.dispatch(loadHomepage());
+
+    }
+
 
     componentDidMount() {
       // this.interval = setInterval(() => this.tick(), 100);
@@ -59,6 +63,7 @@ class LogoMain extends React.Component{
     //clears images store object from redux store   
     componentWillUnmount(){
       this.setState({changeFont:false});
+      this.props.dispatch(clearImages());
       clearInterval(this.interval);
      
    }

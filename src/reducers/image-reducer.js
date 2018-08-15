@@ -74,6 +74,8 @@ const initialImages={
     }
 }
 
+const initialIds=[0,1,2,3,4,5,6,7,8,9,10];
+
 //680x510
 
 const initialState = {
@@ -83,7 +85,7 @@ const initialState = {
   editMode:false,
   error:null,
   allImages:initialImages,
-  imageIds:[0,1,2,3,4,5,6,7,8,9,10],
+  imageIds:initialIds,
   updatedImageIds:[]
   
 };
@@ -94,7 +96,11 @@ const initialState = {
 
 export const imagesReducer = (state=initialState, action) => {
     switch (action.type) {
-    
+    case(types.LOAD_HOMEPAGE):
+      return Object.assign({}, state, {
+        allImages: initialImages,
+        imageIds:initialIds
+      });
     case(types.FETCH_IMAGES_REQUEST):
       return Object.assign({}, state, {
         loading: true
