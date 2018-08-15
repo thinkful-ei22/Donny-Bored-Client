@@ -39,15 +39,39 @@ const initialImages={
      id:5,
      imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333569/homepage/pcl.jpg',
      position:[560,363],
-     dimensions:[130,130],
+     dimensions:[130,130]
    },
    6:{
      id:6,
      imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333518/homepage/bed.png',
-     position:[361,-36],
-     dimensions:[200,117],
-   }
-
+     position:[100,130],
+     dimensions:[80,74]
+   },
+   7:{
+    id:7,
+    imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333573/homepage/angels.png',
+    position: [150,357],
+    dimensions:[101,104]
+ 
+   },
+   8:{
+     id:8,
+     imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333581/homepage/kleenex.png',
+     position:[324,351],
+     dimensions:[150,202]
+   },
+   9:{
+     id:9,
+     imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333556/homepage/hi.gif',
+     position:[592,325],
+     dimensions:[30,30]
+   },
+    10:{
+      id:10,
+      imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333624/homepage/homehappy.jpg',
+      position:[510,105],
+      dimensions:[30,37]
+    }
 }
 
 //680x510
@@ -59,7 +83,7 @@ const initialState = {
   editMode:false,
   error:null,
   allImages:initialImages,
-  imageIds:[0,1,2,3,4,5],
+  imageIds:[0,1,2,3,4,5,6,7,8,9,10],
   updatedImageIds:[]
   
 };
