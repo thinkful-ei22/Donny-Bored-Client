@@ -63,7 +63,7 @@ const initialImages={
    9:{
      id:9,
      imageurl:'https://res.cloudinary.com/moodimagescloud/image/upload/v1534333556/homepage/hi.gif',
-     position:[279,191],
+     position:[279,173],
      dimensions:[30,30]
    },
     10:{
