@@ -1,4 +1,4 @@
-'use strict';
+
 import * as types from '../actions/images';
 
 const initialImages={

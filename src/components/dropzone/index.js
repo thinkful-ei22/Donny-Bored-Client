@@ -26,12 +26,10 @@ class Dropzone extends React.Component {
     this.onDrop = this.onDrop.bind(this)
     this.onFileDialogCancel = this.onFileDialogCancel.bind(this)
     this.onInputElementClick = this.onInputElementClick.bind(this)
-
     this.setRef = this.setRef.bind(this)
     this.setRefs = this.setRefs.bind(this)
 
-    this.mousePositionX =0;
-    this.mousePositionY=0;
+   
 
     this.isFileDialogActive = false
 
@@ -42,6 +40,9 @@ class Dropzone extends React.Component {
      
     }
   }
+
+
+     
 
   componentDidMount() {
       console.log("DROPZONE COMPONENT MOUNTED TEST");
@@ -149,7 +150,7 @@ class Dropzone extends React.Component {
     }
   }
 
-  onDrop(evt) {
+  onDrop=(evt)=> {
     const {
       onDrop,
       onDropAccepted,
@@ -158,21 +159,22 @@ class Dropzone extends React.Component {
       disablePreview,
       accept,
       getDataTransferItems,
-      mousePositionX,
-      mousePositionY
+      getMousePosition
+
     } = this.props
 
     // Stop default browser behavior
     evt.preventDefault()
 
-    console.log("ONDROP MOUSE POSITION TEST X",this.props);
+    //console.log("ONDROP MOUSE POSITION TEST X",this.props);
 
     // this.mousePositionX = evt.pageX;
     // this.mousePositionY = evt.pageY;
 
-    this.props.getMousePosition(evt.pageX,evt.pageY);
+     getMousePosition(evt.pageX,evt.pageY);
+ 
 
-    console.log("ONDROP MOUSE STUFF X2",this.mousePositionX);
+   // console.log("ONDROP MOUSE STUFF X2",this.mousePositionX);
 
     // Reset the counter along with the drag on a drop.
     this.dragTargets = []

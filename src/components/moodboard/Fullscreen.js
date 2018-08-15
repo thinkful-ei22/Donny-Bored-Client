@@ -2,8 +2,7 @@ import React from 'react';
 import Dropzone from '../dropzone';
 import {connect} from 'react-redux';
 import {onDropFiles,fetchImages} from '../../actions/images';
-import {API_BASE_URL} from '../../config.js';
-import axios from 'axios';
+
 
 
 const overlayStyle = {
