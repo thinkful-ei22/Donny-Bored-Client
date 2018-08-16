@@ -125,12 +125,14 @@ export const imagesReducer = (state=initialState, action) => {
       return Object.assign({}, state, {
         allImages : normalizedImages,
         imageIds: keyArray,
+        success:action.success,
         loading: false
       });
     
       case(types.FETCH_IMAGES_ERROR):
       return Object.assign({}, state, {
         loading: false,
+        success:null,
         error: action.error
       });
 

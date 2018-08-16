@@ -9,10 +9,11 @@ export const fetchImagesRequest = () => ({
 });
 
 export const FETCH_IMAGES_SUCCESS = 'FETCH_IMAGES_SUCCESS';
-export const fetchImagesSuccess = (moodboardImages) =>({
+export const fetchImagesSuccess = (moodboardImages, success) =>({
     
     type:FETCH_IMAGES_SUCCESS,
-    moodboardImages:moodboardImages
+    moodboardImages:moodboardImages,
+    success
 });
 
 //{console.log('SUCCESSS!!',moodboardImages)};

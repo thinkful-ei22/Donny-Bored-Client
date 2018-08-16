@@ -38,3 +38,12 @@ describe('clear moodboards', () => {
         expect(action.type).toEqual(types.CLEAR_MOODBOARDS);
     });
 });
+
+describe('moodboard action error', () => {
+    const error = "Something wrong!"
+    const action = types.moodboardActionError(error);
+    it('Should return the action', () => {
+        expect(action.type).toEqual(types.MOODBOARD_ACTION_ERROR);
+        expect(action.error).toEqual(error);
+    });
+});

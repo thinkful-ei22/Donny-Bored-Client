@@ -7,11 +7,37 @@ describe('fetch images request', () => {
     });
 });
 
+describe('fetch images success', () => {
+    const files ={};
+    const success='Success!';
+    const action = types.fetchImagesSuccess(files,success);
+    it('Should return the action', () => {
+        expect(action.type).toEqual(types.FETCH_IMAGES_SUCCESS);
+        expect(action.success)
+    });
+});
+
+describe('fetch images error', () => {
+    const error = 'An Error';
+    const action = types.fetchImagesError(error);
+    it('Should return the action', () => {   
+        expect(action.error).toEqual(error);
+        expect(action.type).toEqual(types.FETCH_IMAGES_ERROR);
+    });
+});
+
 
 describe('save images request', () => {
     const action = types.saveImagesRequest();
     it('Should return the action', () => {
         expect(action.type).toEqual(types.SAVE_IMAGES_REQUEST);
+    });
+});
+
+describe('save images success', () => {
+    const action = types.saveImagesSuccess();
+    it('Should return the action', () => {
+        expect(action.type).toEqual(types.SAVE_IMAGES_SUCCESS);
     });
 });
 

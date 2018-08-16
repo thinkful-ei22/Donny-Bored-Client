@@ -40,7 +40,7 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
       dispatch(fetchMoodboardsSuccess(data));
     })
     .catch(err => {
-      dispatch(fetchMoodboardsError(err));
+      dispatch(moodboardActionError(err));
     });
 };
 
@@ -88,7 +88,7 @@ export const createMoodboard = (info) => (dispatch,getState) => {
        // dispatch(fetchMoodboardsSuccess(data));
       })
       .catch(err => {
-        dispatch(createMoodboardError(err));
+        dispatch(moodboardActionError(err));
       });
   };
   
@@ -140,11 +140,15 @@ export const deleteMoodboardSuccess = (board_id) => ({
   board_id
 });
 
-
-//DELETE MOODBOARD RELATED ACTIONS
 export const DELETE_MOODBOARD_REQUEST = 'DELETE_MOODBOARDS_REQUEST';
 export const deleteMoodboardRequest= () => ({
   type: DELETE_MOODBOARD_REQUEST
+});
+
+export const MOODBOARD_ACTION_ERROR = 'MOODBOARD_ACTION_ERROR';
+export const moodboardActionError= (error) => ({
+  type: MOODBOARD_ACTION_ERROR,
+  error
 });
 
 
@@ -162,6 +166,7 @@ export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
     }
 
   })
+    .then(res => normalizeResponseErrors(res))
     .then(res => {
       if (!res.ok) {
         throw new Error(res.statusText);
@@ -171,7 +176,7 @@ export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
       //return res.json();
     })
     .catch(err => {
-      //  dispatch(fetchMoodboardsError(err));
+       dispatch(moodboardActionError(err));
     });
 };
 
