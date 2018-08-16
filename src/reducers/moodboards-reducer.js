@@ -1,7 +1,7 @@
 import {
     FETCH_MOODBOARDS_SUCCESS,
     FETCH_MOODBOARDS_REQUEST,
-    FETCH_MOODBOARDS_ERROR,
+    MOODBOARD_ACTION_ERROR,
     CLEAR_MOODBOARDS,
     SET_MOODBOARD_ID,
     DELETE_MOODBOARD_SUCCESS
@@ -38,7 +38,7 @@ export function moodboardReducer(state = initialState, action) {
             error: null,
             loading:false
         });
-    } else if (action.type === FETCH_MOODBOARDS_ERROR) {
+    } else if (action.type === MOODBOARD_ACTION_ERROR) {
         return Object.assign({}, state, {
             error: action.error,
             loading:false,

@@ -16,7 +16,7 @@ it('Should render the list of boards', ()=>{
         "board_name": "Mood NYC",
         "user_id": 9,
         "description": "Mood is based in NYC; skate apparel & accessories. ",
-        "username": "jonny2lips",
+        "username": "bigbean",
         "images": []
       }
       ,
@@ -25,7 +25,7 @@ it('Should render the list of boards', ()=>{
         "board_name": "Stone Age",
         "user_id": 9,
         "description": "We livin it",
-        "username": "jonny2lips",
+        "username": "bigbean",
         "images": []
        
        },
@@ -34,7 +34,7 @@ it('Should render the list of boards', ()=>{
         "board_name": "test",
         "user_id": 9,
         "description": "tests",
-        "username": "jonny2lips",
+        "username": "bigbean",
         "images": []
        }
     }
@@ -46,8 +46,13 @@ it('Should render the list of boards', ()=>{
   wrapper.setState({moodboards});
 
   const lis = wrapper.find('.board-list-item');
-
   expect(lis.length).toEqual(boardIds.length);
   
+  
+  for(let i=0; i++; i< boardIds.length){
+    let liKey= lis.at(i).key();
+    expect(liKey).toEqual(boardIds[i].toString()); 
+  }
+
 
 });
