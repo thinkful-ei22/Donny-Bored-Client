@@ -1,9 +1,10 @@
 import React from 'react';
 import {shallow,mount} from 'enzyme';
-import EditMoodboardForm from '../EditMoodboard-form.js';
+import {LoginPage} from '../Login-page';
 
 it('renders without crashing', () => {
-  const wrapper=shallow(<EditMoodboardForm/>);
+    const mocks=jest.fn();
+  const wrapper=shallow(<LoginPage  dispatch={mocks}/>);
   console.log(wrapper.debug());
 
 });
