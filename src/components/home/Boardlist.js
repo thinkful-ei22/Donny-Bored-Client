@@ -28,15 +28,17 @@ export default class Boardlist extends React.Component{
             <ul className="board_list">
            {
             this.props.moodboardIds.map(moodboardId =>{
-                // const index =  this.props.moodboardImages.indexOf(image);
-                return <li className="board-list-item" key={moodboardId} >
-                <h2><Link to={`/moodboards/${moodboardId}`}>{this.props.moodboards[moodboardId].board_name}</Link> </h2>
-                <div className="board-description"><p>{this.props.moodboards[moodboardId].description}</p></div>
-                     <div className="edit-moodboard" style={this.state}>
-                         <EditMoodboardForm deleteMoodboard={this.props.deleteMoodboard} form={`editform_${moodboardId}`} moodboardId={moodboardId} userId={this.props.userId}/> 
-                    </div>
-                    {/* <div className="board_stats"></div> */}
+              
+                return (
+                <li className="board-list-item" key={moodboardId} >
+                    <h2><Link to={`/moodboards/${moodboardId}`} title={this.props.moodboards[moodboardId].board_name}>{this.props.moodboards[moodboardId].board_name}     </Link> </h2>
+                      <div className="board-description"><p>{this.props.moodboards[moodboardId].description}</p></div>
+                        <div className="edit-moodboard" style={this.state}>
+                            <EditMoodboardForm boardname={this.props.moodboards[moodboardId].board_name} description={this.props.moodboards[moodboardId].description} deleteMoodboard={this.props.deleteMoodboard} form={`editform_${moodboardId}`} moodboardId={moodboardId} userId={this.props.userId}/> 
+                        </div>
+                      
                 </li>
+                )
             })
            } 
            </ul>

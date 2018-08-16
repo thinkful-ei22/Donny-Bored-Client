@@ -5,25 +5,25 @@ import {onDropFiles,fetchImages} from '../../actions/images';
 
 
 
-const overlayStyle = {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    width:'100%',
-    height:'100%',
-    padding: '2.5em 0',
-    background: 'rgba(0,0,0,0)',
-    textAlign: 'center',
-    color: '#fff'
-  };
+// const overlayStyle = {
+//     position: 'absolute',
+//     top: 0,
+//     right: 0,
+//     bottom: 0,
+//     left: 0,
+//     width:'100%',
+//     height:'100%',
+//     padding: '2.5em 0',
+//     background: 'rgba(0,0,0,0)',
+//     textAlign: 'center',
+//     color: '#fff'
+//   };
 
 export class FullScreen extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        accept: 'image/jpeg, image/png, image/gif',
+        accept: 'image/jpeg, image/png, image/gif, image/x-icon, image/ico, image/icon',
         files: [],
         fileprogress:null,
         dropzoneActive: false,
@@ -124,13 +124,12 @@ export class FullScreen extends React.Component {
       let dropzoneRef;
       return (
         <Dropzone
-          accept="image/jpeg, image/png, image/gif"
           getMousePosition={(mouseX,mouseY)=> this.getMousePosition(mouseX,mouseY)}
           ref={(node) => { dropzoneRef = node; }}
           disableClick
           disablePreview
           style={isMobile ? {position:"relative"} : this.state.style} 
-          // accept={accept}
+          accept={accept}
           onDrop={this.onDrop}
           onDragEnter={this.onDragEnter}
           onDragLeave={this.onDragLeave}

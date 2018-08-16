@@ -418,25 +418,25 @@ class Dropzone extends React.Component {
     }
 
     // Destructure custom props away from props used for the div element
-    const {
-      acceptedFiles,
-      preventDropOnDocument,
-      disablePreview,
-      disableClick,
-      onDropAccepted,
-      onDropRejected,
-      onFileDialogCancel,
-      maxSize,
-      minSize,
-      getDataTransferItems,
-      ...divProps
-    } = props
+    // const {
+    //   acceptedFiles,
+    //   preventDropOnDocument,
+    //   disablePreview,
+    //   disableClick,
+    //   onDropAccepted,
+    //   onDropRejected,
+    //   onFileDialogCancel,
+    //   maxSize,
+    //   minSize,
+    //   getDataTransferItems
+    //   // ...divProps
+    // } = props
 
     return (
       <div
         className={className}
         style={appliedStyle}
-        {...divProps /* expand user provided props first so event handlers are never overridden */}
+        // {...divProps /* expand user provided props first so event handlers are never overridden */}
         onClick={this.composeHandlers(this.onClick)}
         onDragStart={this.composeHandlers(this.onDragStart)}
         onDragEnter={this.composeHandlers(this.onDragEnter)}

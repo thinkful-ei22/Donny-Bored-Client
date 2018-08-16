@@ -25,7 +25,8 @@
     display: -moz-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: box;
+    /* display: box; */
+    /* display:flex; */
     margin:0 90px;
     display: flex;
     -webkit-box-orient: horizontal;

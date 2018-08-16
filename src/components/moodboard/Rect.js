@@ -5,8 +5,6 @@ import {connect} from 'react-redux';
 import {deleteImage} from '../../actions/images';
 import EditMenu from './EditMenu';
 import './css/image.css';
-import {editImageMode} from '../../actions/images';
-
 
 const zoomableMap = {
   'n': 't',

@@ -15,6 +15,7 @@ The idea for **Bored** originates from my own experience as a student in art sch
  * Target Audience : Young creative types
  * MVP features - account creation/create,update,delete moodboards, upload images, arrange and save them
  * Tech Stack:  PERN - 🐘 Postgres as the database, Express and Node on the backend, React/Redux on the frontend
+ * Additional info: Cloud storage of images provided through cloudinary API via multer middleware; slightly modified    react-dropzone library for dropzone implementation and a modified version of the react-resizable-rotable-draggable library
  * Future plans - continued development and refinement of existing and new features
 
 ### Features

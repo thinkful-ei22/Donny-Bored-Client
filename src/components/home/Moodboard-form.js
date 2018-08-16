@@ -1,12 +1,12 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {registerUser} from '../../actions/users';
+// import {registerUser} from '../../actions/users';
 import {createMoodboard} from '../../actions/moodboards';
 import Input from './Input';
 import './moodboardForm.css';
-import {required, nonEmpty, matches, length, isTrimmed} from './validators';
-const passwordLength = length({min: 10, max: 72});
-const matchesPassword = matches('password');
+import {required, nonEmpty} from './validators';
+// const passwordLength = length({min: 10, max: 72});
+// const matchesPassword = matches('password');
 
 
 export class MoodboardForm extends React.Component {
@@ -28,7 +28,7 @@ export class MoodboardForm extends React.Component {
                     this.onSubmit(values)
                 )}>
                 <label htmlFor="board_name">Moodboard Name</label>
-                <Field component={Input} type="text" name="board_name" />
+                <Field component={Input} type="text" name="board_name"  validate={[required, nonEmpty]} />
                
                
                 <label htmlFor="description">Description</label>

@@ -1,5 +1,5 @@
 import { API_BASE_URL } from '../config';
-
+import {normalizeResponseErrors} from './utils';
 
 
 //GET IMAGE RELATED ACTIONS
@@ -36,15 +36,12 @@ export const fetchImages = (boardId) => (dispatch, getState)=> {
       // Provide our auth token as credentials
       Authorization: `Bearer ${authToken}`
   }
-	}).then(res => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-      //  console.log(res.json());
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => {
         return res.json();
       })
       .then(data => {
-         // console.log('dispatching imagees...');
         dispatch(fetchImagesSuccess(data));
       })
       .catch(err => {
@@ -87,9 +84,15 @@ export const saveImagesRequest =() =>({
     type:SAVE_IMAGES_REQUEST
 });
 
-export const SAVE_IMAGES_SUCCESS = ' SAVE_IMAGES_SUCCESS';
+export const SAVE_IMAGES_SUCCESS = 'SAVE_IMAGES_SUCCESS';
 export const saveImagesSuccess = ()=>({
     type:SAVE_IMAGES_SUCCESS
+});
+
+export const SAVE_IMAGES_ERROR = 'SAVE_IMAGES_ERROR';
+export const saveImagesError = (error)=>({
+    type:SAVE_IMAGES_ERROR,
+    error
 });
 
 
@@ -112,16 +115,23 @@ export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
   
           })
         })
-        .then(response => console.log(response) );
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then(data => dispatch(saveImagesSuccess()))
+        .catch(err => {
+            dispatch(saveImagesError(err));
+        });
     });
 
     Promise
     .all(updaters)
     .then(() => {
-      //this.props.dispatch(fetchImages());
       dispatch(saveImagesSuccess());
       console.log('UPDATED MOODBOARD');
-  });
+     })
+     .catch(err => {
+        dispatch(saveImagesError(err));
+    });
 
 
 }

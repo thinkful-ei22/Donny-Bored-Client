@@ -304,9 +304,7 @@ describe('Dropzone', () => {
         it('when toggle disabled props, Dropzone works as expected', done => {
           const dropzone = mount(<Dropzone disabled />)
           spy(dropzone.instance(), 'open')
-    
           dropzone.setProps({ disabled: false })
-    
           dropzone.simulate('click')
           setTimeout(() => {
             expect(dropzone.instance().open.callCount).toEqual(1)
