@@ -118,12 +118,13 @@ export class FullScreen extends React.Component {
     }
   
     render() {
-      const { accept, files, dropzoneActive } = this.state;
+      const { accept} = this.state;
       const { width } = this.state;
       const isMobile = width <= 500;
       let dropzoneRef;
       return (
         <Dropzone
+
           getMousePosition={(mouseX,mouseY)=> this.getMousePosition(mouseX,mouseY)}
           ref={(node) => { dropzoneRef = node; }}
           disableClick
