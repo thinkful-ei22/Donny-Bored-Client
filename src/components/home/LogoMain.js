@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearImages,loadHomepage} from '../../actions/images.js';
-import Letter from './Letter';
+// import Letter from './Letter';
 import DragRect from '../moodboard/DragRect';
 
 const flexContainerStyle = {
@@ -64,7 +64,7 @@ class LogoMain extends React.Component{
     componentWillUnmount(){
       this.setState({changeFont:false});
       this.props.dispatch(clearImages());
-      clearInterval(this.interval);
+      //clearInterval(this.interval);
      
    }
     generateNum =()=>{

@@ -1,10 +1,9 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import {editMoodboard} from '../../actions/moodboards';
-import {createMoodboard} from '../../actions/moodboards';
 import Input from './Input';
 import './moodboardForm.css';
-import {required, nonEmpty, matches, length, isTrimmed} from './validators';
+import {required, nonEmpty} from './validators';
 
 
 
@@ -45,11 +44,11 @@ export class EditMoodboardForm extends React.Component {
 
                 )}>
                 <label htmlFor="board_name">Moodboard Name</label>
-                <Field component={Input} type="text" name="board_name" id={this.props.moodboardId} />
+                <Field component={Input} type="text" name="board_name" id={this.props.moodboardId} validate={[required, nonEmpty]} />
                
                
                 <label htmlFor="description">Description</label>
-                <Field component={Input} element="textarea"  name="description" id="description" >
+                <Field component={Input} element="textarea"  name="description" id="description" value={this.props.description} >
                 </Field>
                 <button
                     type="submit"

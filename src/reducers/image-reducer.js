@@ -1,6 +1,8 @@
 
 import * as types from '../actions/images';
 
+
+//these are used for the homepage upon initialization
 const initialImages={
   0: {
    id:0,
@@ -84,6 +86,7 @@ const initialState = {
   loading: false,
   editMode:false,
   error:null,
+  success:null,
   allImages:initialImages,
   imageIds:initialIds,
   updatedImageIds:[]
@@ -153,7 +156,7 @@ export const imagesReducer = (state=initialState, action) => {
       case(types.DELETE_IMAGE_SUCCESS):
         return Object.assign({}, state, {
           loading: false,
-          updatedImageIds : state.updatedImageIds.filter(id => id != action.imageId)
+          updatedImageIds : state.updatedImageIds.filter(id => id !== action.imageId)
         
         });
 

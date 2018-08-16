@@ -18,7 +18,6 @@ export function LandingPage(props) {
            <LogoMain/>
         <div className="home">
          
-            {/* <h2>A moodboard/collage app for freaks, neets and mums</h2> */}
             {/* <LoginForm /> */}
      
             <Link to="/register"><button>Sign Up</button></Link><span> | <Link to="/login"><button> Login</button></Link> </span>

@@ -45,11 +45,11 @@ export class Dashboard extends React.Component {
             <div className="dashboard fadeInFast">
                 <div className="dashboard-header">
                     <div className="dashboard-username">
-                        <strong>  Howdy {this.props.username} !   <img src="assets/wavey.gif"/> </strong>
+                        <strong>  Howdy {this.props.username} !   <img src="assets/wavey.gif" alt="Howdy" title="Howdy" /> </strong>
                         </div> 
                         <HeaderBar />
                     </div>
-                <br/><br/>
+                <br/>
                <p className="normal-text">What's new? Always different, always bored. </p>
                <div className="container">
                     <div id="dashboard-side-bar">
@@ -67,7 +67,7 @@ export class Dashboard extends React.Component {
     
 
 const mapStateToProps = state => {
-    const {currentUser} = state.auth;
+    // const {currentUser} = state.auth;
     return {
         username: state.auth.currentUser.username,
         userId:state.auth.currentUser.id,
@@ -75,8 +75,6 @@ const mapStateToProps = state => {
         moodboardIds:state.moodboards.boardIds,
         moodboardLoading:state.moodboards.loading
     
-       // name: `${currentUser.firstName} ${currentUser.lastName}`,
-       // protectedData: state.protectedData.data
     };
 };
 

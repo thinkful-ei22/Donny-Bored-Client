@@ -11,7 +11,7 @@ export function LoginPage(props) {
         return <Redirect to="/dashboard" />;
     }
     return (
-        <div className="home-registration">
+        <div className="home-registration fadeInFast">
             <div className="registration-form">
             <h2>Bored Login</h2>
             <LoginForm />

@@ -32,11 +32,8 @@ export const fetchMoodboards = (user_id) => (dispatch,getState) => {
         Authorization: `Bearer ${authToken}`
     }
   })
+    .then(res => normalizeResponseErrors(res))
     .then(res => {
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-     // console.log('FETCH MOODBOARD SUCCESS',res.json());
       return res.json();
     })
     .then(data => {
@@ -63,6 +60,12 @@ export const createMoodboardSuccess=(data)=>({
   data
 })
 
+export const CREATE_MOODBOARD_ERROR = 'CREATE_MOODBOARD_ERROR';
+export const createMoodboardError=(error)=>({
+  type:CREATE_MOODBOARD_ERROR,
+  error
+})
+
 export const createMoodboard = (info) => (dispatch,getState) => {
     console.log('cREATE MOODBOARD...',info);
     const authToken = getState().auth.authToken;
@@ -75,11 +78,8 @@ export const createMoodboard = (info) => (dispatch,getState) => {
         },
         body: JSON.stringify(info)
     })
+      .then(res => normalizeResponseErrors(res))
       .then(res => {
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-       // console.log('FETCH MOODBOARD SUCCESS',res.json());
         return res.json();
       })
       .then(data => {
@@ -88,7 +88,7 @@ export const createMoodboard = (info) => (dispatch,getState) => {
        // dispatch(fetchMoodboardsSuccess(data));
       })
       .catch(err => {
-         //dispatch(fetchMoodboardsError(err));
+        dispatch(createMoodboardError(err));
       });
   };
   

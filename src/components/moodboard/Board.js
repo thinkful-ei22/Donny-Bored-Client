@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import axios from 'axios';
+// import axios from 'axios';
 import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
 import {deleteImage, fetchImages, updateImage,clearImages, clearUpdatedImages,saveImages,editImageMode} from '../../actions/images';
 import {setMoodboardId} from '../../actions/moodboards';
-import {API_BASE_URL} from '../../config.js'
+// import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
 import Menubar from './Menubar';
 import './board.css';
@@ -26,22 +26,25 @@ export class Board extends React.Component {
           zoomOut:{transform:'scale(0.5)'},
           zoomIn:{transform:'scale(2)'},
           scaleFactor:{transform:'scale(1)'},
-          width: window.innerWidth
+          width: window.innerWidth,
+          boardId:this.props.match.params.boardId
        
        }
 
      }
 
-    //LIFE CYCLE
+  
 
     componentWillMount() {
+     
       window.addEventListener('resize', this.handleWindowSizeChange);
     }
 
 
     componentDidMount() {
-     this.props.fetchImages(this.props.match.params.boardId);
-     this.props.dispatch(setMoodboardId(this.props.match.params.boardId));
+     this.props.dispatch(clearImages());
+     this.props.fetchImages(this.state.boardId);
+     this.props.dispatch(setMoodboardId(this.state.boardId));
      console.log('PROPS MATCH PARMAS',this.props);
      console.log('BOARD TEST HISTORY',this.props.history);
      //console.log('what is it', this.props);  
@@ -123,7 +126,7 @@ export class Board extends React.Component {
       
     
 
-      if(!this.props || imagesIds == undefined){
+      if(!this.props || imagesIds === undefined){
         return null; //You can change here to put a customized loading spinner 
       }
   
@@ -156,13 +159,13 @@ export class Board extends React.Component {
                           if(this.state.viewMode === "list" || isMobile){
                             return <li style={{position:"relative"}} key={imageId}>
                             <DeleteOverlay handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.match.params.boardId))} editMode={this.props.editMode}/>
-                            <img src={images[imageId].imageurl} /></li>
+                            <img src={images[imageId].imageurl} alt="" /></li>
                           } 
 
                           else if(this.state.viewMode ==="grid"){
                             return <li style={{position:"relative"}} className="grid_block" key={imageId}>
                             <DeleteOverlay handleDelete={()=>this.props.dispatch(deleteImage(imageId,this.props.match.params.boardId))} editMode={this.props.editMode}/>
-                            <img src={images[imageId].imageurl} /></li>
+                            <img src={images[imageId].imageurl} alt="" /></li>
                           }
                           else {
 
