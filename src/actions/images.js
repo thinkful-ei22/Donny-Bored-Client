@@ -64,13 +64,14 @@ export const uploadImage = (files) =>({
 
 
 export const UPDATE_IMAGE = 'UPDATE_IMAGE';
-export const updateImage =(imageId,xpos,ypos,width,height) =>({
+export const updateImage =(imageId,xpos,ypos,width,height,rotateAngle) =>({
     type:UPDATE_IMAGE,
     imageId,
     xpos,
     ypos,
     width,
-    height
+    height,
+    rotateAngle
 });
 
 export const UPDATE_IMAGE_SUCCESS = "UPDATE_IMAGE_SUCCESS";

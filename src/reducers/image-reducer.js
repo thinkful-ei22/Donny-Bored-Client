@@ -112,7 +112,7 @@ export const imagesReducer = (state=initialState, action) => {
         console.log('ACTION',action);
           let id = action.imageId;
           let newPos=[action.xpos,action.ypos];
-          let newSize=[action.width,action.height];
+          let newSize=[action.width,action.height,action.rotateAngle];
           let updateIds=null;
         
             //   const updateObj = {

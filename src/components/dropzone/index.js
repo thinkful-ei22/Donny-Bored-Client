@@ -335,7 +335,7 @@ class Dropzone extends React.Component {
       disabledStyle,
       rejectStyle,
       style,
-      ...props // eslint-disable-line prefer-const
+      // ...props // eslint-disable-line prefer-const
     } = rest
 
     const { isDragActive, draggedFiles } = this.state

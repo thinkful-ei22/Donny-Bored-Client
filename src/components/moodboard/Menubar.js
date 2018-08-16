@@ -12,7 +12,8 @@ export default function Menubar(props) {
         savePath:"../assets/save.png",
         homePath:"../assets/homehappy.jpg"
       }
-  
+
+
         return(
         <div id="view-options">
               <ul>

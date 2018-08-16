@@ -78,9 +78,9 @@ export class Board extends React.Component {
       return match;
     }
 
-    updateImage =(imageId,xpos,ypos,width,height)=>{
+    updateImage =(imageId,xpos,ypos,width,height,rotateAngle)=>{
        // this.props.dispatch(updateImage());
-       this.props.dispatch(updateImage(imageId,xpos,ypos,width,height));
+       this.props.dispatch(updateImage(imageId,xpos,ypos,width,height,rotateAngle));
      
       }
 
@@ -98,7 +98,7 @@ export class Board extends React.Component {
     }
 
 
-    saveUploadImages(imageId=631,xpos,ypos,width,height){
+    saveUploadImages=(imageId=631,xpos,ypos,width,height)=>{
       const updatedImageIdList = this.props.updatedImageIds;
       const images = this.props.allImages;
       console.log('Saving Images...',updatedImageIdList);
@@ -147,7 +147,7 @@ export class Board extends React.Component {
           
              <section>
                       
-                      <Fullscreen  handleHome={()=>this.handleHome()} saveUploadImages={()=>this.saveUploadImages()} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
+                      <Fullscreen  handleHome={()=>this.handleHome()} saveUploadImages={this.saveUploadImages} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
                     
                   <aside style={this.state.scaleFactor}>
                   
@@ -169,7 +169,7 @@ export class Board extends React.Component {
                           }
                           else {
 
-                            return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height)=>this.updateImage(imageId,xpos,ypos,width,height)}></DragRect>
+                            return  <DragRect imageId={imageId} key={imageId} image={images[imageId]} dispatcher={(xpos,ypos,width,height,rotateAngle)=>this.updateImage(imageId,xpos,ypos,width,height,rotateAngle)}></DragRect>
                           }
                         })
                       } 

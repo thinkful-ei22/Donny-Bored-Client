@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import {editMoodboard} from '../../actions/moodboards';
 import Input from './Input';
 import './moodboardForm.css';

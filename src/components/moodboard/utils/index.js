@@ -176,6 +176,8 @@ export const getNewStyle = (type, rect, deltaW, deltaH, ratio, minWidth, minHeig
       }
       break
       }
+
+      default:break
     }
 
   return {
