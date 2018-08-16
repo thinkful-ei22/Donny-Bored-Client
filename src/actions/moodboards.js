@@ -95,12 +95,7 @@ export const createMoodboard = (info) => (dispatch,getState) => {
 
 
 
-//DELETE MOODBOARD RELATED ACTIONS
-export const DELETE_MOODBOARD_SUCCESS = 'DELETE_MOODBOARDS_SUCCESS';
-export const deleteMoodboardSuccess = (board_id) => ({
-  type: DELETE_MOODBOARD_SUCCESS,
-  board_id
-});
+
 
 export const SET_MOODBOARD_ID = 'SET_MOODBOARD_ID';
 export const setMoodboardId = (board_id) => ({
@@ -122,6 +117,7 @@ export const editMoodboardSuccess = (board_id) =>({
 
 export const EDIT_MOODBOARD='EDIT_MOODBOARD';
 export const editMoodboard = (board_id,info) => (dispatch, getState) =>{
+  editMoodboardRequest();
   console.log('EDITING MOODBOARD...');
   console.log('userid',info)
   const authToken=getState().auth.authToken;
@@ -136,6 +132,22 @@ export const editMoodboard = (board_id,info) => (dispatch, getState) =>{
     .then(()=> dispatch(fetchMoodboards(info.user_id)));
 
 }
+
+//DELETE MOODBOARD RELATED ACTIONS
+export const DELETE_MOODBOARD_SUCCESS = 'DELETE_MOODBOARDS_SUCCESS';
+export const deleteMoodboardSuccess = (board_id) => ({
+  type: DELETE_MOODBOARD_SUCCESS,
+  board_id
+});
+
+
+//DELETE MOODBOARD RELATED ACTIONS
+export const DELETE_MOODBOARD_REQUEST = 'DELETE_MOODBOARDS_REQUEST';
+export const deleteMoodboardRequest= () => ({
+  type: DELETE_MOODBOARD_REQUEST
+});
+
+
 
 export const DELETE_MOODBOARD='DELETE_MOODBOARD';
 export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
@@ -154,7 +166,7 @@ export const deleteMoodboard = (board_id, user_id) => (dispatch, getState) => {
       if (!res.ok) {
         throw new Error(res.statusText);
       }
-      console.log('DELET MOODBOARD SUCESSFUL', res)
+      console.log('DELETE MOODBOARD SUCESSFUL', res)
       dispatch(fetchMoodboards(user_id));
       //return res.json();
     })
