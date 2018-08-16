@@ -19,7 +19,7 @@ const flexContainerStyle = {
 
 const fontFam=['sans-serif','serif','fantasy','monospace','cursive']
 
-class LogoMain extends React.Component{
+export class LogoMain extends React.Component{
 
   constructor(props){
 
