@@ -54,7 +54,7 @@ export class LogoMain extends React.Component{
                   })    
               } 
 
-               <nav className="home" role="navigation">
+               <nav className="home">
                         <Link to="/register"><button aria-label="Sign Up">Sign Up</button></Link><span> <Link to="/login"><button aria-label="Login"> Login</button></Link> </span>
                     </nav>
 

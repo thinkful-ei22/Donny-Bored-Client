@@ -18,12 +18,12 @@ export default class Boardlist extends React.Component{
         }
       
         return (
-            <ul className="board_list" role="list" aria-live="polite">
+            <ul className="board_list" aria-live="polite">
            {
             this.props.moodboardIds.map(moodboardId =>{
               
                 return (
-                <li className="board-list-item" key={moodboardId} role="listitem" >
+                <li className="board-list-item" key={moodboardId}  >
                     <h2><Link to={`/moodboards/${moodboardId}`} title={this.props.moodboards[moodboardId].board_name}>{this.props.moodboards[moodboardId].board_name}     </Link> </h2>
                       <div className="board-description"><p>{this.props.moodboards[moodboardId].description}</p></div>
                         <div className="edit-moodboard" style={this.state}>
