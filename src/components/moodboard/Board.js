@@ -28,7 +28,7 @@ export class Board extends React.Component {
           scaleFactor:{transform:'scale(1)'},
           width: window.innerWidth,
           boardId:this.props.match.params.boardId,
-          blank:false
+          
        
        }
 
@@ -38,20 +38,19 @@ export class Board extends React.Component {
 
     componentWillMount() {
      
+     
       window.addEventListener('resize', this.handleWindowSizeChange);
     }
 
 
     componentDidMount() {
-     if(this.props.imageIds.length === 0) {
-       this.setState({blank:true})
-       console.log('NO IMAGES IN THIS BOARD');
-     }
+   
      this.props.dispatch(clearImages());
      this.props.fetchImages(this.state.boardId);
      this.props.dispatch(setMoodboardId(this.state.boardId));
-     console.log('PROPS MATCH PARMAS',this.props);
-     console.log('BOARD TEST HISTORY',this.props.history);
+      console.log("IMAGEIDS",this.state.blank);
+    //  console.log('PROPS MATCH PARMAS',this.props);
+    //  console.log('BOARD TEST HISTORY',this.props.history);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
@@ -126,33 +125,24 @@ export class Board extends React.Component {
 
       const { width } = this.state;
       const isMobile = width <= 500;
-     
 
-      
-    
 
       if(!this.props || imagesIds === undefined){
-        return null;
+       return  <LoadingScreen loading={this.props.loading}/>
       }
   
       return (
         <div id="board-container">
              <LoadingScreen loading={this.props.loading}/>
-            <div className="mobile_menu1" style={isMobile ? {display:"block"} : {display:"none"}}>
-               
-    
 
+              <div id="new_board" className={this.props.imageIds.length === 0 ? "fadeIn" : "fadeOut"} style={this.props.imageIds.length === 0 ? {display:"block"} : {display:"none"}} >
+                     <span className="nonmobile"> Drag image files into this browser window to add images to this board. </span>
+                     <span className="mobile">Click the upload button to upload images to this board. </span>
+              </div>
 
-            </div>
-
-               <div id="new_board" className={this.props.imageIds.length === 0 ? "fadeIn" : "fadeOut"} >
-                    
-                   <span> Drag images into this browser window or click the upload button to add images to this board. Or don't. It's cool.</span>
-                  </div>
-
-
+         
             <div id="board_menu" style={isMobile ? {display:"none"} : {display:"block"}}>
-                  <Menubar editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
+                  <Menubar  editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
             </div>
           
              <section>

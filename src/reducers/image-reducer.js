@@ -12,8 +12,8 @@ const initialState = {
   editMode:false,
   error:null,
   success:null,
-  allImages:initialImages,
-  imageIds:initialIds,
+  allImages:{},
+  imageIds:[],
   updatedImageIds:[]
   
 };
