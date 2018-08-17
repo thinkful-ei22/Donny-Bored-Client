@@ -99,32 +99,9 @@ export class LogoMain extends React.Component{
       //setTimeout(this.getRandFam,1200);
       return (
        <div id="blank" className="fadeInFast"> 
-           <div id="about_info" style={this.state.about}>
-              <div className="aboutcontent">
-              <h3>What is Bored?</h3>
-                <p>Bored is a simple desktop web app for organizing your images into collections or "moodboards."
-                    Make a board, drag and drop your images into the browser and then resize/rearrange/rotate them 
-                    however you feel like until you're totally bored. You don't have to though, it's cool. 
-
-                </p>
-                <button onClick={this.hideAbout} >Ok, Got it</button>
-
-
-              </div>
-           </div>
-
-          
             <header className="logo-main">
                 <h1><span id="boredtext">bored</span> </h1>
-                <span> <button title="What is Bored?" id="about_button" onClick={this.showAbout}> what do you mean?</button></span>
-            {/* {
-                this.state.boredstring.map(letter =>{
-                  return <Letter letter={letter}></Letter>
-                  })
-            }   
-                
-                  */}
-                {/* <div> <span>Register  <img src='assets/pencil.png'/>   Login</span> </div> */}
+                <span> <button title="What is Bored?" id="about_button" onClick={this.showAbout}> what do you mean?</button></span>      
             </header>
 
               {
@@ -133,8 +110,19 @@ export class LogoMain extends React.Component{
                   })    
               } 
 
-          
-       
+               <div className="home">
+                        <Link to="/register"><button>Sign Up</button></Link><span> <Link to="/login"><button> Login</button></Link> </span>
+                    </div>
+
+              <div id="about_info" style={this.state.about}>
+                <div className="aboutcontent">
+                  <h3>What is Bored?</h3>
+                   <p>Bored is a simple desktop web app for organizing your images into collections or "moodboards."
+                      Make a board, drag and drop your images into the browser and then resize/rearrange/rotate them 
+                      however you feel like until you're totally bored. You don't have to though, it's cool. </p>
+                  <button onClick={this.hideAbout} >Ok, Got it</button>
+                </div>
+              </div>
         </div>
       );
     }

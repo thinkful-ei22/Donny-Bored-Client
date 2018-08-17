@@ -18,12 +18,11 @@
         }
     
         .home{
-            position: fixed;
+            position: absolute;
             text-align: center;
             width: 100%;
             margin: auto;
-            margin-top:79px;
-            bottom:unset;
+            bottom:20px;
          
     
         }
@@ -32,6 +31,7 @@
         .home button{
             font-size:18px;
             padding:5px;
+            background-color:white;
         }
         
 

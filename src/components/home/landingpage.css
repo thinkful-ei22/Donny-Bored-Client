@@ -1,26 +1,40 @@
 .content{
     position:absolute;
-    /* background:url("/assets/bg-temp.png"); */
-    background-size:cover;
     }
+
+.home{
+      position:fixed;
+      text-align:center;
+      width:100%;
+      margin:auto;
+      bottom:20px;
+      left:0px;
+      }
+    
+ .home-registration{
+        margin:auto;
+        max-width:300px;
+        padding-top:160px;
+        background:white;
+      }
     
     
-    .middle-align {
+.middle-align {
       height:100vh;
       position:absolute;
       width:100%;
       background-color:#ffffff;
       display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    align-items: center;
+      display: -webkit-flex;
+      display: flex;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      align-items: center;
     }
     
     
-    #boredtext{
+ #boredtext{
         font-family:'Helvetica Neue',sans-serif;
         font-size:98px;
        

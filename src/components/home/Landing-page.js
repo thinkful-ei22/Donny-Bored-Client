@@ -15,12 +15,7 @@ export function LandingPage (props) {
         return (
                 <main className="content middle-align">   
                     <LogoMain/>
-                    <div className="home">
-                    
-                        {/* <LoginForm /> */}
-                
-                        <Link to="/register"><button>Sign Up</button></Link><span> <Link to="/login"><button> Login</button></Link> </span>
-                    </div>
+                   
                 </main>
         );
     
