@@ -12,9 +12,9 @@
 Note: when testing creating and deleting boards, I would prefer if you created a new board instead of deleting the demo boards.
 
 # Introducing Bored
-## A Creative Moodboarding Application for the Web
+## A Creative Moodboarding Application for the Web🕸️🕸️🕸️🕸️
 
-The idea for **Bored** comes out of my own experiences of being a an art school student. I'm not a particularly good or ambitious artist, but the Good Lord knows that I've met more than my fair share of arty people - and what I've learned is that all of them are super into collecting images for inspiration or research as part of their artistic practice.
+The idea for **Bored** comes out of my own experiences from being a an art school student. I'm not a particularly good or ambitious artist, but the Good Lord knows that I've met more than my fair share of arty people and what I've learned is that all of them are super into collecting images for inspiration or research as part of their artistic practice.
 
  **Bored** is a simple web application for organizing images into collections or "moodboards." A moodboard serves as a visual scrapbook for recording aesthetic sensibilities and inspiration. The word "scrapbook" is particularly applicable and something I find missing from most existing moodboarding type applications on the web. One thing I've always wanted was a simple space for throwing some images around and arranging them. I used to live with a photographer friend (now a successful "high-fashion" photographer in Los Angeles) and he would spend hours just arranging some images on a blank canvas in photoshop to get a feel for how they related to each other. So I've tried to incorporate that particular functionality with the knowledge I've gained since starting this bootcamp and I've had fun while doing it. 
 
