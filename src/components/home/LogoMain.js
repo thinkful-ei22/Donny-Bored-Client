@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearImages,loadHomepage} from '../../actions/images.js';
-// import Letter from './Letter';
+import {Link, Redirect} from 'react-router-dom';
 import DragRect from '../moodboard/DragRect';
+import './about.css';
 
 
 
@@ -17,7 +18,9 @@ export class LogoMain extends React.Component{
       changeFont:true,
       fontFamily: null,
       seconds: 0,
-      boredstring:['b','o','r','e','d']
+      boredstring:['b','o','r','e','d'],
+      about:{display:"none"}
+
   
     }
 
@@ -70,7 +73,24 @@ export class LogoMain extends React.Component{
 
     
 
- 
+   showAbout =()=>{
+      this.setState({
+        about:{display:"block"}
+
+      })
+
+
+   }
+
+   hideAbout =()=>{
+    this.setState({
+      about:{display:"none"}
+
+    })
+
+
+ }
+  
     
  
     render(){
@@ -79,8 +99,24 @@ export class LogoMain extends React.Component{
       //setTimeout(this.getRandFam,1200);
       return (
        <div id="blank" className="fadeInFast"> 
+           <div id="about_info" style={this.state.about}>
+              <div class="aboutcontent">
+              <h3>What is Bored?</h3>
+                <p>Bored is a simple web app for organizing your images into collections or "moodboards."
+                    Make a board, drag and drop your images into the browser and then resize/rearrange/rotate them 
+                    however you feel like until you are bored. You don't have to though, it's cool. 
+
+                </p>
+                <button onClick={this.hideAbout} >Ok, Got it</button>
+
+
+              </div>
+           </div>
+
+          
             <header className="logo-main">
                 <h1><span id="boredtext">bored</span> </h1>
+                <span> <button id="about_button" onClick={this.showAbout}> what do you mean?</button></span>
             {/* {
                 this.state.boredstring.map(letter =>{
                   return <Letter letter={letter}></Letter>

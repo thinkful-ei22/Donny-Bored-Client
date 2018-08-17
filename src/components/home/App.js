@@ -6,7 +6,7 @@ import {Route, withRouter} from 'react-router-dom';
 import LandingPage from './Landing-page';
 import Dashboard from './Dashboard-page';
 import Board from '../moodboard/Board';
-
+// import AboutPage from './AboutPage';
 import RegistrationPage from './Registration-page';
 import LoginPage from './Login-page';
 import {refreshAuthToken} from '../../actions/auth';
@@ -82,6 +82,7 @@ export class App extends React.Component {
                 <Route exact path="/moodboards/:boardId" component={Board} />
                 <Route exact path="/register" component={RegistrationPage} />
                 <Route exact path="/login" component={LoginPage} />
+                {/* <Route exact path="/about" component={AboutPage} /> */}
                 </IdleTimer>
             </div>
            
