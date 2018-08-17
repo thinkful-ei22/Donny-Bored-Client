@@ -20,17 +20,8 @@
 
 }
 
-@media only screen and (max-width: 600px) {
-    .board-list-container{
-        margin-left:0px;
-      clear:both; 
-    
-    }
-}
 
-.board-list{
-   
-}
+
 
 ul {
     list-style-type: none;

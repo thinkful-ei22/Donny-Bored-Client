@@ -10,7 +10,8 @@ export default function Menubar(props) {
         gridPath:"../assets/svg-rounded_grid-512.png",
         deletePath:"../assets/trashcan.png",
         savePath:"../assets/save.png",
-        homePath:"../assets/homehappy.jpg"
+        homePath:"../assets/homehappy.jpg",
+        helpPath:"../assets/help.png"
       }
 
 
@@ -23,6 +24,8 @@ export default function Menubar(props) {
                  <li>  <Button title="Delete Mode" active={props.editMode}  iconGraphic={icons.deletePath} handleClick={()=>props.editImageMode()} /></li>
                  <li>  <Button title="Save and Upload" iconGraphic={icons.savePath} handleClick={()=>props.saveUploadImages()} /></li>
                  <li>  <Button title="Return to dashboard" iconGraphic={icons.homePath} handleClick={()=>props.handleHome()} /></li>
+                 {/* <li>  <Button title="Help?" iconGraphic={icons.helpPath} handleClick={()=>props.handleHelp()} /></li> */}
+                
             </ul>
         </div>
         )

@@ -16,3 +16,36 @@
     position:fixed;
     z-index:99999999;
 }
+
+#new_board{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    top: 40%;
+
+}
+
+#new_board span{
+    max-width: 450px;
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    transform:translateX(-50%);
+}
+
+
+ 
+@media only screen and (min-width: 500px) {
+    .mobile{
+        display:none;
+    }
+
+}
+
+@media only screen and (max-width: 500px) {
+    .nonmobile{
+        display:none;
+    }
+
+}

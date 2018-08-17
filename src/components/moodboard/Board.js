@@ -27,7 +27,8 @@ export class Board extends React.Component {
           zoomIn:{transform:'scale(2)'},
           scaleFactor:{transform:'scale(1)'},
           width: window.innerWidth,
-          boardId:this.props.match.params.boardId
+          boardId:this.props.match.params.boardId,
+          
        
        }
 
@@ -37,16 +38,19 @@ export class Board extends React.Component {
 
     componentWillMount() {
      
+     
       window.addEventListener('resize', this.handleWindowSizeChange);
     }
 
 
     componentDidMount() {
+   
      this.props.dispatch(clearImages());
      this.props.fetchImages(this.state.boardId);
      this.props.dispatch(setMoodboardId(this.state.boardId));
-     console.log('PROPS MATCH PARMAS',this.props);
-     console.log('BOARD TEST HISTORY',this.props.history);
+      console.log("IMAGEIDS",this.state.blank);
+    //  console.log('PROPS MATCH PARMAS',this.props);
+    //  console.log('BOARD TEST HISTORY',this.props.history);
      //console.log('what is it', this.props);  
      // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
@@ -121,28 +125,24 @@ export class Board extends React.Component {
 
       const { width } = this.state;
       const isMobile = width <= 500;
-     
 
-      
-    
 
       if(!this.props || imagesIds === undefined){
-        return null; //You can change here to put a customized loading spinner 
+       return  <LoadingScreen loading={this.props.loading}/>
       }
   
       return (
         <div id="board-container">
              <LoadingScreen loading={this.props.loading}/>
-            <div className="mobile_menu1" style={isMobile ? {display:"block"} : {display:"none"}}>
-               
-    
 
+              <div id="new_board" className={this.props.imageIds.length === 0 ? "fadeIn" : "fadeOut"} style={this.props.imageIds.length === 0 ? {display:"block"} : {display:"none"}} >
+                     <span className="nonmobile"> Drag image files into this browser window to add images to this board. </span>
+                     <span className="mobile">Click the upload button to upload images to this board. </span>
+              </div>
 
-            </div>
-
-
+         
             <div id="board_menu" style={isMobile ? {display:"none"} : {display:"block"}}>
-                  <Menubar editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
+                  <Menubar  editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
             </div>
           
              <section>
@@ -150,6 +150,8 @@ export class Board extends React.Component {
                       <Fullscreen  handleHome={()=>this.handleHome()} saveUploadImages={this.saveUploadImages} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
                     
                   <aside style={this.state.scaleFactor}>
+
+                 
                   
                     <ul id={isMobile ? "list" : this.state.viewMode}>
                 

@@ -1,0 +1,15 @@
+
+#about_info{
+    position: fixed;
+    max-width: 500px;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999999;
+    background-color: white;
+}
+
+#about_button{
+    font-size:18px;
+}
