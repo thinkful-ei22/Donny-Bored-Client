@@ -6,6 +6,7 @@ import {clearImages} from '../../actions/images';
 import {editMoodboard, deleteMoodboard,fetchMoodboards} from '../../actions/moodboards';
 import './dashboard.css';
 import './grid.css';
+import './mobile.css';
 import Boardlist from './Boardlist';
 import HeaderBar from './Header-bar';
 
