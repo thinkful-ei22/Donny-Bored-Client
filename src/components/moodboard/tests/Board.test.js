@@ -7,7 +7,7 @@ it('renders without crashing', () => {
     const mocks=jest.fn();
  
  
-  const wrapper=shallow(<Board props={mocks} images={initialImages} imageIds={initialIds} dispatch={mocks}/>);
+  const wrapper=shallow(<Board  images={initialImages} imageIds={initialIds} dispatch={mocks}/>);
   console.log(wrapper.debug());
 
 });

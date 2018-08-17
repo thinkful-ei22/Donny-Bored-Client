@@ -4,18 +4,7 @@ import {clearImages,loadHomepage} from '../../actions/images.js';
 // import Letter from './Letter';
 import DragRect from '../moodboard/DragRect';
 
-const flexContainerStyle = {
-  // alignContent: 'center',
-  // alignItems: 'center',
-  // boxSizing: 'border-box',
-  // display: 'flex',
-  // flexDirection: 'row',
-  // flexWrap: 'nowrap',
-  // justifyContent: 'center',
-  // height:'100%',
-  fontFamily:'fantasy' 
 
-}
 
 const fontFam=['sans-serif','serif','fantasy','monospace','cursive']
 
@@ -89,8 +78,8 @@ export class LogoMain extends React.Component{
      
       //setTimeout(this.getRandFam,1200);
       return (
-       <div id="blank"> 
-            <header className='logo-main' style={flexContainerStyle}>
+       <div id="blank" className="fadeInFast"> 
+            <header className="logo-main">
                 <h1><span id="boredtext">bored</span> </h1>
             {/* {
                 this.state.boredstring.map(letter =>{
@@ -104,7 +93,7 @@ export class LogoMain extends React.Component{
 
               {
                 this.props.imageIds.map(imageId =>{
-                    return  <DragRect imageId={imageId} key={imageId} image={this.props.images[imageId]} dispatcher={()=>null}></DragRect>
+                    return  <DragRect  imageId={imageId} key={imageId} image={this.props.images[imageId]} dispatcher={()=>null}></DragRect>
                   })    
               } 
 

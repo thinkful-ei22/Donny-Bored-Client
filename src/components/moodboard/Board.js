@@ -27,7 +27,8 @@ export class Board extends React.Component {
           zoomIn:{transform:'scale(2)'},
           scaleFactor:{transform:'scale(1)'},
           width: window.innerWidth,
-          boardId:this.props.match.params.boardId
+          boardId:this.props.match.params.boardId,
+          blank:false
        
        }
 
@@ -42,6 +43,10 @@ export class Board extends React.Component {
 
 
     componentDidMount() {
+     if(this.props.imageIds.length === 0) {
+       this.setState({blank:true})
+       console.log('NO IMAGES IN THIS BOARD');
+     }
      this.props.dispatch(clearImages());
      this.props.fetchImages(this.state.boardId);
      this.props.dispatch(setMoodboardId(this.state.boardId));
@@ -140,6 +145,11 @@ export class Board extends React.Component {
 
             </div>
 
+               <div id="new_board" className={this.props.imageIds.length === 0 ? "fadeIn" : "fadeOut"} >
+                    
+                   <span> Drag images into this browser window or click the upload button to add images to this board. Or don't. It's cool.</span>
+                  </div>
+
 
             <div id="board_menu" style={isMobile ? {display:"none"} : {display:"block"}}>
                   <Menubar editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
@@ -150,6 +160,8 @@ export class Board extends React.Component {
                       <Fullscreen  handleHome={()=>this.handleHome()} saveUploadImages={this.saveUploadImages} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
                     
                   <aside style={this.state.scaleFactor}>
+
+                 
                   
                     <ul id={isMobile ? "list" : this.state.viewMode}>
                 
