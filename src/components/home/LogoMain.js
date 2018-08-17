@@ -100,11 +100,11 @@ export class LogoMain extends React.Component{
       return (
        <div id="blank" className="fadeInFast"> 
            <div id="about_info" style={this.state.about}>
-              <div class="aboutcontent">
+              <div className="aboutcontent">
               <h3>What is Bored?</h3>
-                <p>Bored is a simple web app for organizing your images into collections or "moodboards."
+                <p>Bored is a simple desktop web app for organizing your images into collections or "moodboards."
                     Make a board, drag and drop your images into the browser and then resize/rearrange/rotate them 
-                    however you feel like until you are bored. You don't have to though, it's cool. 
+                    however you feel like until you're totally bored. You don't have to though, it's cool. 
 
                 </p>
                 <button onClick={this.hideAbout} >Ok, Got it</button>
@@ -116,7 +116,7 @@ export class LogoMain extends React.Component{
           
             <header className="logo-main">
                 <h1><span id="boredtext">bored</span> </h1>
-                <span> <button id="about_button" onClick={this.showAbout}> what do you mean?</button></span>
+                <span> <button title="What is Bored?" id="about_button" onClick={this.showAbout}> what do you mean?</button></span>
             {/* {
                 this.state.boredstring.map(letter =>{
                   return <Letter letter={letter}></Letter>
