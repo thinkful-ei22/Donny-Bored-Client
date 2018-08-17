@@ -30,6 +30,9 @@ The idea for **Bored** originated from my own experience being a student in art 
 
 ### Features
 
+**Dashboard**
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/dashboard.jpg" width=100%>
+
 **Drag-and-Drop "Freeform" mode - drag images from your desktop directly onto the board, move them around wherever and save when you are finished:**
 
 <img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/free2.jpg" width=100%>
