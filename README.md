@@ -2,8 +2,11 @@
 <img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/bored-screenshot-1.jpg" width=100%>
 
 **Above: a screenshot of a composition created using this app**
-###Demo Link : https://dry-stream-91854.herokuapp.com/  
+
+##Demo Link : https://dry-stream-91854.herokuapp.com/  
+
 **Demo Login: jonny2lips** 
+
 **Demo Password: Misterbear9614**
 
 Note: when testing creating and deleting boards, I would prefer if you created a new board instead of deleting the demo boards.
