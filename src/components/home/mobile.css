@@ -8,6 +8,13 @@
           clear:both; 
         
         }
+
+        .home-registration {
+            margin: auto;
+            max-width: 300px;
+            padding-top: 90px;
+            background: white;
+        }
     
         #blank{
             background:url('/assets/mobile-bg.jpg') !important;
