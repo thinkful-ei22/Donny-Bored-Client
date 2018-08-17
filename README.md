@@ -14,7 +14,7 @@ Note: when testing creating and deleting boards, I would prefer if you created a
 # Introducing Bored
 ## A Creative Moodboarding Application for the Web
 
-The idea for **Bored** originated from my own experience being a student in art school. Now I'm not a particularly good or ambitious artist,but the Good Lord knows I've met more than my fair share of arty people- and lemme tell you - all of them are super into collecting images for inspiration or research as part of their artistic practice.
+The idea for **Bored** originates from my own experiences of being a an art school student. I'm not a particularly good or ambitious artist, but the Good Lord knows that I've met more than my fair share of arty people - and what I've learned is that all of them are super into collecting images for inspiration or research as part of their artistic practice.
 
  **Bored** is a simple web application for organizing images into collections or "moodboards." A moodboard serves as a visual scrapbook for recording aesthetic sensibilities and inspiration. The word "scrapbook" is particularly applicable and something I find missing from most existing moodboarding type applications on the web. One thing I've always wanted was a simple space for throwing some images around and arranging them. I used to live with a photographer friend (now a successful "high-fashion" photographer in Los Angeles) and he would spend hours just arranging some images on a blank canvas in photoshop to get a feel for how they related to each other. So I've tried to incorporate that particular functionality with the knowledge I've gained since starting this bootcamp and I've had fun while doing it. 
 
@@ -26,7 +26,7 @@ The idea for **Bored** originated from my own experience being a student in art 
  * Tech Stack:  PERN - 🐘 Postgres as the database, Express and Node on the backend, React/Redux on the frontend
  * Link to backend repo: https://github.com/thinkful-ei22/Donny-Bored-Server
  * Additional info: Cloud storage of images provided through cloudinary API via multer middleware; slightly modified    react-dropzone library for dropzone implementation and a modified version of the react-resizable-rotable-draggable library
- * Future plans - continued development and refinement of existing and new features
+ * Future plans - continued development and refinement of existing and new features while improving and revising my code and thinking of better ways to organize the data. I'd like to add the ability for a user to publish board to a gallery of publicly viewable boards, the ability to output the page to an image (perhaps something like html2canvas), pagination, ability for the user to adjust the z-index, and various sorting for the boards and a better dashboard...
 
 
 ### Features
