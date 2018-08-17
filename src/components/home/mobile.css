@@ -25,11 +25,11 @@
         }
     
         .home{
-            position: absolute;
+            position: fixed;
             text-align: center;
             width: 100%;
             margin: auto;
-            bottom:20px;
+            bottom:100px;
          
     
         }

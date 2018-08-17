@@ -43,13 +43,13 @@ export class Dashboard extends React.Component {
 
           
         return (
-            <div className="dashboard fadeInFast">
-                <div className="dashboard-header">
+            <main className="dashboard fadeInFast" role="main">
+                <header className="dashboard-header" role="banner">
                     <div className="dashboard-username">
                         <strong>  Howdy {this.props.username} !   <img src="assets/wavey.gif" alt="Howdy" title="Howdy" /> </strong>
                         </div> 
                         <HeaderBar />
-                    </div>
+                    </header>
                 <br/>
                <p className="normal-text">What's new? Always different, always bored. </p>
                <div className="container">
@@ -61,7 +61,7 @@ export class Dashboard extends React.Component {
                      <Boardlist loading={this.props.moodboardLoading} userId={this.props.userId} moodboards={this.props.moodboards} moodboardIds={this.props.moodboardIds} deleteMoodboard={(board_id)=>this.deleteMoodboard(board_id,this.props.userId)}/>
                </div>
                </div>
-            </div> 
+            </main> 
         );
     }
 }

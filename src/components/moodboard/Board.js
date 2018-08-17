@@ -122,24 +122,24 @@ export class Board extends React.Component {
       }
   
       return (
-        <div id="board-container">
+        <main id="board-container">
              <LoadingScreen loading={this.props.loading}/>
 
-              <div id="new_board" className={this.props.imageIds.length === 0 ? "fadeIn" : "fadeOut"} style={this.props.imageIds.length === 0 ? {display:"block"} : {display:"none"}} >
+              <header id="new_board" className={this.props.imageIds.length === 0 ? "fadeIn" : "fadeOut"} style={this.props.imageIds.length === 0 ? {display:"block"} : {display:"none"}} >
                      <span className="nonmobile"> Drag image files into this browser window to add images to this board. </span>
                      <span className="mobile">Click the upload button to upload images to this board. </span>
-              </div>
+              </header>
 
          
-            <div id="board_menu" style={isMobile ? {display:"none"} : {display:"block"}}>
+            <nav id="board_menu" style={isMobile ? {display:"none"} : {display:"block"}}>
                   <Menubar  editMode={this.props.editMode} viewMode={this.state.viewMode} editImageMode={()=>this.props.editImageMode()} handleHome={()=>this.handleHome()} setViewMode={(mode)=>this.setViewMode(mode)} saveUploadImages={()=>this.saveUploadImages()}/>
-            </div>
+            </nav>
           
              <section>
                       
                       <Fullscreen  handleHome={()=>this.handleHome()} saveUploadImages={this.saveUploadImages} getImages={()=>this.getImages()} boardId={this.props.match.params.boardId}/>
                     
-                  <aside style={this.state.scaleFactor}>
+                  <div style={this.state.scaleFactor}>
 
                  
                   
@@ -167,9 +167,9 @@ export class Board extends React.Component {
                       } 
                       
                     </ul>
-                  </aside>
+                  </div>
                 </section>
-            </div>
+            </main>
       );
     }
   }

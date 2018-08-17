@@ -38,7 +38,7 @@ fieldset{
     cursor: pointer;
   }
   
-  input[type=text],input[type=url], input[type=password],select, textarea {
+  input[type=text],input[type=url], input[type=password], input[type=passwordConfirm],select, textarea {
     width: 100%;
     padding: 12px;
     border: 2px solid #333;
@@ -47,17 +47,3 @@ fieldset{
   }
 
 
-  .home{
-  position:fixed;
-  text-align:center;
-    width:100%;
-    margin:auto;
-    bottom:20px;
-  }
-
-  .home-registration{
-    margin:auto;
-    max-width:300px;
-    padding-top:160px;
-    background:white;
-  }

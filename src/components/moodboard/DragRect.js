@@ -79,7 +79,7 @@ export default class DragRect extends Component {
     }
    // console.log('statelog',this.state);
     return (
-      <div className="resizable-draggable" >
+      <div className="resizable-draggable" aria-grabbed="true" >
       
         <ResizableRect
           left={left}

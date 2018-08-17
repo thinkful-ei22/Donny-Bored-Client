@@ -37,11 +37,11 @@ export class HeaderBar extends React.Component {
         if (this.props.loggedIn) {
            
             return (
-                <div className="header-bar">
+                <nav className="header-bar" role="navigation">
                     {/* <h1>Bored</h1> */}
                     {logOutButton}
                  
-                </div>
+                </nav>
             );
           
         } else return null;

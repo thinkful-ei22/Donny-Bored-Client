@@ -159,6 +159,7 @@ class Rect extends PureComponent {
 
     return (
       <div
+       
         ref={this.setElementRef}
         onMouseDown={this.startDrag}
         className="rect single-resizer"

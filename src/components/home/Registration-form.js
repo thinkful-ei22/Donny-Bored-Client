@@ -19,18 +19,21 @@ export class RegistrationForm extends React.Component {
     render() {
         return (
             <form
+                 autocomplete="off"
                 className="login-form"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
+               
                 <label htmlFor="email">Email</label>
-                <Field component={Input} type="text" name="email" validate={[required,validEmail]}/>
+                <Field component={Input} type="text" id="email" name="email" validate={[required,validEmail]}/>
                
                 <label htmlFor="username">Username</label>
                 <Field
                     component={Input}
                     type="text"
                     name="username"
+                    id="username"
                     validate={[required, nonEmpty, isTrimmed]}
                 />
                 <label htmlFor="password">Password</label>
@@ -38,6 +41,7 @@ export class RegistrationForm extends React.Component {
                     component={Input}
                     type="password"
                     name="password"
+                    id="password"
                     validate={[required, passwordLength, isTrimmed]}
                 />
                 <label htmlFor="passwordConfirm">Confirm password</label>
@@ -45,9 +49,12 @@ export class RegistrationForm extends React.Component {
                     component={Input}
                     type="password"
                     name="passwordConfirm"
+                    id="passwordConfirm"
+                 
                     validate={[required, nonEmpty, matchesPassword]}
                 />
                 <button
+                    aria-label="Submit Registration"
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>
                     Register

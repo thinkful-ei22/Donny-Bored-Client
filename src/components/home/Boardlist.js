@@ -14,16 +14,16 @@ export default class Boardlist extends React.Component{
 
         if(!this.props.loading && this.props.moodboardIds.length<1){
            // console.log('less than 1 moodboards');
-            return  <div id="no_moodboards"><img src="../assets/board.gif" alt="Mona Lisa"/><h3>Hint: Get started by creating a new board.</h3> </div>
+            return  <main id="no_moodboards"><img src="../assets/board.gif" alt="Mona Lisa"/><h3>Hint: Get started by creating a new board.</h3> </main>
         }
       
         return (
-            <ul className="board_list">
+            <ul className="board_list" role="list" aria-live="polite">
            {
             this.props.moodboardIds.map(moodboardId =>{
               
                 return (
-                <li className="board-list-item" key={moodboardId} >
+                <li className="board-list-item" key={moodboardId} role="listitem" >
                     <h2><Link to={`/moodboards/${moodboardId}`} title={this.props.moodboards[moodboardId].board_name}>{this.props.moodboards[moodboardId].board_name}     </Link> </h2>
                       <div className="board-description"><p>{this.props.moodboards[moodboardId].description}</p></div>
                         <div className="edit-moodboard" style={this.state}>

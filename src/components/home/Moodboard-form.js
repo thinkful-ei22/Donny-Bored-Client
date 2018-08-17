@@ -26,12 +26,12 @@ export class MoodboardForm extends React.Component {
                     this.onSubmit(values)
                 )}>
                 <label htmlFor="board_name">Moodboard Name</label>
-                <Field component={Input} type="text" name="board_name"  validate={[required, nonEmpty]} />
+                <Field component={Input} type="text" id="board_name" name="board_name"  validate={[required, nonEmpty]} />
                
                
                 <label htmlFor="description">Description</label>
                 <Field component={Input} element="textarea"  name="description" id="description">
-                Test this</Field>
+                </Field>
                 <button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>

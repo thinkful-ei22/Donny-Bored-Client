@@ -13,7 +13,7 @@ export function LandingPage (props) {
         }
 
         return (
-                <main className="content middle-align">   
+                <main className="content middle-align" role="main">   
                     <LogoMain/>
                    
                 </main>
