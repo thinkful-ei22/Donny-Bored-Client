@@ -90,7 +90,7 @@ export class LogoMain extends React.Component{
       //setTimeout(this.getRandFam,1200);
       return (
        <div id="blank"> 
-            <header className='logo-main marginadjust' style={flexContainerStyle}>
+            <header className='logo-main' style={flexContainerStyle}>
                 <h1><span id="boredtext">bored</span> </h1>
             {/* {
                 this.state.boredstring.map(letter =>{

@@ -264,8 +264,9 @@ export const clearUpdatedImages=()=>({
 
 //LOAD INITIAL IMAGES FOR HOMEPAGE
 export const LOAD_HOMEPAGE = 'LOAD_HOMEPAGE';
-export const loadHomepage=()=>({
-    type:LOAD_HOMEPAGE
+export const loadHomepage=(mobile)=>({
+    type:LOAD_HOMEPAGE,
+    mobile
 });
 
 

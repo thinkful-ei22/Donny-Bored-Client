@@ -1,0 +1,49 @@
+ 
+ @media only screen and (max-width: 500px) {
+    
+
+ 
+        .board-list-container{
+            margin-left:0px;
+          clear:both; 
+        
+        }
+    
+        #blank{
+            background:url('/assets/mobile-bg.jpg') !important;
+            background-size:cover !important;
+             width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+    
+        .home{
+            position: fixed;
+            text-align: center;
+            width: 100%;
+            margin: auto;
+            margin-top:20px;
+            bottom:unset;
+         
+    
+        }
+    
+    
+        .home button{
+            font-size:18px;
+            padding:5px;
+        }
+        
+
+        .logo-main{
+            z-index:9999;
+        }
+
+        .rect{
+            display:none;
+        }
+        .resizable-draggable{
+            display:none;
+        }
+
+  }

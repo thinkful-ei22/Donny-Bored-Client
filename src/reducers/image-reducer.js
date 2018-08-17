@@ -1,6 +1,6 @@
 
 import * as types from '../actions/images';
-import {initialImages, initialIds} from '../components/home/homepagedata';
+import {initialImages, initialImagesOnMobile, initialIds} from '../components/home/homepagedata';
 
 
 //680x510
@@ -26,7 +26,7 @@ export const imagesReducer = (state=initialState, action) => {
     switch (action.type) {
     case(types.LOAD_HOMEPAGE):
       return Object.assign({}, state, {
-        allImages: initialImages,
+        allImages: action.mobile ? initialImagesOnMobile : initialImages,
         imageIds:initialIds
       });
     case(types.FETCH_IMAGES_REQUEST):

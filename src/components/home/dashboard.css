@@ -26,11 +26,32 @@
       clear:both; 
     
     }
+
+    #blank{
+        background:white;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+    }
+
+    .home{
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        margin-top:20px;
+     
+
+    }
+
+
+    .home button{
+        font-size:18px;
+        padding:5px;
+    }
 }
 
-.board-list{
-   
-}
+
 
 ul {
     list-style-type: none;

@@ -127,7 +127,7 @@ export class Board extends React.Component {
     
 
       if(!this.props || imagesIds === undefined){
-        return null; //You can change here to put a customized loading spinner 
+        return null;
       }
   
       return (
