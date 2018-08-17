@@ -1,98 +1,42 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearImages,loadHomepage} from '../../actions/images.js';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import DragRect from '../moodboard/DragRect';
 import './about.css';
-
-
-
-const fontFam=['sans-serif','serif','fantasy','monospace','cursive']
 
 export class LogoMain extends React.Component{
 
   constructor(props){
-
     super(props);
     this.state={
-      changeFont:true,
-      fontFamily: null,
-      seconds: 0,
-      boredstring:['b','o','r','e','d'],
       about:{display:"none"}
-
-  
     }
 
   }
 
-    tick() {
-      this.setState(prevState => ({
-        seconds: prevState.seconds + 1
-      }));
-      let font = this.generateNum();
-      this.setState({fontFamily:fontFam[font]});
-      console.log('tick tock');
-    }
-
-    componentWillMount() {
+  componentWillMount() {
       this.props.dispatch(loadHomepage());
-
     }
 
-
-    componentDidMount() {
-      // this.interval = setInterval(() => this.tick(), 100);
-     // this.splitLetters();
-    }
-    
-    splitLetters(){
-      let string = "boring";
-      this.setState({boredstring: string.split("")});
-
-    }
-  
     //clears images store object from redux store   
-    componentWillUnmount(){
+  componentWillUnmount(){
       this.setState({changeFont:false});
-      this.props.dispatch(clearImages());
-      //clearInterval(this.interval);
-     
+      this.props.dispatch(clearImages());  
    }
-    generateNum =()=>{
-      return Math.floor(Math.random()*fontFam.length);
-    }
-
-    getRandFam=()=>{
-      let font=this.generateNum();
-      this.setState({fontFamily : fontFam[font]});     
-     
-     // return {fontFamily: fontFam[font]};
-
-    }    
-
-    
-
-   showAbout =()=>{
+ 
+  showAbout =()=>{
       this.setState({
         about:{display:"block"}
-
       })
-
-
    }
 
    hideAbout =()=>{
     this.setState({
       about:{display:"none"}
-
     })
-
-
  }
   
-    
- 
     render(){
    
      

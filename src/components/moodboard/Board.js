@@ -5,7 +5,6 @@ import requiresLogin from '../home/Requires-login';
 import DragRect from './DragRect';
 import {deleteImage, fetchImages, updateImage,clearImages, clearUpdatedImages,saveImages,editImageMode} from '../../actions/images';
 import {setMoodboardId} from '../../actions/moodboards';
-// import {API_BASE_URL} from '../../config.js'
 import Fullscreen from './Fullscreen';
 import Menubar from './Menubar';
 import './board.css';
@@ -13,8 +12,7 @@ import './view-grid.css';
 import LoadingScreen from './Loading-screen';
 import DeleteOverlay from './Delete-overlay';
 
-
-
+/*This is the main board component - it needs alot of work, alot of things can be extracted, but this is it for now*/
 
 export class Board extends React.Component {
 
@@ -37,22 +35,15 @@ export class Board extends React.Component {
   
 
     componentWillMount() {
-     
-     
       window.addEventListener('resize', this.handleWindowSizeChange);
     }
 
 
+    //On mount clear any images in store, fetch the images for the baord Id and then set the board if (these could be combined later)
     componentDidMount() {
-   
      this.props.dispatch(clearImages());
      this.props.fetchImages(this.state.boardId);
      this.props.dispatch(setMoodboardId(this.state.boardId));
-      console.log("IMAGEIDS",this.state.blank);
-    //  console.log('PROPS MATCH PARMAS',this.props);
-    //  console.log('BOARD TEST HISTORY',this.props.history);
-     //console.log('what is it', this.props);  
-     // .then(([data]) => this.props.state.setState({ moodboardImages :data.images}));
     }
 
      //clears images store object from redux store   
@@ -61,12 +52,12 @@ export class Board extends React.Component {
        this.props.clearUpdatedImages();
        //check to see if delete mode is enabled if true turn off (this works okay for now )
        if(this.props.editMode){
-         console.log(this.props.editMode);
+        // console.log(this.props.editMode);
          this.props.dispatch(editImageMode())
        }
-       window.removeEventListener("dragover", e => console.log('removed drageleavelistner'));
+       window.removeEventListener("dragover",(e)=>"");
        window.removeEventListener('resize', this.handleWindowSizeChange);
-       console.log('UNMOUNTING?');
+      // console.log('UNMOUNTING?');
     }
 
     handleWindowSizeChange = () => {
@@ -82,44 +73,43 @@ export class Board extends React.Component {
       return match;
     }
 
+    //This function calls the action to update the image coordintes/size in the Redux store
     updateImage =(imageId,xpos,ypos,width,height,rotateAngle)=>{
        // this.props.dispatch(updateImage());
        this.props.dispatch(updateImage(imageId,xpos,ypos,width,height,rotateAngle));
      
       }
 
-
+     //sets view mode - free,grid or list
     setViewMode=(mode)=>{
       this.setState({ 
         viewMode:mode
       })
     }
 
+    //delete mode toggle
     deleteModeToggle=()=>{
       this.setState({
         deleteMode: !this.state.deleteMode
       })
     }
 
-
+    //saves images and uploads them to ther server
     saveUploadImages=(imageId=631,xpos,ypos,width,height)=>{
       const updatedImageIdList = this.props.updatedImageIds;
       const images = this.props.allImages;
-      console.log('Saving Images...',updatedImageIdList);
+      //console.log('Saving Images...',updatedImageIdList);
       this.props.saveImages(updatedImageIdList, images);
    }
 
-
-      handleHome = () => {
+      //go home
+      handleHome=()=>{
         this.props.history.push('/dashboard');
-        console.log('BUTTON TEST HISTORY',this.props.history.location.pathname==='/dashboard');
+       // console.log('BUTTON TEST HISTORY',this.props.history.location.pathname==='/dashboard');
       }
 
     
-
-
-
-    render() {
+    render(){
       const imagesIds = this.props.imageIds;
       const images =  this.props.allImages;
 

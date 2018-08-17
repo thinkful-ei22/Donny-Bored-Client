@@ -10,7 +10,7 @@ export class HeaderBar extends React.Component {
     logOut() {
         this.props.dispatch(clearAuth());
         this.props.dispatch(clearMoodboards());
-        console.log('CLEARING MOODBOARDS');
+      //  console.log('CLEARING MOODBOARDS');
         clearAuthToken();
     }
 
@@ -21,7 +21,7 @@ export class HeaderBar extends React.Component {
 
     componentDidMount() {
    
-        console.log('THIS BUTTON REDIRECT PROPS',this.props);
+       // console.log('THIS BUTTON REDIRECT PROPS',this.props);
       
     } 
 

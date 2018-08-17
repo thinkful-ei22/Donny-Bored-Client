@@ -45,8 +45,8 @@ export const imagesReducer = (state=initialState, action) => {
          const keyArray = Object.keys(normalizedImages);
           //add the key array to the object
           //normalizedImages.imageIds = keyArray;
-          console.log('keys', keyArray);
-          console.log('NORMALIZED', normalizedImages);
+          //console.log('keys', keyArray);
+          //console.log('NORMALIZED', normalizedImages);
       return Object.assign({}, state, {
         allImages : normalizedImages,
         imageIds: keyArray,
@@ -88,14 +88,14 @@ export const imagesReducer = (state=initialState, action) => {
         });
 
       case(types.CLEAR_IMAGES):
-       console.log('CLEARING IMAGES');
+       //console.log('CLEARING IMAGES');
         return Object.assign({}, state, {
           allImages:{},
           imageIds:[]          
         });
 
       case(types.CLEAR_UPDATED_IMAGES):
-      console.log('CLEARING UPDATED IMAGES');
+      //console.log('CLEARING UPDATED IMAGES');
       return Object.assign({},state,{
         updatedImageIds:[]
       });

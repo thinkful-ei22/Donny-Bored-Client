@@ -1,12 +1,10 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-// import {registerUser} from '../../actions/users';
 import {createMoodboard} from '../../actions/moodboards';
 import Input from './Input';
 import './moodboardForm.css';
 import {required, nonEmpty} from './validators';
-// const passwordLength = length({min: 10, max: 72});
-// const matchesPassword = matches('password');
+
 
 
 export class MoodboardForm extends React.Component {
@@ -16,7 +14,7 @@ export class MoodboardForm extends React.Component {
         const moodboardInfo = {board_name,description,user_id };
         return this.props
             .dispatch(createMoodboard(moodboardInfo))
-            .then(() => console.log('MOODBOARD CREATION REQEESTED'));
+            //.then(() => console.log('MOODBOARD CREATION REQEESTED'));
     }
 
     render() {

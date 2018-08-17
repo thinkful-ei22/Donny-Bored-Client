@@ -6,24 +6,17 @@ import './grid.css';
 
 export default class Boardlist extends React.Component{
 
-  
     render(){
 
         if(!this.props || this.props.moodboards === undefined ){
-           
-            console.log('null moodboards');
-            return null
-          
+            return null   
         }
 
         if(!this.props.loading && this.props.moodboardIds.length<1){
-            console.log('less than 1 moodboards');
+           // console.log('less than 1 moodboards');
             return  <div id="no_moodboards"><img src="../assets/board.gif" alt="Mona Lisa"/><h3>Hint: Get started by creating a new board.</h3> </div>
         }
       
-       
-
-
         return (
             <ul className="board_list">
            {

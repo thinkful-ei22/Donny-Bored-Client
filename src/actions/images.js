@@ -27,7 +27,7 @@ export const fetchImagesError = error => ({
 
 export const FETCH_IMAGES = 'FETCH_IMAGES';
 export const fetchImages = (boardId) => (dispatch, getState)=> {
-    console.log('FETCHING...');
+    //console.log('FETCHING...');
     const authToken = getState().auth.authToken;
     dispatch(fetchImagesRequest());
  
@@ -101,7 +101,7 @@ export const saveImagesError = (error)=>({
 export const SAVE_IMAGES = 'SAVE_IMAGES';
 export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
     dispatch(saveImagesRequest());
-    console.log('saving...uploading new data to server...!!',imageIds);
+    //console.log('saving...uploading new data to server...!!',imageIds);
     const updaters=imageIds.map(id => {
         //using fetch insead of Axios library
         console.log('SAVING IMAGES...');
@@ -129,7 +129,7 @@ export const saveImages=(imageIds,images)=>(dispatch,getState)=>{
     .all(updaters)
     .then(() => {
       dispatch(saveImagesSuccess());
-      console.log('UPDATED MOODBOARD');
+      //console.log('UPDATED MOODBOARD');
      })
      .catch(err => {
         dispatch(saveImagesError(err));
@@ -166,7 +166,7 @@ export const deleteImageSuccess=(imageId)=>({
 export const DELETE_IMAGE= 'DELETE_IMAGE';
 export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
     dispatch(deleteImageRequest);
-    console.log('DELETING...',imageId,board_id);
+    //console.log('DELETING...',imageId,board_id);
     const authToken = getState().auth.authToken;
    // dispatch(fetchImagesRequest());
     return fetch(`${API_BASE_URL}/api/images/${imageId}`, {
@@ -181,7 +181,7 @@ export const deleteImage = (imageId,board_id) => (dispatch, getState)=> {
         }
         dispatch(deleteImageSuccess(imageId));
        
-        console.log('DELETED',res);
+        //console.log('DELETED',res);
         //return res.json();
       })
       .then(()=>{
@@ -216,9 +216,9 @@ export const onDropError=(error)=>({
 
 
 export const onDropFiles=(files,mousePosX=640,mousePosY=640,boardId)=>(dispatch,getState)=>{
-    console.log("ON DROP FILES ACTION");
+    //console.log("ON DROP FILES ACTION");
     dispatch(onDropRequest());
-        console.log('FILES',files);
+        //console.log('FILES',files);
         const uploaders = files.map(file => {
           // Initial FormData
           //https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
@@ -227,7 +227,7 @@ export const onDropFiles=(files,mousePosX=640,mousePosY=640,boardId)=>(dispatch,
           formData.append('moodboard_id',boardId);
           formData.append('positionX', Math.floor(mousePosX-250));
           formData.append('positionY',Math.floor(mousePosY-250));
-           console.log("MOUSE XY",mousePosX,mousePosY);
+           //console.log("MOUSE XY",mousePosX,mousePosY);
           //Make an AJAX upload request using Axios
           //using fetch insead of Axios library
          return fetch(`${API_BASE_URL}/api/cloudinary`,{

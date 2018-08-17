@@ -10,7 +10,7 @@ export default function DeleteOverlay(props){
             transform:"translate(-50%,-50%)"
      }
     return(
-       // <div className="rect" style={style}>
+    
       <div style={styles}>
             <EditMenu handleDelete={props.handleDelete} editMode={props.editMode}/>
       </div>

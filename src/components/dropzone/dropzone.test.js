@@ -3,6 +3,9 @@ import { mount, render } from 'enzyme'
 import { spy, stub } from 'sinon'
 import { onDocumentDragOver } from './utils'
 
+//These are tests for the dropzone component
+
+
 import Dropzone from './index'; // eslint-disable-line import/no-dynamic-require
 const DummyChildComponent = () => null
 

@@ -21,7 +21,7 @@ export const fetchMoodboardsError = (error) => ({
 
 export const FETCH_MOODBOARDS = 'FETCH_MOODBOARDS';
 export const fetchMoodboards = (user_id) => (dispatch,getState) => {
-  console.log('fetching moodboards...',user_id);
+  //console.log('fetching moodboards...',user_id);
   fetchMoodboardsRequest();
   const authToken = getState().auth.authToken;
   dispatch(fetchMoodboardsRequest(user_id));

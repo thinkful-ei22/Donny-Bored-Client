@@ -17,14 +17,14 @@ const initialState = {
 
 export function moodboardReducer(state = initialState, action) {
     if(action.type === FETCH_MOODBOARDS_REQUEST){
-        console.log('FETCH MOODBOARdS REQUEST')
+        //console.log('FETCH MOODBOARdS REQUEST')
         return Object.assign({}, state, {
             loading:true
         });
     }
     
     else if (action.type === FETCH_MOODBOARDS_SUCCESS) {
-        console.log('FETCH MOODBOARDS SUCCESS ACTION',action.data)
+        //console.log('FETCH MOODBOARDS SUCCESS ACTION',action.data)
         const normalizedBoards = 
         action.data.reduce((accumulator, current) => {
          accumulator[current.id] = current;
@@ -50,13 +50,13 @@ export function moodboardReducer(state = initialState, action) {
             error: action.error
         });
     }else if(action.type === SET_MOODBOARD_ID){
-        console.log('SETTING BOARD ID',action);
+       // console.log('SETTING BOARD ID',action);
         return Object.assign({},state, {
             board_id:action.board_id,
             error:action.error
         })
     } else if(action.type === CLEAR_MOODBOARDS){
-        console.log('CLEARING MOODBOARDS');
+       // console.log('CLEARING MOODBOARDS');
         return Object.assign({}, state, {
           data:{},
           boardIds:[]

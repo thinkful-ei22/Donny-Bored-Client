@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
 
     componentDidMount() {
         this.props.dispatch(fetchMoodboards(this.props.userId));
-        console.log('THIS DASHBORD PROPS',this.props);
+        //console.log('THIS DASHBORD PROPS',this.props);
     }
 
     componentWillUnmount(){
