@@ -24,6 +24,7 @@ The idea for **Bored** originated from my own experience being a student in art 
  * Target Audience : Young creative types
  * MVP features - account creation/create,update,delete moodboards, upload images, arrange and save them
  * Tech Stack:  PERN - 🐘 Postgres as the database, Express and Node on the backend, React/Redux on the frontend
+ * Link to backend repo: https://github.com/thinkful-ei22/Donny-Bored-Server
  * Additional info: Cloud storage of images provided through cloudinary API via multer middleware; slightly modified    react-dropzone library for dropzone implementation and a modified version of the react-resizable-rotable-draggable library
  * Future plans - continued development and refinement of existing and new features
 
