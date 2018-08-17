@@ -39,4 +39,9 @@ The idea for **Bored** originated from my own experience being a student in art 
 <img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/grid3.jpg" width=100%>
 <img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/bored-dev/screenshots/grid4.jpg" width=100%>
 
+**List view mode**
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/list.jpg" width=100%>
 
+
+**Delete Mode - now with flames**
+<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/deletemode.jpg" width=100%>
