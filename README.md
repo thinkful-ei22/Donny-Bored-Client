@@ -25,14 +25,11 @@ The idea for **Bored**  has its origins in my past life as an art school student
  * MVP features - account creation/create,update,delete moodboards, upload images, arrange and save them
  * Tech Stack:  PERN - 🐘 Postgres as the database, Express and Node on the backend, React/Redux on the frontend
  * Link to backend repo: https://github.com/thinkful-ei22/Donny-Bored-Server
- * Additional info: Cloud storage of images provided through cloudinary API via multer middleware; slightly modified    react-dropzone library for dropzone implementation and a modified version of the react-resizable-rotable-draggable library
- * Future plans - continued development and refinement of existing and new features while improving and revising my code and thinking of better ways to organize the data. I'd like to add the ability for a user to publish board to a gallery of publicly viewable boards, the ability to output the page to an image (perhaps something like html2canvas), pagination, ability for the user to adjust the z-index, and various sorting for the boards and a better dashboard...
+ * Additional info: Cloud storage of images provided through cloudinary API via multer middleware; slightly modified react-dropzone library for dropzone implementation and a modified version of the react-resizable-rotable-draggable library
+ * Future plans - continued development and refinement of existing and new features while improving and revising my code and thinking of better ways to organize the data. I'd like to add the ability for a user to publish board to a gallery of publicly viewable boards, the ability to output the page to an image (perhaps something like html2canvas), pagination, ability for the user to adjust the z-index, and various sorting for the boards and a better dashboard. Eventually the whole thing will run on a decentralized blockchain with the capability for machine learning and artificial intelligence applications with the ultimate goal of sentience and self-governance.
 
 
 ### Features
-
-**Dashboard**
-<img src="https://github.com/thinkful-ei22/Donny-Bored-Client/blob/master/screenshots/dashboard.jpg" width=100%>
 
 **Drag-and-Drop "Freeform" mode - drag images from your desktop directly onto the board, move them around wherever and save when you are finished:**
 
