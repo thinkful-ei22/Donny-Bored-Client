@@ -14,8 +14,10 @@ export function LoginPage(props) {
         <div className="home-registration fadeInFast">
             <div className="registration-form">
             <h2>Bored Login</h2>
+            <p class="small-text">Demo user: jonny2lips Password: Misterbear9614</p>
             <LoginForm />
             <Link to="/">Back to Homepage</Link>
+          
             </div>
         </div>
     );

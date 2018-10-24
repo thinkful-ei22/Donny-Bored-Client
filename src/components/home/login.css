@@ -18,7 +18,10 @@ fieldset{
   
   }
 
- 
+ .small-text{
+   font-size:0.7em;
+   opacity:0.8;
+ }
   
 .title{
     margin:auto;
